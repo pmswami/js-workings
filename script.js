@@ -72,18 +72,50 @@
 // }
 
 
-//Example
-console.log(numProducts)
-if(!numProducts) deleteShoppingCart()
-var numProducts = 10
-function deleteShoppingCart(){
-    console.log("Deleted All products")
+// //Example
+// console.log(numProducts)
+// if(!numProducts) deleteShoppingCart()
+// var numProducts = 10
+// function deleteShoppingCart(){
+//     console.log("Deleted All products")
+// }
+
+// var x=1
+// let y=2
+// const z=3
+
+// console.log(x === window.x)
+// console.log(y===window.y)
+// console.log(z===window.z)
+
+
+// This keyword
+// console.log(this)
+// // inside normal function 'this' keyword will be undefined
+// const calcAge = function (birthYear){
+//     console.log(2037-birthYear)
+//     console.log(this)
+// }
+// calcAge(1990)
+// // Arrow function do not have its own 'this' keyword. Hence it uses its parent 'this' keyword
+// const calcAgeArrow = (birthYear) => {
+//     console.log(2037-birthYear)
+//     console.log(this)
+// }
+// calcAgeArrow(1990)
+
+const jonas = {
+    year: 1990,
+    calcAge: function(){
+        console.log(this)
+        console.log(2037-this.year)
+        return true
+    }
 }
+// console.log(jonas.calcAge())
 
-var x=1
-let y=2
-const z=3
-
-console.log(x === window.x)
-console.log(y===window.y)
-console.log(z===window.z)
+const matilda = {
+    year:2020
+}
+matilda.calcAge = jonas.calcAge
+console.log(matilda.calcAge())

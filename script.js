@@ -142,40 +142,84 @@
 // jonas.greet()
 
 
-const jonas = {
-    year: 1990,
-    firstname: "SwamFire",
+// const jonas = {
+//     year: 1990,
+//     firstname: "SwamFire",
 
-    // Regular functions dont have access to this keyword inside another function
-    // calcAge: function(){
-    //     const self = this
-    //     const isMillenial = function(){
-    //         console.log(self)
-    //         // console.log(this) //
-    //         console.log(self.year>=1981 && self.year<=1996)
-    //     }
-    //     isMillenial()
-    // }
+//     // Regular functions dont have access to this keyword inside another function
+//     // calcAge: function(){
+//     //     const self = this
+//     //     const isMillenial = function(){
+//     //         console.log(self)
+//     //         // console.log(this) //
+//     //         console.log(self.year>=1981 && self.year<=1996)
+//     //     }
+//     //     isMillenial()
+//     // }
 
-    //Arrow functions use this keyword of its parent object
-    calcAge: function(){
-        const isMillenial = ()=>{
-            console.log(this)
-            console.log(this.year>=1981 && this.year<=1996)
-        }
-        isMillenial()
-    }
+//     //Arrow functions use this keyword of its parent object
+//     calcAge: function(){
+//         const isMillenial = ()=>{
+//             console.log(this)
+//             console.log(this.year>=1981 && this.year<=1996)
+//         }
+//         isMillenial()
+//     }
+// }
+// jonas.calcAge()
+
+// const addExpr = function(a, b){
+//     console.log(arguments)
+//     return a+b
+// }
+
+// var addArrow=(a,b)=>{
+//     console.log(arguments)
+//     return a+b
+// }
+// console.log(addExpr(2, 3,4 ,5))
+// // console.log(addArrow(2, 3,4 ,5))
+
+// //Primitive type
+// let age=30
+// let oldAge = age
+// age = 31
+// console.log("Old Age:",oldAge,"New Age:",age)
+
+// //Reference Type
+// const me = {
+//     name: "SwamFire",
+//     age: 30
+// }
+
+// const friend = me
+// friend.age = 27
+// console.log("Friend:", friend)
+// console.log("Me", me)
+
+//Primitive types
+let lastName = "XLR8"
+let oldLastName = lastName
+lastName = "EchoEcho"
+// console.log('Last Name:', lastName,'Old LastName:', oldLastName)
+
+//Reference Types
+const jessica = {
+    firstName: "Jessica",
+    lastName: "Williams",
+    age:27,
+    family: ["Alice", "Bob"],
 }
-jonas.calcAge()
+const marriedJessica = jessica
+// marriedJessica.lastName = "Davis"
+console.log("Before marriage:", jessica, "\nMarried Jessica:", marriedJessica)
+// marriedJessica = {}
 
-const addExpr = function(a, b){
-    console.log(arguments)
-    return a+b
-}
-
-var addArrow=(a,b)=>{
-    console.log(arguments)
-    return a+b
-}
-console.log(addExpr(2, 3,4 ,5))
-// console.log(addArrow(2, 3,4 ,5))
+//Copying objects
+const jessicaCopy = Object.assign({}, jessica) //Shallow Copy
+const jessicaCopyNew = Object.assign({}, jessica)
+jessicaCopy.lastName = "Davis"
+jessicaCopyNew.family.push("Mary")
+jessicaCopyNew.family.push("John")
+console.log("Before marriage:", jessica, "\nMarried Jessica:", jessicaCopy)
+console.log("Before marriage:", jessica, "\nMarried Jessica:", jessicaCopyNew)

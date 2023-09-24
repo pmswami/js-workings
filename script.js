@@ -102,20 +102,80 @@
 //     console.log(2037-birthYear)
 //     console.log(this)
 // }
-// calcAgeArrow(1990)
+// // calcAgeArrow(1990)
+
+// const jonas = {
+//     year: 1990,
+//     calcAge: function(){
+//         console.log(this)
+//         console.log(2037-this.year)
+//         return true
+//     }
+// }
+// // console.log(jonas.calcAge())
+
+// const matilda = {
+//     year:2020
+// }
+// matilda.calcAge = jonas.calcAge
+// console.log(matilda.calcAge())
+// var firstName = "XLR8"
+// const jonas = {
+//     year: 1990,
+//     firstname: "SwamFire",
+//     calcAge: function(){
+//         console.log(this)
+//         console.log(2037-this.year)
+//         return true
+//     },
+//     greet: function(){
+//         console.log(`Hey ${this.firstname}`)
+//     },
+//     //return undefined, coz window object does not have firstname variable
+//     // if this is used inside arrow function then it considers this object of its parent
+//     // greet: ()=>{
+//     //     console.log("inside greet",this)
+//     //     console.log(`Hey ${this.firstName}`)
+//     //
+//     // }
+// }
+// jonas.greet()
+
 
 const jonas = {
     year: 1990,
+    firstname: "SwamFire",
+
+    // Regular functions dont have access to this keyword inside another function
+    // calcAge: function(){
+    //     const self = this
+    //     const isMillenial = function(){
+    //         console.log(self)
+    //         // console.log(this) //
+    //         console.log(self.year>=1981 && self.year<=1996)
+    //     }
+    //     isMillenial()
+    // }
+
+    //Arrow functions use this keyword of its parent object
     calcAge: function(){
-        console.log(this)
-        console.log(2037-this.year)
-        return true
+        const isMillenial = ()=>{
+            console.log(this)
+            console.log(this.year>=1981 && this.year<=1996)
+        }
+        isMillenial()
     }
 }
-// console.log(jonas.calcAge())
+jonas.calcAge()
 
-const matilda = {
-    year:2020
+const addExpr = function(a, b){
+    console.log(arguments)
+    return a+b
 }
-matilda.calcAge = jonas.calcAge
-console.log(matilda.calcAge())
+
+var addArrow=(a,b)=>{
+    console.log(arguments)
+    return a+b
+}
+console.log(addExpr(2, 3,4 ,5))
+// console.log(addArrow(2, 3,4 ,5))

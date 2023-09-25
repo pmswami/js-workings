@@ -197,29 +197,31 @@
 // console.log("Friend:", friend)
 // console.log("Me", me)
 
-//Primitive types
-let lastName = "XLR8"
-let oldLastName = lastName
-lastName = "EchoEcho"
-// console.log('Last Name:', lastName,'Old LastName:', oldLastName)
+// //Primitive types
+// let lastName = "XLR8"
+// let oldLastName = lastName
+// lastName = "EchoEcho"
+// // console.log('Last Name:', lastName,'Old LastName:', oldLastName)
 
-//Reference Types
-const jessica = {
-    firstName: "Jessica",
-    lastName: "Williams",
-    age:27,
-    family: ["Alice", "Bob"],
-}
-const marriedJessica = jessica
-// marriedJessica.lastName = "Davis"
-console.log("Before marriage:", jessica, "\nMarried Jessica:", marriedJessica)
-// marriedJessica = {}
+// //Reference Types
+// const jessica = {
+//     firstName: "Jessica",
+//     lastName: "Williams",
+//     age:27,
+//     family: ["Alice", "Bob"],
+// }
+// const marriedJessica = jessica
+// // marriedJessica.lastName = "Davis"
+// console.log("Before marriage:", jessica, "\nMarried Jessica:", marriedJessica)
+// // marriedJessica = {}
 
-//Copying objects
-const jessicaCopy = Object.assign({}, jessica) //Shallow Copy
-const jessicaCopyNew = Object.assign({}, jessica)
-jessicaCopy.lastName = "Davis"
-jessicaCopyNew.family.push("Mary")
-jessicaCopyNew.family.push("John")
-console.log("Before marriage:", jessica, "\nMarried Jessica:", jessicaCopy)
-console.log("Before marriage:", jessica, "\nMarried Jessica:", jessicaCopyNew)
+// //Copying objects
+// const jessicaCopy = Object.assign({}, jessica) //Shallow Copy
+// const jessicaCopyNew = Object.assign({}, jessica)
+// jessicaCopy.lastName = "Davis"
+// jessicaCopyNew.family.push("Mary")
+// jessicaCopyNew.family.push("John")
+// console.log("Before marriage:", jessica, "\nMarried Jessica:", jessicaCopy)
+// console.log("Before marriage:", jessica, "\nMarried Jessica:", jessicaCopyNew)
+
+

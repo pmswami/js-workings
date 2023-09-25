@@ -26,10 +26,39 @@ const restaurant = {
       close: 24,
     },
   },
-  order: function(starterIndex, mainIndex){
+  order: function (starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+  },
+  orderDelivery: function ({ starterIndex = 0, mainIndex = 0, address, time = 20.00 }) {
+    console.log(`Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered at ${address} at ${time} local time zone`);
   }
 };
+restaurant.orderDelivery({
+  starterIndex: 2,
+  mainIndex: 1,
+  address: "SwamFire Address",
+  time: 22,
+});
+// const {name, openingHours, categories } = restaurant
+// console.log(name, openingHours, categories)
+// const {name: restaurantName, openingHours:hours, categories:tags} = restaurant
+// console.log(restaurantName, hours, tags)
+// const { menu = [], starterMenu:starters=[]} = restaurant
+// console.log("Menu",menu, "\nStarters", starters)
+
+// let a = 111
+// let b=123
+// console.log("Before destructuring", a,b);
+// const obj = {a:23, b:3, c:10};
+// ({a, b}=obj);
+// console.log("After destructuring",a,b);
+
+// Destructuing nested objects
+const { fri: { open: o, close: c } } = restaurant.openingHours;
+// console.log("Fri object",fri)
+// console.log("Open",open, "Close",close)
+console.log("Open", o, "Close", c);
+
 // // console.log(restaurant)
 // const arr = [1,2,3 ]
 // const a=arr[0]
@@ -58,8 +87,9 @@ const restaurant = {
 // const [i,,[j,k]] = nested
 // console.log(i, j,k)
 
-//Default Values
-const [p,q,r] = [10,11]
-console.log("without default values",p,q,r)
-const [x=1,y=1,z=1]=[10,11]
-console.log("After destructuring", x, y, z)
+// //Default Values
+// const [p,q,r] = [10,11]
+// console.log("without default values",p,q,r)
+// const [x=1,y=1,z=1]=[10,11]
+// console.log("After destructuring", x, y, z)
+

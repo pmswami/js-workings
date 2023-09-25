@@ -26,4 +26,40 @@ const restaurant = {
       close: 24,
     },
   },
+  order: function(starterIndex, mainIndex){
+    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+  }
 };
+// // console.log(restaurant)
+// const arr = [1,2,3 ]
+// const a=arr[0]
+// const b=arr[1]
+// const c=arr[2]
+// console.log("without destructuring",a,b,c)
+// const [x,y,z]=arr
+// console.log('with destructuring ', x , y , z )
+// const [first, second]=restaurant.categories
+// console.log(first, second)
+// const [firstNew, ,third]=restaurant.categories
+// console.log(firstNew, third)
+
+// //Variable reversal
+// let [main, secondary] = restaurant.categories
+// console.log("Before destructuring",main,secondary);
+// [secondary, main]=[main, secondary]
+// console.log("after destructuring ", main, secondary)
+
+// //Nested destructuring
+// const [starter, main] = restaurant.order(2,0)
+// console.log(`Starter Menu : ${starter} \nMain Menu:${main}`)
+// const nested = [2,4,[5,6]]
+// // let [i,,j] =nested;
+// // console.log(i, j)
+// const [i,,[j,k]] = nested
+// console.log(i, j,k)
+
+//Default Values
+const [p,q,r] = [10,11]
+console.log("without default values",p,q,r)
+const [x=1,y=1,z=1]=[10,11]
+console.log("After destructuring", x, y, z)

@@ -31,14 +31,62 @@ const restaurant = {
   },
   orderDelivery: function ({ starterIndex = 0, mainIndex = 0, address, time = 20.00 }) {
     console.log(`Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered at ${address} at ${time} local time zone`);
+  },
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(`Here is your Pasta with ${ing1}, ${ing2}, ${ing3}`);
   }
 };
-restaurant.orderDelivery({
-  starterIndex: 2,
-  mainIndex: 1,
-  address: "SwamFire Address",
-  time: 22,
-});
+
+//Objects
+const newRestaurant = { foundedIn: 1998, ...restaurant, founder: "Guiseppe" };
+console.log(newRestaurant);
+
+const restaurantCopy = { ...restaurant };
+console.log(restaurantCopy);
+restaurantCopy.name = "SwamFire";
+console.log(restaurant.name);
+console.log(restaurantCopy.name);
+// const ingredients = [
+//   prompt("Let's Make Pasta! Ingredient 1?"),
+//   prompt("Ingredient 2?"),
+//   prompt("Ingredient 3?")
+// ];
+// console.log(ingredients);
+// restaurant.orderPasta(...ingredients);
+
+// //Spread operator
+// const arr = [1, 2, 3];
+// const arrNew = [...arr, 8, 9];
+// const arrNew1 = [10, 11, ...arr];
+// console.log(arrNew);
+// console.log(arrNew1);
+// console.log(...arr);
+// console.log(...arrNew);
+// const newMenu = [...restaurant.mainMenu, "Gnocci"];
+// console.log("New Menu:", newMenu, "\nRestraurent Menu:", restaurant.mainMenu);
+
+// //Shallow copy of Array
+// const newMenuCopy = [...restaurant.mainMenu];
+// console.log("New Menu Copy", newMenuCopy);
+// console.log("Restaurent Menu:", restaurant.mainMenu);
+
+// const str = "Jonas";
+// const newStr = [...str];
+// console.log(newStr, typeof (newStr));
+// const newStr1 = [...str, " ", "S."];
+// console.log(newStr1);
+// console.log(typeof (newStr));
+
+// //Join 2 Arrays
+// const fullmenu = [...restaurant.mainMenu, ...restaurant.starterMenu];
+// console.log("Full Menu", fullmenu);
+
+// restaurant.orderDelivery({
+//   starterIndex: 2,
+//   mainIndex: 1,
+//   address: "SwamFire Address",
+//   time: 22,
+// });
 // const {name, openingHours, categories } = restaurant
 // console.log(name, openingHours, categories)
 // const {name: restaurantName, openingHours:hours, categories:tags} = restaurant
@@ -53,11 +101,11 @@ restaurant.orderDelivery({
 // ({a, b}=obj);
 // console.log("After destructuring",a,b);
 
-// Destructuing nested objects
-const { fri: { open: o, close: c } } = restaurant.openingHours;
-// console.log("Fri object",fri)
-// console.log("Open",open, "Close",close)
-console.log("Open", o, "Close", c);
+// // Destructuing nested objects
+// const { fri: { open: o, close: c } } = restaurant.openingHours;
+// // console.log("Fri object",fri)
+// // console.log("Open",open, "Close",close)
+// console.log("Open", o, "Close", c);
 
 // // console.log(restaurant)
 // const arr = [1,2,3 ]

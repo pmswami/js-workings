@@ -40,8 +40,40 @@ const restaurant = {
   }
 };
 
-restaurant.orderPizza("Spinach", "Mushrooms", "Onions", "Oliver");
-restaurant.orderPizza("Mushrooms");
+// ___________________ NULISH COALESCING OPERATOR _______________________
+restaurant.numGuests = 0;
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log("Guests1", guests1);
+//Nullish coalesce operator only consider null and undefined (NOT 0 and "") as falsy values
+const guestCorrrect = restaurant.numGuests ?? 10;
+console.log("Correct Guests", guestCorrrect);
+
+//______________________AND OPERATOR ____________________________
+// console.log(0 && "Jonas"); //0
+// console.log(7 && "Jonas"); //Jonas
+// console.log("Hello" && 23 && null && "Jonas");//null
+// if (restaurant.orderPizza) {
+//   restaurant.orderPizza("Mushrooms", "Spinach");
+// }
+// restaurant.orderPizza && restaurant.orderPizza("Mushrooms", "Spinach");
+
+// ________________ OR Operator __________________________
+// Can use any datatypes and can return any datatypes
+// // Uses short circuiting
+// console.log(3 || "jonas");
+// console.log("" || "Jonas");
+// console.log(true || 0);
+// console.log(undefined || null);
+// console.log(undefined || 0 || "" || "Hello" || null || 23);
+// restaurant.numGuests = 23;
+// const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+// console.log("Guests1", guests1);
+// const guests2 = restaurant.numGuests || 10;
+// console.log("Guests2", guests2);
+
+//___________________REST OPERATOR __________________________________
+// restaurant.orderPizza("Spinach", "Mushrooms", "Onions", "Oliver");
+// restaurant.orderPizza("Mushrooms");
 //REST Operator
 // const arr = [1, 2, 3, 4, 5];
 // const [, , ...newArr] = arr;
@@ -83,6 +115,7 @@ restaurant.orderPizza("Mushrooms");
 // console.log(ingredients);
 // restaurant.orderPasta(...ingredients);
 
+//------------------------SPREAD Operator -------------------------------
 // //Spread operator
 // const arr = [1, 2, 3];
 // const arrNew = [...arr, 8, 9];
@@ -130,7 +163,7 @@ restaurant.orderPizza("Mushrooms");
 // ({a, b}=obj);
 // console.log("After destructuring",a,b);
 
-// // Destructuing nested objects
+// // Destructuring nested objects
 // const { fri: { open: o, close: c } } = restaurant.openingHours;
 // // console.log("Fri object",fri)
 // // console.log("Open",open, "Close",close)

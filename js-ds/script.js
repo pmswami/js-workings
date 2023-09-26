@@ -40,16 +40,37 @@ const restaurant = {
   }
 };
 
-// ___________________ NULISH COALESCING OPERATOR _______________________
-restaurant.numGuests = 0;
-const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
-console.log("Guests1", guests1);
-//Nullish coalesce operator only consider null and undefined (NOT 0 and "") as falsy values
-const guestCorrrect = restaurant.numGuests ?? 10;
-console.log("Correct Guests", guestCorrrect);
+//________________ Logical Assignment Operator ____________________________
+const rest1 = {
+  name: "SwamFire",
+  numGuests: 0,
+};
+const rest2 = {
+  name: "HeatBlast",
+  owner: "Ben10",
+};
+// console.log(rest1);
+// console.log(rest2);
+// rest1.numGuests = rest1.numGuests || 10;
+// rest2.numGuests = rest2.numGuests || 10;
+// rest1.numGuests ||= 10;
+// rest2.numGuests ||= 10;
+rest1.numGuests ??= 10; //Nullish coalesce operator
+rest2.numGuests ??= 10;
+rest1.owner &&= "Anonymous";
+rest2.owner &&= "Anonymous";
+console.log("Rest1", rest1);
+console.log("Rest2", rest2);
 
+// // ___________________ NULISH COALESCING OPERATOR _______________________
+// restaurant.numGuests = 0;
+// const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+// console.log("Guests1", guests1);
+// //Nullish coalesce operator only consider null and undefined (NOT 0 and "") as falsy values
+// const guestCorrrect = restaurant.numGuests ?? 10;
+// console.log("Correct Guests", guestCorrrect);
 
-//______________________AND OPERATOR ____________________________
+//______________________ AND OPERATOR ____________________________
 // console.log(0 && "Jonas"); //0
 // console.log(7 && "Jonas"); //Jonas
 // console.log("Hello" && 23 && null && "Jonas");//null

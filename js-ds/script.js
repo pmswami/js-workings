@@ -48,6 +48,7 @@ console.log("Guests1", guests1);
 const guestCorrrect = restaurant.numGuests ?? 10;
 console.log("Correct Guests", guestCorrrect);
 
+
 //______________________AND OPERATOR ____________________________
 // console.log(0 && "Jonas"); //0
 // console.log(7 && "Jonas"); //Jonas

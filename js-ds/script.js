@@ -81,27 +81,34 @@ const game = {
   },
 };
 
-//______________________ Challenge #1 _________________________________________
-const [players1, players2] = game.players;
-console.log("Players1:", players1, "\nPlayers2:", players2);
-const [gk, ...fieldPlayers] = players1;
-console.log("Goalkeeper:", gk, "\nField Players:", fieldPlayers);
-const allPlayers = [...players1, ...players2];
-console.log("All Players:", allPlayers);
-const playersFinal = [...players1, "Thiago", "Coutinho", "Periscic"];
-console.log("Players Final:", playersFinal);
-const { odds: { team1, x: draw, team2 } } = game;
-console.log("Team1:", team1, "\nDraw:", draw, "\nTeam2:", team2);
-const printGoals = function (...players) {
-  // console.log(players);
-  console.log(`${players.length} goals were scored.`);
-};
-printGoals("SwamFire", "EchoEcho", "XLR8", "HeatBlast");
-printGoals("SwamFire", "EchoEcho", "HeatBlast");
-printGoals("SwamFire", "EchoEcho");
-printGoals(...game.scored);
-team1 < team2 && console.log("Team 1 is more likely to win!");
-team2 < team1 && console.log("Team 2 is more likely to win!");
+//_____________________ for-of Loop _____________________________________
+const menu = [...restaurant.mainMenu, ...restaurant.starterMenu];
+console.log(menu);
+for (const item of menu) console.log(item);
+for (const [index, item] of menu.entries()) { console.log(`${index + 1}:${item}`); }
+
+
+// //______________________ Challenge #1 _________________________________________
+// const [players1, players2] = game.players;
+// console.log("Players1:", players1, "\nPlayers2:", players2);
+// const [gk, ...fieldPlayers] = players1;
+// console.log("Goalkeeper:", gk, "\nField Players:", fieldPlayers);
+// const allPlayers = [...players1, ...players2];
+// console.log("All Players:", allPlayers);
+// const playersFinal = [...players1, "Thiago", "Coutinho", "Periscic"];
+// console.log("Players Final:", playersFinal);
+// const { odds: { team1, x: draw, team2 } } = game;
+// console.log("Team1:", team1, "\nDraw:", draw, "\nTeam2:", team2);
+// const printGoals = function (...players) {
+//   // console.log(players);
+//   console.log(`${players.length} goals were scored.`);
+// };
+// printGoals("SwamFire", "EchoEcho", "XLR8", "HeatBlast");
+// printGoals("SwamFire", "EchoEcho", "HeatBlast");
+// printGoals("SwamFire", "EchoEcho");
+// printGoals(...game.scored);
+// team1 < team2 && console.log("Team 1 is more likely to win!");
+// team2 < team1 && console.log("Team 2 is more likely to win!");
 
 // //________________ Logical Assignment Operator ____________________________
 // const rest1 = {

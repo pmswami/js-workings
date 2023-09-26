@@ -40,27 +40,90 @@ const restaurant = {
   }
 };
 
-//________________ Logical Assignment Operator ____________________________
-const rest1 = {
-  name: "SwamFire",
-  numGuests: 0,
+const game = {
+  team1: 'Bayern Munich',
+  team2: 'Borrussia Dortmund',
+  players: [
+    [
+      'Neuer',
+      'Pavard',
+      'Martinez',
+      'Alaba',
+      'Davies',
+      'Kimmich',
+      'Goretzka',
+      'Coman',
+      'Muller',
+      'Gnarby',
+      'Lewandowski',
+    ],
+    [
+      'Burki',
+      'Schulz',
+      'Hummels',
+      'Akanji',
+      'Hakimi',
+      'Weigl',
+      'Witsel',
+      'Hazard',
+      'Brandt',
+      'Sancho',
+      'Gotze',
+    ],
+  ],
+  score: '4:0',
+  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+  date: 'Nov 9th, 2037',
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
 };
-const rest2 = {
-  name: "HeatBlast",
-  owner: "Ben10",
+
+//______________________ Challenge #1 _________________________________________
+const [players1, players2] = game.players;
+console.log("Players1:", players1, "\nPlayers2:", players2);
+const [gk, ...fieldPlayers] = players1;
+console.log("Goalkeeper:", gk, "\nField Players:", fieldPlayers);
+const allPlayers = [...players1, ...players2];
+console.log("All Players:", allPlayers);
+const playersFinal = [...players1, "Thiago", "Coutinho", "Periscic"];
+console.log("Players Final:", playersFinal);
+const { odds: { team1, x: draw, team2 } } = game;
+console.log("Team1:", team1, "\nDraw:", draw, "\nTeam2:", team2);
+const printGoals = function (...players) {
+  // console.log(players);
+  console.log(`${players.length} goals were scored.`);
 };
-// console.log(rest1);
-// console.log(rest2);
-// rest1.numGuests = rest1.numGuests || 10;
-// rest2.numGuests = rest2.numGuests || 10;
-// rest1.numGuests ||= 10;
-// rest2.numGuests ||= 10;
-rest1.numGuests ??= 10; //Nullish coalesce operator
-rest2.numGuests ??= 10;
-rest1.owner &&= "Anonymous";
-rest2.owner &&= "Anonymous";
-console.log("Rest1", rest1);
-console.log("Rest2", rest2);
+printGoals("SwamFire", "EchoEcho", "XLR8", "HeatBlast");
+printGoals("SwamFire", "EchoEcho", "HeatBlast");
+printGoals("SwamFire", "EchoEcho");
+printGoals(...game.scored);
+team1 < team2 && console.log("Team 1 is more likely to win!");
+team2 < team1 && console.log("Team 2 is more likely to win!");
+
+// //________________ Logical Assignment Operator ____________________________
+// const rest1 = {
+//   name: "SwamFire",
+//   numGuests: 0,
+// };
+// const rest2 = {
+//   name: "HeatBlast",
+//   owner: "Ben10",
+// };
+// // console.log(rest1);
+// // console.log(rest2);
+// // rest1.numGuests = rest1.numGuests || 10;
+// // rest2.numGuests = rest2.numGuests || 10;
+// // rest1.numGuests ||= 10;
+// // rest2.numGuests ||= 10;
+// rest1.numGuests ??= 10; //Nullish coalesce operator
+// rest2.numGuests ??= 10;
+// rest1.owner &&= "Anonymous";
+// rest2.owner &&= "Anonymous";
+// console.log("Rest1", rest1);
+// console.log("Rest2", rest2);
 
 // // ___________________ NULISH COALESCING OPERATOR _______________________
 // restaurant.numGuests = 0;

@@ -34,18 +34,47 @@ const restaurant = {
   },
   orderPasta: function (ing1, ing2, ing3) {
     console.log(`Here is your Pasta with ${ing1}, ${ing2}, ${ing3}`);
+  },
+  orderPizza: function (mainIngredient, ...otherIngredients) {
+    console.log(mainIngredient, otherIngredients);
   }
 };
 
-//Objects
-const newRestaurant = { foundedIn: 1998, ...restaurant, founder: "Guiseppe" };
-console.log(newRestaurant);
+restaurant.orderPizza("Spinach", "Mushrooms", "Onions", "Oliver");
+restaurant.orderPizza("Mushrooms");
+//REST Operator
+// const arr = [1, 2, 3, 4, 5];
+// const [, , ...newArr] = arr;
+// console.log("New Arr", newArr);
+// const menu = [...restaurant.mainMenu, ...restaurant.starterMenu];
+// const [firstItem, secondItem, ...otherItems] = menu;
+// console.log(firstItem, secondItem, otherItems);
+// REST operator does not consider skipped items/elements
+// In a single expression, there should be only one REST operator
+// In a expression, REST should always be at last
+// // for objects, no ordering will be there
+// const { sat, ...weekDays } = restaurant.openingHours;
+// console.log(weekDays, sat);
+// const add = function (...numbers) {
+//   // console.log(numbers);
+//   let sum = 0;
+//   for (let i = 0; i < numbers.length; i++) { sum += numbers[i]; }
+//   return sum;
+// };
+// console.log(add(2, 3));
+// console.log(add(2, 3, 4));
+// console.log(add(2, 3, 4, 5));
+// const x = [10, 20, 30];
+// console.log(add(...x));
+// //Objects
+// const newRestaurant = { foundedIn: 1998, ...restaurant, founder: "Guiseppe" };
+// console.log(newRestaurant);
 
-const restaurantCopy = { ...restaurant };
-console.log(restaurantCopy);
-restaurantCopy.name = "SwamFire";
-console.log(restaurant.name);
-console.log(restaurantCopy.name);
+// const restaurantCopy = { ...restaurant };
+// console.log(restaurantCopy);
+// restaurantCopy.name = "SwamFire";
+// console.log(restaurant.name);
+// console.log(restaurantCopy.name);
 // const ingredients = [
 //   prompt("Let's Make Pasta! Ingredient 1?"),
 //   prompt("Ingredient 2?"),

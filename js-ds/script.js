@@ -83,32 +83,59 @@ const restaurant = {
   },
 };
 
-// _______________ SETS____________________________
-const ordersSet = new Set(["Pasta", "Risotto", "Pasta", "Pizza", "Pizza"]);
-console.log(ordersSet);
-const lst = ["Pasta", "Risotto", "Pasta", "Pizza", "Pizza"];
-console.log(new Set(lst));
-console.log("Size of set", ordersSet.size);
-console.log(ordersSet.has("Bread"));
-console.log(ordersSet.has("Pizza"));
-ordersSet.add("Garlic Bread");
-ordersSet.add("Garlic Bread");
-console.log(ordersSet);
-ordersSet.delete("Pizza");
-console.log(ordersSet);
-for (const item of ordersSet) {
-  console.log("Item:", item);
-}
-ordersSet.clear();
-console.log(ordersSet);
-const staff = ["Chef", "Waiter", "Waiter", "Manager", "Chef"];
-const staffUnique = new Set(staff);
-console.log("Unique Staff:", staffUnique);
-const staffList = [... new Set(staff)];
-console.log("StaffList", staffList);
-const name = "Swamfire";
-const uniqueLetters = [...name];
-console.log("Unique Letters", uniqueLetters);
+// __________________________ MAPS ________________________________
+const rest = new Map();
+rest.set("name", "Classico Italiano");
+rest.set(1, "Italy");
+rest.set(2, "India");
+console.log(rest);
+rest.set("categories", ['Italian', 'Pizzeria', 'Vegetarian', 'Organic']).set("open", 11).set("close", 23).set(true, "We are Open").set(false, "We are close");
+console.log(rest);
+console.log("Maps get:", rest.get(true));
+console.log("Maps get:", rest.get(false));
+console.log("Maps get:", rest.get(1));
+console.log("Maps get:", rest.get("1"));
+const time = 21;
+console.log("Maps get:", rest.get(time >= rest.get("open") && time <= rest.get("close")));
+console.log("Check key:", rest.has("categories"));
+rest.delete(2);
+console.log("Delete key:", rest);
+console.log("Size", rest.size);
+// rest.clear();
+// console.log("Clear:", rest);
+const arr = [1, 2];
+rest.set(arr, "Test");
+console.log(rest);
+console.log(rest.get(arr));
+rest.set(document.querySelector("h1"), "Heading");
+console.log(rest);
+
+// // _______________ SETS____________________________
+// const ordersSet = new Set(["Pasta", "Risotto", "Pasta", "Pizza", "Pizza"]);
+// console.log(ordersSet);
+// const lst = ["Pasta", "Risotto", "Pasta", "Pizza", "Pizza"];
+// console.log(new Set(lst));
+// console.log("Size of set", ordersSet.size);
+// console.log(ordersSet.has("Bread"));
+// console.log(ordersSet.has("Pizza"));
+// ordersSet.add("Garlic Bread");
+// ordersSet.add("Garlic Bread");
+// console.log(ordersSet);
+// ordersSet.delete("Pizza");
+// console.log(ordersSet);
+// for (const item of ordersSet) {
+//   console.log("Item:", item);
+// }
+// ordersSet.clear();
+// console.log(ordersSet);
+// const staff = ["Chef", "Waiter", "Waiter", "Manager", "Chef"];
+// const staffUnique = new Set(staff);
+// console.log("Unique Staff:", staffUnique);
+// const staffList = [... new Set(staff)];
+// console.log("StaffList", staffList);
+// const name = "Swamfire";
+// const uniqueLetters = [...name];
+// console.log("Unique Letters", uniqueLetters);
 
 // //______________________ Challenge #2 _____________________________________
 // const game = {

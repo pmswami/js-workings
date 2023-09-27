@@ -83,23 +83,83 @@ const restaurant = {
   },
 };
 
-// ______________ LOOPING OBJECTS _____________________________________
-console.log(Object.keys(restaurant.openingHours));
-// Getting keys from objects
-for (const day of Object.keys(openingHours)) {
-  console.log(day);
+//______________________ Challenge #2 _____________________________________
+const game = {
+  team1: 'Bayern Munich',
+  team2: 'Borrussia Dortmund',
+  players: [
+    [
+      'Neuer',
+      'Pavard',
+      'Martinez',
+      'Alaba',
+      'Davies',
+      'Kimmich',
+      'Goretzka',
+      'Coman',
+      'Muller',
+      'Gnarby',
+      'Lewandowski',
+    ],
+    [
+      'Burki',
+      'Schulz',
+      'Hummels',
+      'Akanji',
+      'Hakimi',
+      'Weigl',
+      'Witsel',
+      'Hazard',
+      'Brandt',
+      'Sancho',
+      'Gotze',
+    ],
+  ],
+  score: '4:0',
+  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+  date: 'Nov 9th, 2037',
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+};
+console.log("Task #1");
+for (const [i, player] of game.scored.entries()) {
+  console.log(`Goal ${i + 1}: ${player}`);
 }
-//Getting values from Objects
-for (const day of Object.values(openingHours)) {
-  console.log(day);
+console.log("\nTask #2");
+let avg = 0;
+const odds = Object.values(game.odds);
+for (const odd of odds) {
+  avg += odd;
 }
-//Getting both key, values from objects
-// for (const [day, hours] of Object.entries(openingHours)) {
-//   console.log(`On ${day}, we open at ${hours?.open} and close at ${hours?.close}`);
+avg /= odds.length;
+console.log(avg);
+
+console.log("\nTask #3");
+for (const [team, odd] of Object.entries(game.odds)) {
+  const teamName = team == "x" ? "draw" : `victory ${game[team]}`;
+  console.log(`Odd of ${teamName}: ${odd}`);
+}
+
+// // ______________ LOOPING OBJECTS _____________________________________
+// console.log(Object.keys(restaurant.openingHours));
+// // Getting keys from objects
+// for (const day of Object.keys(openingHours)) {
+//   console.log(day);
 // }
-for (const [day, { open, close }] of Object.entries(openingHours)) {
-  console.log(`On ${day}, we open at ${open} and close at ${close}`);
-}
+// //Getting values from Objects
+// for (const day of Object.values(openingHours)) {
+//   console.log(day);
+// }
+// //Getting both key, values from objects
+// // for (const [day, hours] of Object.entries(openingHours)) {
+// //   console.log(`On ${day}, we open at ${hours?.open} and close at ${hours?.close}`);
+// // }
+// for (const [day, { open, close }] of Object.entries(openingHours)) {
+//   console.log(`On ${day}, we open at ${open} and close at ${close}`);
+// }
 
 
 // // ________________ OPTIONAL CHAINING ___________________________

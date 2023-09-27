@@ -109,6 +109,30 @@ console.log(rest);
 console.log(rest.get(arr));
 rest.set(document.querySelector("h1"), "Heading");
 console.log(rest);
+const question = new Map([
+  ["question", "What's the best programming language"],
+  [1, "c"], [2, "Java"], [3, "JavaScript"], [true, "Congrats"], [false, "Try again!"], ["correct", 3]
+]);
+console.log("QuestonMap:", question);
+//convert Objects into Map
+const hoursMap = new Map(Object.entries(openingHours));
+console.log("HoursMap:", hoursMap);
+console.log(`Q: `, question.get("question"));
+for (const [item, value] of question) {
+  if (typeof item == "number") {
+    console.log(`\tAnswer ${item} : ${value}`);
+  }
+}
+// const answer = Number(prompt("Select your Answer"));
+const answer = 3;
+console.log(answer, typeof answer);
+console.log(question.get(question.get("correct") === answer));
+//Convert map to array
+console.log([...question]);
+console.log("Map Keys:", [...question.keys()]);
+console.log("Map Values:", [...question.values()]);
+console.log("Map Entries:", [...question.entries()]);
+
 
 // // _______________ SETS____________________________
 // const ordersSet = new Set(["Pasta", "Risotto", "Pasta", "Pizza", "Pizza"]);

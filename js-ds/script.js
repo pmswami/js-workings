@@ -83,65 +83,92 @@ const restaurant = {
   },
 };
 
-//______________________ Challenge #2 _____________________________________
-const game = {
-  team1: 'Bayern Munich',
-  team2: 'Borrussia Dortmund',
-  players: [
-    [
-      'Neuer',
-      'Pavard',
-      'Martinez',
-      'Alaba',
-      'Davies',
-      'Kimmich',
-      'Goretzka',
-      'Coman',
-      'Muller',
-      'Gnarby',
-      'Lewandowski',
-    ],
-    [
-      'Burki',
-      'Schulz',
-      'Hummels',
-      'Akanji',
-      'Hakimi',
-      'Weigl',
-      'Witsel',
-      'Hazard',
-      'Brandt',
-      'Sancho',
-      'Gotze',
-    ],
-  ],
-  score: '4:0',
-  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
-  date: 'Nov 9th, 2037',
-  odds: {
-    team1: 1.33,
-    x: 3.25,
-    team2: 6.5,
-  },
-};
-console.log("Task #1");
-for (const [i, player] of game.scored.entries()) {
-  console.log(`Goal ${i + 1}: ${player}`);
+// _______________ SETS____________________________
+const ordersSet = new Set(["Pasta", "Risotto", "Pasta", "Pizza", "Pizza"]);
+console.log(ordersSet);
+const lst = ["Pasta", "Risotto", "Pasta", "Pizza", "Pizza"];
+console.log(new Set(lst));
+console.log("Size of set", ordersSet.size);
+console.log(ordersSet.has("Bread"));
+console.log(ordersSet.has("Pizza"));
+ordersSet.add("Garlic Bread");
+ordersSet.add("Garlic Bread");
+console.log(ordersSet);
+ordersSet.delete("Pizza");
+console.log(ordersSet);
+for (const item of ordersSet) {
+  console.log("Item:", item);
 }
-console.log("\nTask #2");
-let avg = 0;
-const odds = Object.values(game.odds);
-for (const odd of odds) {
-  avg += odd;
-}
-avg /= odds.length;
-console.log(avg);
+ordersSet.clear();
+console.log(ordersSet);
+const staff = ["Chef", "Waiter", "Waiter", "Manager", "Chef"];
+const staffUnique = new Set(staff);
+console.log("Unique Staff:", staffUnique);
+const staffList = [... new Set(staff)];
+console.log("StaffList", staffList);
+const name = "Swamfire";
+const uniqueLetters = [...name];
+console.log("Unique Letters", uniqueLetters);
 
-console.log("\nTask #3");
-for (const [team, odd] of Object.entries(game.odds)) {
-  const teamName = team == "x" ? "draw" : `victory ${game[team]}`;
-  console.log(`Odd of ${teamName}: ${odd}`);
-}
+// //______________________ Challenge #2 _____________________________________
+// const game = {
+//   team1: 'Bayern Munich',
+//   team2: 'Borrussia Dortmund',
+//   players: [
+//     [
+//       'Neuer',
+//       'Pavard',
+//       'Martinez',
+//       'Alaba',
+//       'Davies',
+//       'Kimmich',
+//       'Goretzka',
+//       'Coman',
+//       'Muller',
+//       'Gnarby',
+//       'Lewandowski',
+//     ],
+//     [
+//       'Burki',
+//       'Schulz',
+//       'Hummels',
+//       'Akanji',
+//       'Hakimi',
+//       'Weigl',
+//       'Witsel',
+//       'Hazard',
+//       'Brandt',
+//       'Sancho',
+//       'Gotze',
+//     ],
+//   ],
+//   score: '4:0',
+//   scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+//   date: 'Nov 9th, 2037',
+//   odds: {
+//     team1: 1.33,
+//     x: 3.25,
+//     team2: 6.5,
+//   },
+// };
+// console.log("Task #1");
+// for (const [i, player] of game.scored.entries()) {
+//   console.log(`Goal ${i + 1}: ${player}`);
+// }
+// console.log("\nTask #2");
+// let avg = 0;
+// const odds = Object.values(game.odds);
+// for (const odd of odds) {
+//   avg += odd;
+// }
+// avg /= odds.length;
+// console.log(avg);
+
+// console.log("\nTask #3");
+// for (const [team, odd] of Object.entries(game.odds)) {
+//   const teamName = team == "x" ? "draw" : `victory ${game[team]}`;
+//   console.log(`Odd of ${teamName}: ${odd}`);
+// }
 
 // // ______________ LOOPING OBJECTS _____________________________________
 // console.log(Object.keys(restaurant.openingHours));

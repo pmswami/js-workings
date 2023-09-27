@@ -83,6 +83,24 @@ const restaurant = {
   },
 };
 
+// ________________ OPTIONAL CHAINING ___________________________
+// console.log(restaurant.openingHours.mon?.open); //only if result is not nullish
+// console.log(restaurant.openingHours.fri?.open);
+// console.log(restaurant.openingHours?.mon?.open);
+// const days = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+// for (const day of days) {
+//   // console.log(day);
+//   const open = restaurant.openingHours[day]?.open ?? "closed";
+//   if (open) {
+//     console.log(`On ${day}, we open at ${open}`);
+//   }
+// }
+console.log(restaurant.order?.(0, 1) ?? "Method does not exist");
+console.log(restaurant.orderRisotto?.(0, 1) ?? "Method does not exist");
+// const users = [{ name: "SwamFire", email: "test@example.com" }];
+const users = [];
+console.log(users[0]?.name ?? "User Array does not exists");
+
 // _____________________ Object Literals ____________________________________
 // console.log(restaurant.order(1, 0));
 

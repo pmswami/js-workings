@@ -83,23 +83,43 @@ const restaurant = {
   },
 };
 
-// ________________ OPTIONAL CHAINING ___________________________
-// console.log(restaurant.openingHours.mon?.open); //only if result is not nullish
-// console.log(restaurant.openingHours.fri?.open);
-// console.log(restaurant.openingHours?.mon?.open);
-// const days = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
-// for (const day of days) {
-//   // console.log(day);
-//   const open = restaurant.openingHours[day]?.open ?? "closed";
-//   if (open) {
-//     console.log(`On ${day}, we open at ${open}`);
-//   }
+// ______________ LOOPING OBJECTS _____________________________________
+console.log(Object.keys(restaurant.openingHours));
+// Getting keys from objects
+for (const day of Object.keys(openingHours)) {
+  console.log(day);
+}
+//Getting values from Objects
+for (const day of Object.values(openingHours)) {
+  console.log(day);
+}
+//Getting both key, values from objects
+// for (const [day, hours] of Object.entries(openingHours)) {
+//   console.log(`On ${day}, we open at ${hours?.open} and close at ${hours?.close}`);
 // }
-console.log(restaurant.order?.(0, 1) ?? "Method does not exist");
-console.log(restaurant.orderRisotto?.(0, 1) ?? "Method does not exist");
-// const users = [{ name: "SwamFire", email: "test@example.com" }];
-const users = [];
-console.log(users[0]?.name ?? "User Array does not exists");
+for (const [day, { open, close }] of Object.entries(openingHours)) {
+  console.log(`On ${day}, we open at ${open} and close at ${close}`);
+}
+
+
+// // ________________ OPTIONAL CHAINING ___________________________
+// // console.log(restaurant.openingHours.mon?.open); //only if result is not nullish
+// // console.log(restaurant.openingHours.fri?.open);
+// // console.log(restaurant.openingHours?.mon?.open);
+// // const days = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+// // for (const day of days) {
+// //   // console.log(day);
+// //   const open = restaurant.openingHours[day]?.open ?? "closed";
+// //   if (open) {
+// //     console.log(`On ${day}, we open at ${open}`);
+// //   }
+// // }
+// console.log(restaurant.order?.(0, 1) ?? "Method does not exist");
+// console.log(restaurant.orderRisotto?.(0, 1) ?? "Method does not exist");
+// // const users = [{ name: "SwamFire", email: "test@example.com" }];
+// const users = [];
+// console.log(users[0]?.name ?? "User Array does not exists");
+
 
 // _____________________ Object Literals ____________________________________
 // console.log(restaurant.order(1, 0));

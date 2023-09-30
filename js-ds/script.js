@@ -83,30 +83,60 @@ const restaurant = {
   },
 };
 
-// ___________________ Challenge #3 ______________________________________
-const gameEvents = new Map([
-  [17, '⚽️ GOAL'],
-  [36, '🔁 Substitution'],
-  [47, '⚽️ GOAL'],
-  [61, '🔁 Substitution'],
-  [64, '🔶 Yellow card'],
-  [69, '🔴 Red card'],
-  [70, '🔁 Substitution'],
-  [72, '🔁 Substitution'],
-  [76, '⚽️ GOAL'],
-  [80, '⚽️ GOAL'],
-  [92, '🔶 Yellow card'],
-]);
-console.log(gameEvents);
-const events = [...new Set(gameEvents.values())];
-console.log(events);
-gameEvents.delete(64);
-console.log(gameEvents);
-console.log(`An event happened at every ${[...gameEvents.keys()].pop() / gameEvents.size} minutes`);
-for (const [key, value] of gameEvents) {
-  const half = key <= 45 ? "FIRST" : "SECOND";
-  console.log(`[${half} HALF] ${key}: ${value}`);
-}
+// ______________________ STRINGS _____________________________________________
+const airplane = "Air India";
+const plane = "A123";
+console.log(plane);
+console.log(plane[2]);
+console.log(plane.length);
+console.log("index of: ", airplane.indexOf("i"));
+console.log("index of: ", airplane.lastIndexOf("i"));
+console.log("index of: ", airplane.indexOf("India"));
+console.log("Slicing:", airplane.slice(1));
+// strings are immutable
+console.log("Slicing:", airplane.slice(0, 3));
+//last index is exclusive
+console.log("Slicing:", airplane.slice(airplane.indexOf("India"), airplane.lastIndexOf("India")));
+// console.log(airplane.indexOf("India"));
+// console.log(airplane.lastIndexOf("India"));
+console.log("Unknown substring index", airplane.lastIndexOf("india"));
+console.log("Slicing:", airplane.slice(0, -1));
+console.log("Negative slicing:", airplane.slice(-3));
+console.log("Negative slicing:", airplane.slice(1, -3));
+
+const checkMiddleSeat = function (seat) {
+  const s = seat.slice(-1);
+  // console.log(s);
+  return s == "E" || s == "B" ? "You got Middle Seat :(" : "You got lucky! :)";
+};
+// B and E are middle seats
+console.log(checkMiddleSeat("11B"));
+console.log(checkMiddleSeat("23C"));
+console.log(checkMiddleSeat("3E"));
+// // ___________________ Challenge #3 ______________________________________
+// const gameEvents = new Map([
+//   [17, '⚽️ GOAL'],
+//   [36, '🔁 Substitution'],
+//   [47, '⚽️ GOAL'],
+//   [61, '🔁 Substitution'],
+//   [64, '🔶 Yellow card'],
+//   [69, '🔴 Red card'],
+//   [70, '🔁 Substitution'],
+//   [72, '🔁 Substitution'],
+//   [76, '⚽️ GOAL'],
+//   [80, '⚽️ GOAL'],
+//   [92, '🔶 Yellow card'],
+// ]);
+// console.log(gameEvents);
+// const events = [...new Set(gameEvents.values())];
+// console.log(events);
+// gameEvents.delete(64);
+// console.log(gameEvents);
+// console.log(`An event happened at every ${[...gameEvents.keys()].pop() / gameEvents.size} minutes`);
+// for (const [key, value] of gameEvents) {
+//   const half = key <= 45 ? "FIRST" : "SECOND";
+//   console.log(`[${half} HALF] ${key}: ${value}`);
+// }
 
 // // __________________________ MAPS ________________________________
 // const rest = new Map();

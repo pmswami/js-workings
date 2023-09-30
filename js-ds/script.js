@@ -83,36 +83,82 @@ const restaurant = {
   },
 };
 
-// ______________________ STRINGS _____________________________________________
+// ______________________________ STRING Methods __________________________
 const airplane = "Air India";
-const plane = "A123";
-console.log(plane);
-console.log(plane[2]);
-console.log(plane.length);
-console.log("index of: ", airplane.indexOf("i"));
-console.log("index of: ", airplane.lastIndexOf("i"));
-console.log("index of: ", airplane.indexOf("India"));
-console.log("Slicing:", airplane.slice(1));
-// strings are immutable
-console.log("Slicing:", airplane.slice(0, 3));
-//last index is exclusive
-console.log("Slicing:", airplane.slice(airplane.indexOf("India"), airplane.lastIndexOf("India")));
-// console.log(airplane.indexOf("India"));
-// console.log(airplane.lastIndexOf("India"));
-console.log("Unknown substring index", airplane.lastIndexOf("india"));
-console.log("Slicing:", airplane.slice(0, -1));
-console.log("Negative slicing:", airplane.slice(-3));
-console.log("Negative slicing:", airplane.slice(1, -3));
+console.log(airplane);
+console.log("Lower Case", airplane.toLowerCase());
+console.log("Upper Case", airplane.toUpperCase());
+const passenger = "swAMFire";
+console.log("Capitalized string", passenger.toLowerCase()[0].toUpperCase() + passenger.slice(1).toLowerCase());
+// Comapre emails
+console.log("Email Comparision:\n");
+const email = "hello@example.com";
+const testEmail = "   Hello@EXAMPLE.coM   \n";
+let testEmail1 = testEmail.toLowerCase();
+console.log("email str to lower case:", testEmail1);
+testEmail1 = testEmail1.trim(); //trims whitespaces from both ends
+console.log("After trim:", testEmail1);
+// In ES2019, trimming whitespaces only from start or end of string is possible
+console.log("Replacing strings:\n");
+const replaceString = "10,30Rupee";
+console.log("Original string", replaceString);
+console.log(replaceString.replace("Rupee", "Dollar")); // replaces only first occurrence
+const announcement = "All passengers, come to boarding door 23, boarding door 23!";
+console.log(announcement.replace("door", "gate"));
+console.log(announcement.replace(/door/g, "gate")); // replaces all occurrences
+const plane = "A123neo";
+console.log("includes:", plane.includes("A12"));
+console.log("includes:", plane.includes("21"));
+console.log("startswith", plane.startsWith("A"));
+console.log("endswith:", plane.endsWith("neo"));
+console.log("endswith:", plane.endsWith("Neo"));
 
-const checkMiddleSeat = function (seat) {
-  const s = seat.slice(-1);
-  // console.log(s);
-  return s == "E" || s == "B" ? "You got Middle Seat :(" : "You got lucky! :)";
+const checkBaggage = function (baggage) {
+  const bag = baggage.toLowerCase();
+  if (bag.includes("knife") || bag.includes("gun")) {
+    return "You are not allowed in plane";
+  }
+  else {
+    return "Welcome onboard";
+  }
 };
-// B and E are middle seats
-console.log(checkMiddleSeat("11B"));
-console.log(checkMiddleSeat("23C"));
-console.log(checkMiddleSeat("3E"));
+console.log(checkBaggage("I have gun and food"));
+console.log(checkBaggage("I have some food"));
+console.log(checkBaggage("I have knife and snacks"));
+console.log(checkBaggage("I have only bags"));
+
+// // ______________________ STRINGS _____________________________________
+// const airplane = "Air India";
+// const plane = "A123";
+// console.log(plane);
+// console.log(plane[2]);
+// console.log(plane.length);
+// console.log("index of: ", airplane.indexOf("i"));
+// console.log("index of: ", airplane.lastIndexOf("i"));
+// console.log("index of: ", airplane.indexOf("India"));
+// console.log("Slicing:", airplane.slice(1));
+// // strings are immutable
+// console.log("Slicing:", airplane.slice(0, 3));
+// //last index is exclusive
+// console.log("Slicing:", airplane.slice(airplane.indexOf("India"), airplane.lastIndexOf("India")));
+// // console.log(airplane.indexOf("India"));
+// // console.log(airplane.lastIndexOf("India"));
+// console.log("Unknown substring index", airplane.lastIndexOf("india"));
+// console.log("Slicing:", airplane.slice(0, -1));
+// console.log("Negative slicing:", airplane.slice(-3));
+// console.log("Negative slicing:", airplane.slice(1, -3));
+
+// const checkMiddleSeat = function (seat) {
+//   const s = seat.slice(-1);
+//   // console.log(s);
+//   return s == "E" || s == "B" ? "You got Middle Seat :(" : "You got lucky! :)";
+// };
+// // B and E are middle seats
+// console.log(checkMiddleSeat("11B"));
+// console.log(checkMiddleSeat("23C"));
+// console.log(checkMiddleSeat("3E"));
+
+
 // // ___________________ Challenge #3 ______________________________________
 // const gameEvents = new Map([
 //   [17, '⚽️ GOAL'],

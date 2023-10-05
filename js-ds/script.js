@@ -83,8 +83,30 @@ const restaurant = {
   },
 };
 
-
-
+// ________________________ Challeng #4 ______________________________________
+// underscore_case
+//  first_name
+// Some_Variable
+//   calculate_AGE
+// delayed_departure
+document.body.append(document.createElement("textarea"));
+document.body.append(document.createElement("button"));
+document.querySelector("textarea").value = `underscore_case
+first_name
+Some_Variable
+calculate_AGE
+delayed_departure`;
+document.querySelector("button").addEventListener("click", function () {
+  const text = document.querySelector("textarea").value;
+  console.log(text);
+  const rows = text.split("\n");
+  console.log(rows);
+  for (const [index, row] of rows.entries()) {
+    // console.log(index, "\n");
+    const [firstWord, secWord] = row.trim().split("_");
+    console.log([firstWord, secWord.replace(secWord[0], secWord[0].toUpperCase())].join("").padEnd(20, " "), '✅'.repeat(index + 1));
+  }
+});
 
 // // ______________________________ STRING Methods __________________________
 // const airplane = "Air India";
@@ -129,39 +151,39 @@ const restaurant = {
 // console.log(checkBaggage("I have some food"));
 // console.log(checkBaggage("I have knife and snacks"));
 // console.log(checkBaggage("I have only bags"));
-const str = "a+very+nice_string";
-const splitStr = str.split("+");
-console.log("String Split", splitStr, typeof (splitStr));
-const [firstName, lastName] = "Swam Fire".split(" ");
-console.log(firstName, lastName);
-const joinMethod = ["Mr.", firstName, lastName.toUpperCase()].join(" ");
-console.log("Join method:", joinMethod);
-const capitalizeName = function (name) {
-  const names = name.split(" ");
-  const nameUpper = [];
-  for (const word of names) {
-    // nameUpper.push(word[0].toUpperCase() + word.slice(1));
-    nameUpper.push(word.replace(word[0], word[0].toUpperCase()));
-  }
-  // console.log(nameUpper);
-  return nameUpper.join(" ");
-};
-console.log("Capitalized Words:", capitalizeName("jkdfhkj ibfj sbdfjifb ksab"));
-console.log("---------------------------String Padding-------------------------");
-const msg = "Go to gate 23!";
-console.log(msg.padStart(25, "+").padEnd(50, "+"));
-console.log(msg.padEnd(48, "-"));
+// const str = "a+very+nice_string";
+// const splitStr = str.split("+");
+// console.log("String Split", splitStr, typeof (splitStr));
+// const [firstName, lastName] = "Swam Fire".split(" ");
+// console.log(firstName, lastName);
+// const joinMethod = ["Mr.", firstName, lastName.toUpperCase()].join(" ");
+// console.log("Join method:", joinMethod);
+// const capitalizeName = function (name) {
+//   const names = name.split(" ");
+//   const nameUpper = [];
+//   for (const word of names) {
+//     // nameUpper.push(word[0].toUpperCase() + word.slice(1));
+//     nameUpper.push(word.replace(word[0], word[0].toUpperCase()));
+//   }
+//   // console.log(nameUpper);
+//   return nameUpper.join(" ");
+// };
+// console.log("Capitalized Words:", capitalizeName("jkdfhkj ibfj sbdfjifb ksab"));
+// console.log("---------------------------String Padding-------------------------");
+// const msg = "Go to gate 23!";
+// console.log(msg.padStart(25, "+").padEnd(50, "+"));
+// console.log(msg.padEnd(48, "-"));
 
-const maskCreditCard = function (number) {
-  const str = number + "";
-  // console.log(str);
-  const lastFourDigits = str.slice(-4);
-  return lastFourDigits.padStart(str.length, "*");;
-};
-console.log(maskCreditCard(1234567890));
-console.log("----------------String repetation ----------------------------");
-const msg2 = "Bad Weather ! All flights are delayed... Sorry for incovenience\n";
-console.log(msg2.repeat(5));
+// const maskCreditCard = function (number) {
+//   const str = number + "";
+//   // console.log(str);
+//   const lastFourDigits = str.slice(-4);
+//   return lastFourDigits.padStart(str.length, "*");;
+// };
+// console.log(maskCreditCard(1234567890));
+// console.log("----------------String repetation ----------------------------");
+// const msg2 = "Bad Weather ! All flights are delayed... Sorry for incovenience\n";
+// console.log(msg2.repeat(5));
 
 // // ______________________ STRINGS _____________________________________
 // const airplane = "Air India";

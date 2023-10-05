@@ -83,49 +83,85 @@ const restaurant = {
   },
 };
 
-// ______________________________ STRING Methods __________________________
-const airplane = "Air India";
-console.log(airplane);
-console.log("Lower Case", airplane.toLowerCase());
-console.log("Upper Case", airplane.toUpperCase());
-const passenger = "swAMFire";
-console.log("Capitalized string", passenger.toLowerCase()[0].toUpperCase() + passenger.slice(1).toLowerCase());
-// Comapre emails
-console.log("Email Comparision:\n");
-const email = "hello@example.com";
-const testEmail = "   Hello@EXAMPLE.coM   \n";
-let testEmail1 = testEmail.toLowerCase();
-console.log("email str to lower case:", testEmail1);
-testEmail1 = testEmail1.trim(); //trims whitespaces from both ends
-console.log("After trim:", testEmail1);
-// In ES2019, trimming whitespaces only from start or end of string is possible
-console.log("Replacing strings:\n");
-const replaceString = "10,30Rupee";
-console.log("Original string", replaceString);
-console.log(replaceString.replace("Rupee", "Dollar")); // replaces only first occurrence
-const announcement = "All passengers, come to boarding door 23, boarding door 23!";
-console.log(announcement.replace("door", "gate"));
-console.log(announcement.replace(/door/g, "gate")); // replaces all occurrences
-const plane = "A123neo";
-console.log("includes:", plane.includes("A12"));
-console.log("includes:", plane.includes("21"));
-console.log("startswith", plane.startsWith("A"));
-console.log("endswith:", plane.endsWith("neo"));
-console.log("endswith:", plane.endsWith("Neo"));
 
-const checkBaggage = function (baggage) {
-  const bag = baggage.toLowerCase();
-  if (bag.includes("knife") || bag.includes("gun")) {
-    return "You are not allowed in plane";
+
+
+// // ______________________________ STRING Methods __________________________
+// const airplane = "Air India";
+// console.log(airplane);
+// console.log("Lower Case", airplane.toLowerCase());
+// console.log("Upper Case", airplane.toUpperCase());
+// const passenger = "swAMFire";
+// console.log("Capitalized string", passenger.toLowerCase()[0].toUpperCase() + passenger.slice(1).toLowerCase());
+// // Comapre emails
+// console.log("Email Comparision:\n");
+// const email = "hello@example.com";
+// const testEmail = "   Hello@EXAMPLE.coM   \n";
+// let testEmail1 = testEmail.toLowerCase();
+// console.log("email str to lower case:", testEmail1);
+// testEmail1 = testEmail1.trim(); //trims whitespaces from both ends
+// console.log("After trim:", testEmail1);
+// // In ES2019, trimming whitespaces only from start or end of string is possible
+// console.log("Replacing strings:\n");
+// const replaceString = "10,30Rupee";
+// console.log("Original string", replaceString);
+// console.log(replaceString.replace("Rupee", "Dollar")); // replaces only first occurrence
+// const announcement = "All passengers, come to boarding door 23, boarding door 23!";
+// console.log(announcement.replace("door", "gate"));
+// console.log(announcement.replace(/door/g, "gate")); // replaces all occurrences
+// const plane = "A123neo";
+// console.log("includes:", plane.includes("A12"));
+// console.log("includes:", plane.includes("21"));
+// console.log("startswith", plane.startsWith("A"));
+// console.log("endswith:", plane.endsWith("neo"));
+// console.log("endswith:", plane.endsWith("Neo"));
+
+// const checkBaggage = function (baggage) {
+//   const bag = baggage.toLowerCase();
+//   if (bag.includes("knife") || bag.includes("gun")) {
+//     return "You are not allowed in plane";
+//   }
+//   else {
+//     return "Welcome onboard";
+//   }
+// };
+// console.log(checkBaggage("I have gun and food"));
+// console.log(checkBaggage("I have some food"));
+// console.log(checkBaggage("I have knife and snacks"));
+// console.log(checkBaggage("I have only bags"));
+const str = "a+very+nice_string";
+const splitStr = str.split("+");
+console.log("String Split", splitStr, typeof (splitStr));
+const [firstName, lastName] = "Swam Fire".split(" ");
+console.log(firstName, lastName);
+const joinMethod = ["Mr.", firstName, lastName.toUpperCase()].join(" ");
+console.log("Join method:", joinMethod);
+const capitalizeName = function (name) {
+  const names = name.split(" ");
+  const nameUpper = [];
+  for (const word of names) {
+    // nameUpper.push(word[0].toUpperCase() + word.slice(1));
+    nameUpper.push(word.replace(word[0], word[0].toUpperCase()));
   }
-  else {
-    return "Welcome onboard";
-  }
+  // console.log(nameUpper);
+  return nameUpper.join(" ");
 };
-console.log(checkBaggage("I have gun and food"));
-console.log(checkBaggage("I have some food"));
-console.log(checkBaggage("I have knife and snacks"));
-console.log(checkBaggage("I have only bags"));
+console.log("Capitalized Words:", capitalizeName("jkdfhkj ibfj sbdfjifb ksab"));
+console.log("---------------------------String Padding-------------------------");
+const msg = "Go to gate 23!";
+console.log(msg.padStart(25, "+").padEnd(50, "+"));
+console.log(msg.padEnd(48, "-"));
+
+const maskCreditCard = function (number) {
+  const str = number + "";
+  // console.log(str);
+  const lastFourDigits = str.slice(-4);
+  return lastFourDigits.padStart(str.length, "*");;
+};
+console.log(maskCreditCard(1234567890));
+console.log("----------------String repetation ----------------------------");
+const msg2 = "Bad Weather ! All flights are delayed... Sorry for incovenience\n";
+console.log(msg2.repeat(5));
 
 // // ______________________ STRINGS _____________________________________
 // const airplane = "Air India";

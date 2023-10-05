@@ -1,8 +1,6 @@
 'use strict';
 
 // Data needed for a later exercise
-const flights =
-  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 const weekDays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
 const openingHours = {
   [weekDays[3]]: {
@@ -83,30 +81,47 @@ const restaurant = {
   },
 };
 
-// ________________________ Challeng #4 ______________________________________
-// underscore_case
-//  first_name
+//_______________________ STRING METHOD Practice ________________________________
+const flights =
+  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
+
+// 🔴 Delayed Departure from FAO to TXL (11h25)
+//              Arrival from BRU to FAO (11h45)
+//   🔴 Delayed Arrival from HEL to FAO (12h05)
+//            Departure from FAO to LIS (12h30)
+
+console.log(flights);
+for (const flight of flights.split("+")) {
+  // console.log(flight, "\n");
+  const [type, from, to, time] = flight.split(";");
+  const outputStr = `${type.startsWith("_Delayed") ? "🔴" + type.replace(/_/g, " ") : type.replace(/_/g, " ")} from ${from.slice(0, 3).toUpperCase()} to ${to.slice(0, 3).toUpperCase()} (${time.replace(":", "h")})`.padStart(50);
+  console.log(outputStr);
+}
+
+// // ________________________ Challeng #4 ______________________________________
+// // underscore_case
+// //  first_name
+// // Some_Variable
+// //   calculate_AGE
+// // delayed_departure
+// document.body.append(document.createElement("textarea"));
+// document.body.append(document.createElement("button"));
+// document.querySelector("textarea").value = `underscore_case
+// first_name
 // Some_Variable
-//   calculate_AGE
-// delayed_departure
-document.body.append(document.createElement("textarea"));
-document.body.append(document.createElement("button"));
-document.querySelector("textarea").value = `underscore_case
-first_name
-Some_Variable
-calculate_AGE
-delayed_departure`;
-document.querySelector("button").addEventListener("click", function () {
-  const text = document.querySelector("textarea").value;
-  console.log(text);
-  const rows = text.split("\n");
-  console.log(rows);
-  for (const [index, row] of rows.entries()) {
-    // console.log(index, "\n");
-    const [firstWord, secWord] = row.trim().split("_");
-    console.log([firstWord, secWord.replace(secWord[0], secWord[0].toUpperCase())].join("").padEnd(20, " "), '✅'.repeat(index + 1));
-  }
-});
+// calculate_AGE
+// delayed_departure`;
+// document.querySelector("button").addEventListener("click", function () {
+//   const text = document.querySelector("textarea").value;
+//   console.log(text);
+//   const rows = text.split("\n");
+//   console.log(rows);
+//   for (const [index, row] of rows.entries()) {
+//     // console.log(index, "\n");
+//     const [firstWord, secWord] = row.trim().split("_");
+//     console.log([firstWord, secWord.replace(secWord[0], secWord[0].toUpperCase())].join("").padEnd(20, " "), '✅'.repeat(index + 1));
+//   }
+// });
 
 // // ______________________________ STRING Methods __________________________
 // const airplane = "Air India";

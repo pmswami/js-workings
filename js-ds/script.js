@@ -81,44 +81,63 @@ const restaurant = {
   },
 };
 
-//____________________ Higher Order Functions __________________________________
-const oneWord = function (str) {
-  return str.replace(/ /g, "").toLowerCase();
-};
+//_______________ Function returning other function ________________________
+// JS closures === Python decorators
+// const greet = function (greeting) {
+//   return function (name) {
+//     console.log(`${greeting} ${name}`);
+//   };
+// };
 
-const upperFirstWord = function (str) {
-  const [first, ...rest] = str.split(" ");
-  return [first.toUpperCase(), ...rest].join(" ");
-};
+// const greet = (greeting) => {
+//   return (name) => {
+//     console.log(`${greeting} ${name}`);
+//   };
+// };
 
-// higher order function
-const transformer = function (str, fn) {
-  console.log("Original string:", str);
-  console.log("Transformed string:", fn(str));
-  console.log("Transfomed by:", fn.name);
-};
-transformer("Javascript is the best!", upperFirstWord);
-transformer("Javascript is the best!", oneWord);
+const greet = greeting => name => console.log(`${greeting} ${name}`);
+
+const greeterHey = greet("Hey");
+greeterHey("SwamFire");
+greet("Hello")("XLR8");
+// //____________________ Higher Order Functions __________________________________
+// const oneWord = function (str) {
+//   return str.replace(/ /g, "").toLowerCase();
+// };
+
+// const upperFirstWord = function (str) {
+//   const [first, ...rest] = str.split(" ");
+//   return [first.toUpperCase(), ...rest].join(" ");
+// };
+
+// // higher order function
+// const transformer = function (str, fn) {
+//   console.log("Original string:", str);
+//   console.log("Transformed string:", fn(str));
+//   console.log("Transfomed by:", fn.name);
+// };
 // transformer("Javascript is the best!", upperFirstWord);
-const high5 = function () {
-  console.log("Hiii!");
-};
-document.body.addEventListener("click", high5);
+// transformer("Javascript is the best!", oneWord);
+// // transformer("Javascript is the best!", upperFirstWord);
+// const high5 = function () {
+//   console.log("Hiii!");
+// };
+// document.body.addEventListener("click", high5);
 
-// Higher order funcion are used for abstraction
-["SwamFIre", "EchoEcho", "XLR8"].forEach(high5);
+// // Higher order funcion are used for abstraction
+// ["SwamFIre", "EchoEcho", "XLR8"].forEach(high5);
 
-// First - class Functions
-// 1. can return functions from any functions;
-// 2. methods can be called on functions;
-// 3. functions are jsut another type of javascript objects;
-// 4. js functions are simply values;
-// 5. js treats functions as first - class citizens;
+// // First - class Functions
+// // 1. can return functions from any functions;
+// // 2. methods can be called on functions;
+// // 3. functions are jsut another type of javascript objects;
+// // 4. js functions are simply values;
+// // 5. js treats functions as first - class citizens;
 
-// Higher Order Functions
-// 1. a function receives another function as input and return anotyher function\
+// // Higher Order Functions
+// // 1. a function receives another function as input and return anotyher function\
 
-// JAVASCRIPT DOES NOT HAVE PASS BY REFERENCE FUNCTIONALITY
+// // JAVASCRIPT DOES NOT HAVE PASS BY REFERENCE FUNCTIONALITY
 
 // // __________Function with default paramaters ____________________
 // const bookings = [];

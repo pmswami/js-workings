@@ -81,22 +81,61 @@ const restaurant = {
   },
 };
 
-// __________Function with default paramaters ____________________
-const bookings = [];
-const createBooking = function (filghtNo, numPassengers = 1, price = 199) {
-  // numPassengers = numPassengers || 1;
-  price = 199 * numPassengers;
-  const booking = {
-    filghtNo,
-    numPassengers,
-    price
-  };
-  console.log(booking);
-  bookings.push(booking);
+//____________________ Higher Order Functions __________________________________
+const oneWord = function (str) {
+  return str.replace(/ /g, "").toLowerCase();
 };
-createBooking("LMH123");
-createBooking("LMH123", 5, 1000);
-createBooking("LMH123", 5);
+
+const upperFirstWord = function (str) {
+  const [first, ...rest] = str.split(" ");
+  return [first.toUpperCase(), ...rest].join(" ");
+};
+
+// higher order function
+const transformer = function (str, fn) {
+  console.log("Original string:", str);
+  console.log("Transformed string:", fn(str));
+  console.log("Transfomed by:", fn.name);
+};
+transformer("Javascript is the best!", upperFirstWord);
+transformer("Javascript is the best!", oneWord);
+// transformer("Javascript is the best!", upperFirstWord);
+const high5 = function () {
+  console.log("Hiii!");
+};
+document.body.addEventListener("click", high5);
+
+// Higher order funcion are used for abstraction
+["SwamFIre", "EchoEcho", "XLR8"].forEach(high5);
+
+// First - class Functions
+// 1. can return functions from any functions;
+// 2. methods can be called on functions;
+// 3. functions are jsut another type of javascript objects;
+// 4. js functions are simply values;
+// 5. js treats functions as first - class citizens;
+
+// Higher Order Functions
+// 1. a function receives another function as input and return anotyher function\
+
+// JAVASCRIPT DOES NOT HAVE PASS BY REFERENCE FUNCTIONALITY
+
+// // __________Function with default paramaters ____________________
+// const bookings = [];
+// const createBooking = function (filghtNo, numPassengers = 1, price = 199) {
+//   // numPassengers = numPassengers || 1;
+//   price = 199 * numPassengers;
+//   const booking = {
+//     filghtNo,
+//     numPassengers,
+//     price
+//   };
+//   console.log(booking);
+//   bookings.push(booking);
+// };
+// createBooking("LMH123");
+// createBooking("LMH123", 5, 1000);
+// createBooking("LMH123", 5);
 
 // //_______________________ STRING METHOD Practice ________________________________
 // const flights =

@@ -1,70 +1,95 @@
 'use strict';
-//_____________________ CALL and APPLY Methods __________________________________
 
-const lufthansa = {
-    airline: "Lufthansa",
-    iataCode: "LH",
-    bookings: [],
-    book: function (flightNum, name) {
-        console.log(`${name} has booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`);
-        this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
-    }
+const poll = {
+    question: 'What is your favourite programming language?',
+    options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
+    // This generates [0, 0, 0, 0]. More in the next section 😃
+    answers: new Array(4).fill(0),
+    registerNewAnswer() {
+        const answer = Number(prompt(`${this.question}\n${this.options.join("\n")}`));
+        // console.log(answer);
+        typeof answer == "number" && answer < this.answers.length && this.answers[answer]++;
+        // console.log(this.answers);
+        this.displayResults();
+        this.displayResults("string");
+    },
+    displayResults(type = "array") {
+        if (type === "array") {
+            console.log(this.answers);
+        }
+        else if (type == "string") {
+            console.log(`Poll results are ${this.answers.join(", ")}`);
+        }
+    },
 };
-lufthansa.book(123, "SwamFire");
-lufthansa.book(456, "XLR8");
+// console.log(poll.registerNewAnswer());
+document.querySelector(".poll").addEventListener("click", poll.registerNewAnswer.bind(poll));
+// //_____________________ CALL and APPLY Methods __________________________________
+
+// const lufthansa = {
+//     airline: "Lufthansa",
+//     iataCode: "LH",
+//     bookings: [],
+//     book: function (flightNum, name) {
+//         console.log(`${name} has booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`);
+//         this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+//     }
+// };
+// lufthansa.book(123, "SwamFire");
+// lufthansa.book(456, "XLR8");
+// // console.log(lufthansa);
+// const eurowings = {
+//     airline: "Eurowings",
+//     iataCode: "EW",
+//     bookings: [],
+// };
+// const book = lufthansa.book;
+// book.call(eurowings, 123, "EchoEcho");
+// // console.log(eurowings);
+// book.call(lufthansa, 123, "EchoEcho");
+// // console.log(lufthansa);
+
+// const flightData = [789, "HeatBlast"];
+// book.apply(eurowings, flightData);
+// // console.log(eurowings);
+// book.call(lufthansa, ...flightData);
+// // console.log(lufthansa);
+
+// const bookEW = book.bind(eurowings);
+// bookEW(123, "FourArms");
+// bookEW(123, "CannonBolt");
+// // console.log(eurowings);
+// const bookLH = book.bind(lufthansa);
+// bookLH(347, "Ben10");
+// // console.log(lufthansa);
+// const bookEW23 = book.bind(eurowings, 23); // called as partial application
+// bookEW23("Upchuck");
+// // console.log(eurowings);
+
+// lufthansa.planes = 300;
+// lufthansa.buyPlanes = function () {
+//     // console.log(this);
+//     this.planes++;
+//     console.log(this.planes);
+// };
 // console.log(lufthansa);
-const eurowings = {
-    airline: "Eurowings",
-    iataCode: "EW",
-    bookings: [],
-};
-const book = lufthansa.book;
-book.call(eurowings, 123, "EchoEcho");
-// console.log(eurowings);
-book.call(lufthansa, 123, "EchoEcho");
+// document.querySelector(".buy").addEventListener("click", lufthansa.buyPlanes.bind(lufthansa));
 // console.log(lufthansa);
 
-const flightData = [789, "HeatBlast"];
-book.apply(eurowings, flightData);
-// console.log(eurowings);
-book.call(lufthansa, ...flightData);
-// console.log(lufthansa);
+// const addTax = (rate, value) => {
+//     return value + value * rate;
+// };
+// console.log(addTax(.1, 200));
+// // const addVAT = addTax.bind(null, 0.23); // Partial application
+// // console.log(addVAT(100));
 
-const bookEW = book.bind(eurowings);
-bookEW(123, "FourArms");
-bookEW(123, "CannonBolt");
-// console.log(eurowings);
-const bookLH = book.bind(lufthansa);
-bookLH(347, "Ben10");
-// console.log(lufthansa);
-const bookEW23 = book.bind(eurowings, 23); // called as partial application
-bookEW23("Upchuck");
-// console.log(eurowings);
-
-lufthansa.planes = 300;
-lufthansa.buyPlanes = function () {
-    // console.log(this);
-    this.planes++;
-    console.log(this.planes);
-};
-console.log(lufthansa);
-document.querySelector(".buy").addEventListener("click", lufthansa.buyPlanes.bind(lufthansa));
-console.log(lufthansa);
-
-const addTax = (rate, value) => {
-    return value + value * rate;
-};
-console.log(addTax(.1, 200));
-// const addVAT = addTax.bind(null, 0.23); // Partial application
-// console.log(addVAT(100));
-
-const addVAT = (rate) => {
-    return (value) => {
-        return value + value * rate;
-    };
-};
-console.log(addVAT(.23)(100));
-console.log(addVAT(.23)(10));
+// const addVAT = (rate) => {
+//     return (value) => {
+//         return value + value * rate;
+//     };
+// };
+// console.log(addVAT(.23)(100));
+// console.log(addVAT(.23)(10));
 
 
 // //_______________ Function returning other function ________________________

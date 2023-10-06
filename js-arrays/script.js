@@ -74,3 +74,25 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+
+
+let arr = ["a", "b", "c", "d", "e"];
+// Slice method
+// console.log("Array Slice:", arr.slice(2)); //Array Slice
+// console.log("Array Slice:", arr.slice(2, 4)); //Array Slice
+// console.log("Array Slice:", arr.slice(-2, -1));// last index is exclusive
+// console.log(arr[2]);
+
+// Splice method => original array is mutated
+// console.log(arr.splice(2, 3));
+console.log(arr);
+console.log(arr.reverse());
+let arr2 = ["x", "y", "z"];
+
+// array concat
+const letters = arr.concat(arr2);
+console.log(letters);
+console.log([...arr, ...arr2]);
+
+//join method
+console.log(letters.join("-"));

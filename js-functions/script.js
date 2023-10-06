@@ -1,12 +1,65 @@
 'use strict';
 
-//_____________ Immediately invoked funcion expression ___________________
-(function () {
-    console.log("This will never run again ");
-})();
-(() => {
-    console.log("This will also never run again ");
-})();
+//_____________________ CLOSURES _______________________________________
+// a function has access to variable environment of the execution context in which it was created
+// Closures: VE attached to the function, exactly as it was at the time and place the function was created.
+// a closure is the closed-over variable environment of the execution context in which a function was created, even after that execution contetx is gone.
+// A closure gives a function access to all the variables of its parent function even after that parent function has returned. The function keeps a reference to its outer scope, which preserves the scope chain throughout the time.
+// A closure makes sure that a function doesnt loose connecton to the variables that existed at the functions birth place.
+const secureBooking = function () {
+    let passengerCount = 0;
+    return function () {
+        passengerCount++;
+        console.log(`${passengerCount} passengers`);
+    };
+};
+const booker = secureBooking();
+booker();
+booker();
+// booker();
+console.dir(booker);
+
+//Example #1
+let f;
+const g = function () {
+    const a = 23;
+    f = function () {
+        console.log(a * 2);
+    };
+};
+const h = function () {
+    const b = 50;
+    f = function () {
+        console.log(b * 2);
+    };
+};
+g();
+f();
+h();
+f();
+console.dir(f);
+
+// Example #2
+const boardPassengers = function (n, wait) {
+    const perGroup = n / 3;
+    setTimeout(function () {
+        console.log(`We are now boarding all ${n} passengers`);
+        console.log(`There are 3 groups, each with ${perGroup} passengers`);
+    }, wait * 1000);
+    console.log(`Will start boarding in ${wait} seconds`);
+};
+const perGroup = 1000;
+boardPassengers(180, 3);
+
+// setTimeout(function () { console.log("TIMER"); }, 1000);
+
+// //_____________ Immediately invoked funcion expression ___________________
+// (function () {
+//     console.log("This will never run again ");
+// })();
+// (() => {
+//     console.log("This will also never run again ");
+// })();
 
 // // ______________________ Challenge #1 ________________________________
 // const poll = {

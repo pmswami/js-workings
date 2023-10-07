@@ -175,20 +175,38 @@ displayMovements(account1.movements);
 //   console.log(`Set:${set}\t${key}:${value}`);
 // });
 
-const checkDogs = function (dogsJulia, dogsKate) {
-  const dogsJuliaCorrected = dogsJulia.slice();
-  dogsJuliaCorrected.splice(0, 1);
-  dogsJuliaCorrected.splice(-2);
-  console.log(dogsJuliaCorrected);
-  const dogs = dogsJuliaCorrected.concat(dogsKate);
-  console.log(dogs);
-  dogs.forEach(function (dog, i) {
-    if (dog > 3) {
-      console.log("Dog is adult");
-    }
-    else {
-      console.log("Still a puppy");
-    }
-  });
-};
-checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
+// //___________________ Challenge #2 _____________________________________
+
+// const checkDogs = function (dogsJulia, dogsKate) {
+//   const dogsJuliaCorrected = dogsJulia.slice();
+//   dogsJuliaCorrected.splice(0, 1);
+//   dogsJuliaCorrected.splice(-2);
+//   console.log(dogsJuliaCorrected);
+//   const dogs = dogsJuliaCorrected.concat(dogsKate);
+//   console.log(dogs);
+//   dogs.forEach(function (dog, i) {
+//     if (dog > 3) {
+//       console.log("Dog is adult");
+//     }
+//     else {
+//       console.log("Still a puppy");
+//     }
+//   });
+// };
+// checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
+
+
+//______________________________ MAP Method ___________________________
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const eurToUsd = 1.1;
+// const movementsUsd = movements.map(function (mov) {
+//   return mov * eurToUsd;
+// });
+const movementsUsd = movements.map(mov => mov * eurToUsd);
+console.log(movements);
+console.log(movementsUsd);
+
+movements.map(function (value, key, arr) {
+  console.log(value, key, arr);
+});

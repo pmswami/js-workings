@@ -94,6 +94,14 @@ const createUsername = function (accs) {
 // const user = 'Sarah Smith';
 createUsername(accounts);
 // console.log(accounts);
+
+const calcPrintBalance = function (movements) {
+  const balance = movements.reduce(function (accumulator, current) {
+    return accumulator + current;
+  });
+  labelBalance.textContent = `${balance} EUR`;
+};
+calcPrintBalance(account1.movements);
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -228,16 +236,39 @@ createUsername(accounts);
 // });
 
 
-// _________________ FILTER Method _____________________________________
+// // _________________ FILTER Method _____________________________________
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// console.log(movements);
+// const deposits = movements.filter(function (trans) {
+//   return trans > 0;
+// });
+// console.log(deposits);
+
+// const withdrawals = movements.filter((trans) => {
+//   return trans < 0;
+// });
+// console.log(withdrawals);
+
+
+// ______________________ REDUCE Method ___________________________________
+
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, -200, 340, -300, -20, 50, 400, -460];
+const movements = [5000, 3400, -150, -790, -3210, -1000, 8500, -30];
 console.log(movements);
-const deposits = movements.filter(function (trans) {
-  return trans > 0;
+const balance = movements.reduce(function (accumulator, current, index, arr) {
+  return accumulator + current;
 });
-console.log(deposits);
 
-const withdrawals = movements.filter((trans) => {
-  return trans < 0;
-});
-console.log(withdrawals);
+console.log(balance);
+
+const maxMove = movements.reduce(function (acc, current) {
+  return current > acc ? current : acc;
+}, movements[0]);
+console.log(maxMove);
+
+const minMove = movements.reduce(function (acc, current) {
+  return current < acc ? current : acc;
+}, movements[0]);
+console.log(minMove);

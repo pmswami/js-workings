@@ -71,7 +71,7 @@ const currencies = new Map([
   ['GBP', 'Pound sterling'],
 ]);
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
@@ -98,13 +98,40 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // console.log(letters.join("-"));
 
 
-const arr = [23, 11, 64];
-console.log(arr[0]);
-console.log(arr.at(0));
+// const arr = [23, 11, 64];
+// console.log(arr[0]);
+// console.log(arr.at(0));
 
-//get last element of array
-console.log(arr[arr.length - 1]);
-console.log(arr.slice(-1)[0]);
-console.log(arr.at(-1));
-console.log("Swamfire".at(-1));
-console.log("Swamfire".at(0));
+// //get last element of array
+// console.log(arr[arr.length - 1]);
+// console.log(arr.slice(-1)[0]);
+// console.log(arr.at(-1));
+// console.log("Swamfire".at(-1));
+// console.log("Swamfire".at(0));
+
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+console.log(movements);
+// for (const trans of movements) {
+//   const output = trans > 0 ? `You deposited ${trans}` : `You withdrawn ${trans}`;
+//   console.log(output);
+// }
+
+// forEach loop of arrays
+// movements.forEach((trans) => {
+//   const output = trans > 0 ? `You deposited ${trans}` : `You withdrawn ${trans}`;
+//   console.log(output);
+// });
+
+// movements.forEach(function(trans) {
+//   const output = trans > 0 ? `You deposited ${trans}` : `You withdrawn ${trans}`;
+//   console.log(output);
+// });
+
+// order of arguments are fixed
+// continue, break, exit() keywords dont work for forEach loop
+movements.forEach(function (trans, index, array) {
+  console.log(index);
+  const output = trans > 0 ? `You deposited ${trans}` : `You withdrawn ${trans}`;
+  console.log(output);
+});

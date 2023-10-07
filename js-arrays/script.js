@@ -78,6 +78,22 @@ const displayMovements = function (movements) {
 };
 displayMovements(account1.movements);
 // console.log(containerMovements.innerHTML);
+
+const createUsername = function (accs) {
+  accs.forEach(function (acc) {
+    acc.username = acc.owner.toLowerCase().split(" ").map(function (uname) {
+      return uname[0];
+    }).join("");
+    // return username;
+  });
+};
+
+const user = 'Steven Thomas Williams';
+// const user = 'Jessica Davis';
+// const user = 'Jonas Schmedtmann';
+// const user = 'Sarah Smith';
+createUsername(accounts);
+console.log(accounts);
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -196,17 +212,17 @@ displayMovements(account1.movements);
 // checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
 
 
-//______________________________ MAP Method ___________________________
+// //______________________________ MAP Method ___________________________
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-const eurToUsd = 1.1;
-// const movementsUsd = movements.map(function (mov) {
-//   return mov * eurToUsd;
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const eurToUsd = 1.1;
+// // const movementsUsd = movements.map(function (mov) {
+// //   return mov * eurToUsd;
+// // });
+// const movementsUsd = movements.map(mov => mov * eurToUsd);
+// console.log(movements);
+// console.log(movementsUsd);
+
+// movements.map(function (value, key, arr) {
+//   console.log(value, key, arr);
 // });
-const movementsUsd = movements.map(mov => mov * eurToUsd);
-console.log(movements);
-console.log(movementsUsd);
-
-movements.map(function (value, key, arr) {
-  console.log(value, key, arr);
-});

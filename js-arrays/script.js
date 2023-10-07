@@ -65,11 +65,11 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // LECTURES
 
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
+// const currencies = new Map([
+//   ['USD', 'United States dollar'],
+//   ['EUR', 'Euro'],
+//   ['GBP', 'Pound sterling'],
+// ]);
 
 // const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
@@ -109,29 +109,52 @@ const currencies = new Map([
 // console.log("Swamfire".at(-1));
 // console.log("Swamfire".at(0));
 
+// //______________________________ forEach loop ___________________________________
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-console.log(movements);
-// for (const trans of movements) {
-//   const output = trans > 0 ? `You deposited ${trans}` : `You withdrawn ${trans}`;
-//   console.log(output);
-// }
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// console.log(movements);
+// // for (const trans of movements) {
+// //   const output = trans > 0 ? `You deposited ${trans}` : `You withdrawn ${trans}`;
+// //   console.log(output);
+// // }
 
-// forEach loop of arrays
-// movements.forEach((trans) => {
+// // forEach loop of arrays
+// // movements.forEach((trans) => {
+// //   const output = trans > 0 ? `You deposited ${trans}` : `You withdrawn ${trans}`;
+// //   console.log(output);
+// // });
+
+// // movements.forEach(function(trans) {
+// //   const output = trans > 0 ? `You deposited ${trans}` : `You withdrawn ${trans}`;
+// //   console.log(output);
+// // });
+
+// // order of arguments are fixed
+// // continue, break, exit() keywords dont work for forEach loop
+// movements.forEach(function (trans, index, array) {
+//   console.log(index);
 //   const output = trans > 0 ? `You deposited ${trans}` : `You withdrawn ${trans}`;
 //   console.log(output);
 // });
 
-// movements.forEach(function(trans) {
-//   const output = trans > 0 ? `You deposited ${trans}` : `You withdrawn ${trans}`;
-//   console.log(output);
+
+const currencies = new Map([
+  ['USD', 'United States dollar'],
+  ['EUR', 'Euro'],
+  ['GBP', 'Pound sterling'],
+]);
+console.log(currencies);
+// currencies.forEach(function (value, key, map) {
+//   console.log(`${key}: ${value}`);
 // });
 
-// order of arguments are fixed
-// continue, break, exit() keywords dont work for forEach loop
-movements.forEach(function (trans, index, array) {
-  console.log(index);
-  const output = trans > 0 ? `You deposited ${trans}` : `You withdrawn ${trans}`;
-  console.log(output);
+currencies.forEach((value, key, map) => {
+  console.log(`${key}: ${value}`);
+});
+
+const uniqueCurrencies = new Set(["INR", "USD", "EUR", "GBP", "INR"]);
+console.log(uniqueCurrencies);
+// Sets dont have keys, values pairs
+uniqueCurrencies.forEach((value, key, set) => {
+  console.log(`Set:${set}\t${key}:${value}`);
 });

@@ -88,12 +88,12 @@ const createUsername = function (accs) {
   });
 };
 
-const user = 'Steven Thomas Williams';
+// const user = 'Steven Thomas Williams';
 // const user = 'Jessica Davis';
 // const user = 'Jonas Schmedtmann';
 // const user = 'Sarah Smith';
 createUsername(accounts);
-console.log(accounts);
+// console.log(accounts);
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -226,3 +226,18 @@ console.log(accounts);
 // movements.map(function (value, key, arr) {
 //   console.log(value, key, arr);
 // });
+
+
+// _________________ FILTER Method _____________________________________
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+console.log(movements);
+const deposits = movements.filter(function (trans) {
+  return trans > 0;
+});
+console.log(deposits);
+
+const withdrawals = movements.filter((trans) => {
+  return trans < 0;
+});
+console.log(withdrawals);

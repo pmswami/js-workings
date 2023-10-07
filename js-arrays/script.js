@@ -61,6 +61,23 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+const displayMovements = function (movements) {
+  // console.log(movements);
+  containerMovements.innerHTML = "";
+  movements.forEach((element, index) => {
+    const type = element > 0 ? "deposit" : "withdrawal";
+    const html = `
+    <div class="movements__row">
+          <div class="movements__type movements__type--${type}">${index + 1} ${type}</div>
+          <div class="movements__value">${element}€</div>
+        </div>
+    `;
+    containerMovements.insertAdjacentHTML("afterbegin", html);
+    // containerMovements.insertAdjacentHTML("beforeend", html);
+  });
+};
+displayMovements(account1.movements);
+// console.log(containerMovements.innerHTML);
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -137,24 +154,24 @@ const inputClosePin = document.querySelector('.form__input--pin');
 //   console.log(output);
 // });
 
+// const currencies = new Map([
+//   ['USD', 'United States dollar'],
+//   ['EUR', 'Euro'],
+//   ['GBP', 'Pound sterling'],
+// ]);
+// console.log(currencies);
+// // currencies.forEach(function (value, key, map) {
+// //   console.log(`${key}: ${value}`);
+// // });
 
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
-console.log(currencies);
-// currencies.forEach(function (value, key, map) {
+// currencies.forEach((value, key, map) => {
 //   console.log(`${key}: ${value}`);
 // });
 
-currencies.forEach((value, key, map) => {
-  console.log(`${key}: ${value}`);
-});
+// const uniqueCurrencies = new Set(["INR", "USD", "EUR", "GBP", "INR"]);
+// console.log(uniqueCurrencies);
+// // Sets dont have keys, values pairs
+// uniqueCurrencies.forEach((value, key, set) => {
+//   console.log(`Set:${set}\t${key}:${value}`);
+// });
 
-const uniqueCurrencies = new Set(["INR", "USD", "EUR", "GBP", "INR"]);
-console.log(uniqueCurrencies);
-// Sets dont have keys, values pairs
-uniqueCurrencies.forEach((value, key, set) => {
-  console.log(`Set:${set}\t${key}:${value}`);
-});

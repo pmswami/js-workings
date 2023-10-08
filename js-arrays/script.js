@@ -79,6 +79,34 @@ const displayMovements = function (movements) {
 displayMovements(account1.movements);
 // console.log(containerMovements.innerHTML);
 
+const calcDisplaySummary = function (movements) {
+  const incomes = movements.filter(function (mov) {
+    return mov > 0;
+  }).reduce(function (acc, current) {
+    return acc + current;
+  });
+  labelSumIn.textContent = `${incomes} €`;
+
+  const out = movements.filter(function (mov) {
+    return mov < 0;
+  }).reduce(function (acc, current) {
+    return acc + current;
+  });
+  labelSumOut.textContent = `${Math.abs(out)} €`;
+
+  const interest = movements.filter(function (mov) {
+    return mov > 0;
+  }).map(function (mov) {
+    return mov * 1.2 / 100;
+  }).filter(function (mov) {
+    return mov >= 1;
+  }).reduce(function (acc, current) {
+    return acc + current;
+  });
+  labelSumInterest.textContent = `${interest} €`;
+};
+calcDisplaySummary(account1.movements);
+
 const createUsername = function (accs) {
   accs.forEach(function (acc) {
     acc.username = acc.owner.toLowerCase().split(" ").map(function (uname) {
@@ -99,7 +127,7 @@ const calcPrintBalance = function (movements) {
   const balance = movements.reduce(function (accumulator, current) {
     return accumulator + current;
   });
-  labelBalance.textContent = `${balance} EUR`;
+  labelBalance.textContent = `${balance} €`;
 };
 calcPrintBalance(account1.movements);
 /////////////////////////////////////////////////
@@ -155,18 +183,18 @@ calcPrintBalance(account1.movements);
 // const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // console.log(movements);
 // // for (const trans of movements) {
-// //   const output = trans > 0 ? `You deposited ${trans}` : `You withdrawn ${trans}`;
+// //   const output = trans > 0 ? `You deposited ${ trans; } ` : `You withdrawn ${ trans; } `;
 // //   console.log(output);
 // // }
 
 // // forEach loop of arrays
 // // movements.forEach((trans) => {
-// //   const output = trans > 0 ? `You deposited ${trans}` : `You withdrawn ${trans}`;
+// //   const output = trans > 0 ? `You deposited ${ trans; } ` : `You withdrawn ${ trans; } `;
 // //   console.log(output);
 // // });
 
 // // movements.forEach(function(trans) {
-// //   const output = trans > 0 ? `You deposited ${trans}` : `You withdrawn ${trans}`;
+// //   const output = trans > 0 ? `You deposited ${ trans; } ` : `You withdrawn ${ trans; } `;
 // //   console.log(output);
 // // });
 
@@ -174,7 +202,7 @@ calcPrintBalance(account1.movements);
 // // continue, break, exit() keywords dont work for forEach loop
 // movements.forEach(function (trans, index, array) {
 //   console.log(index);
-//   const output = trans > 0 ? `You deposited ${trans}` : `You withdrawn ${trans}`;
+//   const output = trans > 0 ? `You deposited ${ trans; } ` : `You withdrawn ${ trans; } `;
 //   console.log(output);
 // });
 
@@ -185,18 +213,18 @@ calcPrintBalance(account1.movements);
 // ]);
 // console.log(currencies);
 // // currencies.forEach(function (value, key, map) {
-// //   console.log(`${key}: ${value}`);
+// //   console.log(`${ key; }: ${ value; } `);
 // // });
 
 // currencies.forEach((value, key, map) => {
-//   console.log(`${key}: ${value}`);
+//   console.log(`${ key; }: ${ value; } `);
 // });
 
 // const uniqueCurrencies = new Set(["INR", "USD", "EUR", "GBP", "INR"]);
 // console.log(uniqueCurrencies);
 // // Sets dont have keys, values pairs
 // uniqueCurrencies.forEach((value, key, set) => {
-//   console.log(`Set:${set}\t${key}:${value}`);
+//   console.log(`Set:${ set; } \t${ key; }:${ value; } `);
 // });
 
 // //___________________ Challenge #2 _____________________________________
@@ -273,23 +301,39 @@ calcPrintBalance(account1.movements);
 // }, movements[0]);
 // console.log(minMove);
 
-//_____________________ Challenge #2 ________________________________________
-const calcAverageHumanAge = function (ages) {
-  console.log(ages);
-  const humanAges = ages.map(function (age) {
-    return age <= 2 ? 2 * age : 16 + 4 * age;
-  });
-  const adultDogs = humanAges.filter(function (age) {
-    return age >= 18;
-  });
-  const average = adultDogs.reduce(function (acc, current) {
-    return acc + current;
-  }) / adultDogs.length;
-  console.log(humanAges);
-  console.log(adultDogs);
-  console.log(average);
-};
+// //_____________________ Challenge #2 ________________________________________
+// const calcAverageHumanAge = function (ages) {
+//   console.log(ages);
+//   const humanAges = ages.map(function (age) {
+//     return age <= 2 ? 2 * age : 16 + 4 * age;
+//   });
+//   const adultDogs = humanAges.filter(function (age) {
+//     return age >= 18;
+//   });
+//   const average = adultDogs.reduce(function (acc, current) {
+//     return acc + current;
+//   }) / adultDogs.length;
+//   console.log(humanAges);
+//   console.log(adultDogs);
+//   console.log(average);
+// };
 
-const test1 = [5, 2, 4, 1, 15, 8, 3];
-const test2 = [16, 6, 10, 5, 6, 1, 4];
-calcAverageHumanAge(test1);
+// const test1 = [5, 2, 4, 1, 15, 8, 3];
+// const test2 = [16, 6, 10, 5, 6, 1, 4];
+// calcAverageHumanAge(test1);
+
+//____________________ CHAINING MAGIC _____________________________
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, -200, 340, -300, -20, 50, 400, -460];
+// const movements = [5000, 3400, -150, -790, -3210, -1000, 8500, -30];
+console.log(movements);
+const eurToUsd = 1.1;
+const totalDeposits = movements.filter(function (mov) {
+  return mov > 0;
+}).map(function (mov) {
+  return mov * eurToUsd;
+}).reduce(function (acc, current) {
+  return acc + current;
+});
+console.log(totalDeposits);
+;;;;

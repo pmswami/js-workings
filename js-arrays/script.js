@@ -251,24 +251,45 @@ calcPrintBalance(account1.movements);
 // console.log(withdrawals);
 
 
-// ______________________ REDUCE Method ___________________________________
+// // ______________________ REDUCE Method ___________________________________
 
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-// const movements = [200, -200, 340, -300, -20, 50, 400, -460];
-const movements = [5000, 3400, -150, -790, -3210, -1000, 8500, -30];
-console.log(movements);
-const balance = movements.reduce(function (accumulator, current, index, arr) {
-  return accumulator + current;
-});
+// // const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// // const movements = [200, -200, 340, -300, -20, 50, 400, -460];
+// const movements = [5000, 3400, -150, -790, -3210, -1000, 8500, -30];
+// console.log(movements);
+// const balance = movements.reduce(function (accumulator, current, index, arr) {
+//   return accumulator + current;
+// });
 
-console.log(balance);
+// console.log(balance);
 
-const maxMove = movements.reduce(function (acc, current) {
-  return current > acc ? current : acc;
-}, movements[0]);
-console.log(maxMove);
+// const maxMove = movements.reduce(function (acc, current) {
+//   return current > acc ? current : acc;
+// }, movements[0]);
+// console.log(maxMove);
 
-const minMove = movements.reduce(function (acc, current) {
-  return current < acc ? current : acc;
-}, movements[0]);
-console.log(minMove);
+// const minMove = movements.reduce(function (acc, current) {
+//   return current < acc ? current : acc;
+// }, movements[0]);
+// console.log(minMove);
+
+//_____________________ Challenge #2 ________________________________________
+const calcAverageHumanAge = function (ages) {
+  console.log(ages);
+  const humanAges = ages.map(function (age) {
+    return age <= 2 ? 2 * age : 16 + 4 * age;
+  });
+  const adultDogs = humanAges.filter(function (age) {
+    return age >= 18;
+  });
+  const average = adultDogs.reduce(function (acc, current) {
+    return acc + current;
+  }) / adultDogs.length;
+  console.log(humanAges);
+  console.log(adultDogs);
+  console.log(average);
+};
+
+const test1 = [5, 2, 4, 1, 15, 8, 3];
+const test2 = [16, 6, 10, 5, 6, 1, 4];
+calcAverageHumanAge(test1);

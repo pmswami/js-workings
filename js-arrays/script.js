@@ -322,18 +322,32 @@ calcPrintBalance(account1.movements);
 // const test2 = [16, 6, 10, 5, 6, 1, 4];
 // calcAverageHumanAge(test1);
 
-//____________________ CHAINING MAGIC _____________________________
+// //____________________ CHAINING MAGIC _____________________________
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// // const movements = [200, -200, 340, -300, -20, 50, 400, -460];
+// // const movements = [5000, 3400, -150, -790, -3210, -1000, 8500, -30];
+// // console.log(movements);
+// const eurToUsd = 1.1;
+// const totalDeposits = movements.filter(function (mov) {
+//   return mov > 0;
+// }).map(function (mov) {
+//   return mov * eurToUsd;
+// }).reduce(function (acc, current) {
+//   return acc + current;
+// });
+// // console.log(totalDeposits);
+
+//________________________ FIND Method ______________________________________
+
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-// const movements = [200, -200, 340, -300, -20, 50, 400, -460];
-// const movements = [5000, 3400, -150, -790, -3210, -1000, 8500, -30];
-console.log(movements);
-const eurToUsd = 1.1;
-const totalDeposits = movements.filter(function (mov) {
-  return mov > 0;
-}).map(function (mov) {
-  return mov * eurToUsd;
-}).reduce(function (acc, current) {
-  return acc + current;
+const firstWithdrawal = movements.find(function (mov) {
+  return mov < 0;
 });
-console.log(totalDeposits);
-;;;;
+console.log(movements);
+console.log(firstWithdrawal); // return element itself, not an array
+
+console.log(accounts);
+const account = accounts.find(function (acc) {
+  return acc.owner === "Jessica Davis";
+});
+console.log(account);

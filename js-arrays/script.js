@@ -76,10 +76,11 @@ const displayMovements = function (movements) {
     // containerMovements.insertAdjacentHTML("beforeend", html);
   });
 };
-displayMovements(account1.movements);
+// displayMovements(account1.movements);
 // console.log(containerMovements.innerHTML);
 
-const calcDisplaySummary = function (movements) {
+const calcDisplaySummary = function (acc) {
+  const movements = acc.movements;
   const incomes = movements.filter(function (mov) {
     return mov > 0;
   }).reduce(function (acc, current) {
@@ -97,7 +98,7 @@ const calcDisplaySummary = function (movements) {
   const interest = movements.filter(function (mov) {
     return mov > 0;
   }).map(function (mov) {
-    return mov * 1.2 / 100;
+    return mov * acc.interestRate / 100;
   }).filter(function (mov) {
     return mov >= 1;
   }).reduce(function (acc, current) {
@@ -105,7 +106,7 @@ const calcDisplaySummary = function (movements) {
   });
   labelSumInterest.textContent = `${interest} €`;
 };
-calcDisplaySummary(account1.movements);
+// calcDisplaySummary(account1.movements);
 
 const createUsername = function (accs) {
   accs.forEach(function (acc) {
@@ -129,7 +130,37 @@ const calcPrintBalance = function (movements) {
   });
   labelBalance.textContent = `${balance} €`;
 };
-calcPrintBalance(account1.movements);
+// calcPrintBalance(account1.movements);
+
+//Event Handlers
+let currentAccount;
+btnLogin.addEventListener("click", function (event) {
+  event.preventDefault();
+  // console.log("LOGIN");
+  currentAccount = accounts.find(function (acc) {
+    return acc.username === inputLoginUsername.value;
+  });
+  console.log(currentAccount);
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    // console.log( "LOGIN");
+    // Display UI and message
+    labelWelcome.textContent = `Welcome back, ${currentAccount.owner.split(" ")[0]}`;
+    containerApp.style.opacity = 100;
+    // Clear inputs
+    inputLoginUsername.value = inputLoginPin.value = "";
+    inputLoginPin.blur();
+    // Display movements
+    displayMovements(currentAccount.movements);
+    // Display Balance
+    calcPrintBalance(currentAccount.movements);
+    // Display Summary
+    calcDisplaySummary(currentAccount);
+  }
+  // console.log(currentAccount);
+});
+
+
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -337,17 +368,18 @@ calcPrintBalance(account1.movements);
 // });
 // // console.log(totalDeposits);
 
-//________________________ FIND Method ______________________________________
+// //________________________ FIND Method ______________________________________
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-const firstWithdrawal = movements.find(function (mov) {
-  return mov < 0;
-});
-console.log(movements);
-console.log(firstWithdrawal); // return element itself, not an array
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const firstWithdrawal = movements.find(function (mov) {
+//   return mov < 0;
+// });
+// console.log(movements);
+// console.log(firstWithdrawal); // return element itself, not an array
 
-console.log(accounts);
-const account = accounts.find(function (acc) {
-  return acc.owner === "Jessica Davis";
-});
-console.log(account);
+// console.log(accounts);
+// const account = accounts.find(function (acc) {
+//   return acc.owner === "Jessica Davis";
+// });
+// console.log(account);
+

@@ -185,6 +185,21 @@ btnTransfer.addEventListener("click", function (event) {
   }
 });
 
+btnClose.addEventListener("click", function (event) {
+  event.preventDefault();
+  // console.log("Close acc clicked");
+  if (inputCloseUsername.value === currentAccount.username && Number(inputClosePin.value) === currentAccount.pin) {
+    const index = accounts.findIndex(function (acc) {
+      return acc.username === currentAccount.username;
+    });
+    console.log(index);
+    accounts.splice(index, 1);
+    inputCloseUsername.value = inputClosePin.value = "";
+    labelWelcome.textContent = "Log in to get started";
+    containerApp.style.opacity = 0;
+  }
+});
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -407,3 +422,4 @@ btnTransfer.addEventListener("click", function (event) {
 // });
 // console.log(account);
 
+// ________________________ FINDINDEX Method _________________________________

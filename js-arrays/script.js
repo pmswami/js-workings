@@ -185,6 +185,19 @@ btnTransfer.addEventListener("click", function (event) {
   }
 });
 
+btnLoan.addEventListener("click", function (event) {
+  event.preventDefault();
+  const amount = Number(inputLoanAmount.value);
+  if (amount > 0 && currentAccount.movements.some(function (mov) {
+    return mov > amount * 0.1;
+  })) {
+    currentAccount.movements.push(amount);
+    // inputLoanAmount.value = "";
+    updateUI(currentAccount);
+  }
+  inputLoanAmount.value = "";
+});
+
 btnClose.addEventListener("click", function (event) {
   event.preventDefault();
   // console.log("Close acc clicked");
@@ -422,4 +435,20 @@ btnClose.addEventListener("click", function (event) {
 // });
 // console.log(account);
 
-// ________________________ FINDINDEX Method _________________________________
+// __________________________ SOME Method ___________________________________
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+console.log(movements);
+console.log(movements.includes(450));
+console.log(movements.some(function (mov) {
+  return mov > 0;
+}));
+const anyDeposits = movements.some(function (mov) {
+  return mov > 0;
+});
+console.log(anyDeposits);
+
+//_____________________ EVERY Method ___________________________
+const movementss = [430, 1000, 700, 50, 90];
+console.log(movementss.every(function (mov) {
+  return mov > 0;
+}));

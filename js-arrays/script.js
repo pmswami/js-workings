@@ -61,10 +61,12 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sort = false) {
   // console.log(movements);
   containerMovements.innerHTML = "";
-  movements.forEach((element, index) => {
+
+  const movs = sort ? movements.slice().sort(function (a, b) { return a - b; }) : movements;
+  movs.forEach((element, index) => {
     const type = element > 0 ? "deposit" : "withdrawal";
     const html = `
     <div class="movements__row">
@@ -211,6 +213,13 @@ btnClose.addEventListener("click", function (event) {
     labelWelcome.textContent = "Log in to get started";
     containerApp.style.opacity = 0;
   }
+});
+
+let sorted = false;
+btnSort.addEventListener("click", function (event) {
+  event.preventDefault();
+  displayMovements(currentAccount.movements, !sorted);
+  sorted = !sorted;
 });
 
 /////////////////////////////////////////////////
@@ -454,36 +463,51 @@ btnClose.addEventListener("click", function (event) {
 // }));
 
 
-// ____________________ FLAT Method ______________________________________
-const arr = [[1, 2], [3, 4]];
-console.log(arr.flat());
+// // ____________________ FLAT Method ______________________________________
+// const arr = [[1, 2], [3, 4]];
+// console.log(arr.flat());
 
-const arrDeep = [[[1, 2], [3, 4], 5], [6, 7, 8]];
-console.log(arrDeep.flat());
-console.log(arrDeep.flat(2));
+// const arrDeep = [[[1, 2], [3, 4], 5], [6, 7, 8]];
+// console.log(arrDeep.flat());
+// console.log(arrDeep.flat(2));
 
-console.log(accounts);
-const accountMovements = accounts.map(function (acc) {
-  return acc.movements;
-});
-console.log(accountMovements);
-const allMovements = accountMovements.flat();
-console.log(allMovements);
+// console.log(accounts);
+// const accountMovements = accounts.map(function (acc) {
+//   return acc.movements;
+// });
+// console.log(accountMovements);
+// const allMovements = accountMovements.flat();
+// console.log(allMovements);
 
-const overallBalance = allMovements.reduce(function (acc, curr) {
-  return acc + curr;
-});
-console.log(overallBalance);
+// const overallBalance = allMovements.reduce(function (acc, curr) {
+//   return acc + curr;
+// });
+// console.log(overallBalance);
 
-console.log(accounts
-  .map(function (acc) { return acc.movements; })
-  .flat()
-  .reduce(function (acc, curr) { return acc + curr; })
-);
+// console.log(accounts
+//   .map(function (acc) { return acc.movements; })
+//   .flat()
+//   .reduce(function (acc, curr) { return acc + curr; })
+// );
 
 
-// ____________________ FLATMAP Method _________________________________
-console.log(accounts
-  .flatMap(function (acc) { return acc.movements; })
-  .reduce(function (acc, curr) { return acc + curr; })
-);
+// // ____________________ FLATMAP Method _________________________________
+// console.log(accounts
+//   .flatMap(function (acc) { return acc.movements; })
+//   .reduce(function (acc, curr) { return acc + curr; })
+// );
+
+
+// ________________________ SORTING Arrays _________________________________
+const owners = ["SwamFire", "EchoEcho", "XLR8"];
+console.log(owners.sort());
+const numbers = [10, -1, 0, 2, 1];
+// SORT ASCENDING
+console.log(numbers.sort(function (a, b) {
+  return a - b;
+}));
+
+// SORT DESCENDING
+console.log(numbers.sort(function (a, b) {
+  return b - a;
+}));

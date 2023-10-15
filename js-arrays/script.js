@@ -498,16 +498,52 @@ btnSort.addEventListener("click", function (event) {
 // );
 
 
-// ________________________ SORTING Arrays _________________________________
-const owners = ["SwamFire", "EchoEcho", "XLR8"];
-console.log(owners.sort());
-const numbers = [10, -1, 0, 2, 1];
-// SORT ASCENDING
-console.log(numbers.sort(function (a, b) {
-  return a - b;
-}));
+// // ________________________ SORTING Arrays _________________________________
+// const owners = ["SwamFire", "EchoEcho", "XLR8"];
+// console.log(owners.sort());
+// const numbers = [10, -1, 0, 2, 1];
+// // SORT ASCENDING
+// console.log(numbers.sort(function (a, b) {
+//   return a - b;
+// }));
 
-// SORT DESCENDING
-console.log(numbers.sort(function (a, b) {
-  return b - a;
-}));
+// // SORT DESCENDING
+// console.log(numbers.sort(function (a, b) {
+//   return b - a;
+// }));
+
+// _________________ Dynamic Array Creation and filling Array _________________
+const x = new Array(7);
+console.log(x);
+// x.fill(1);
+// console.log(x);
+
+// x.fill(1, 3);
+// console.log(x);
+
+x.fill(1, 3, 5);
+console.log(x);
+
+const arr = [1, 2, 3, 4, 5, 6, 7];
+arr.fill(23, 2, 6);
+console.log(arr);
+
+
+const y = Array.from({ length: 7 }, function () {
+  return 1;
+});
+console.log(y);
+const z = Array.from({ length: 7 }, function (curr, next) {
+  return next + 1;
+});
+console.log(z);
+
+labelBalance.addEventListener("click", function () {
+  const movementsUI = Array.from(
+    document.querySelectorAll(".movements__value"),
+    function (mov) {
+      return Number(mov.textContent.replace("€", ""));
+    }
+  );
+  console.log(movementsUI);
+});

@@ -435,20 +435,55 @@ btnClose.addEventListener("click", function (event) {
 // });
 // console.log(account);
 
-// __________________________ SOME Method ___________________________________
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-console.log(movements);
-console.log(movements.includes(450));
-console.log(movements.some(function (mov) {
-  return mov > 0;
-}));
-const anyDeposits = movements.some(function (mov) {
-  return mov > 0;
-});
-console.log(anyDeposits);
+// // __________________________ SOME Method ___________________________________
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// console.log(movements);
+// console.log(movements.includes(450));
+// console.log(movements.some(function (mov) {
+//   return mov > 0;
+// }));
+// const anyDeposits = movements.some(function (mov) {
+//   return mov > 0;
+// });
+// console.log(anyDeposits);
 
-//_____________________ EVERY Method ___________________________
-const movementss = [430, 1000, 700, 50, 90];
-console.log(movementss.every(function (mov) {
-  return mov > 0;
-}));
+// //_____________________ EVERY Method ___________________________
+// const movementss = [430, 1000, 700, 50, 90];
+// console.log(movementss.every(function (mov) {
+//   return mov > 0;
+// }));
+
+
+// ____________________ FLAT Method ______________________________________
+const arr = [[1, 2], [3, 4]];
+console.log(arr.flat());
+
+const arrDeep = [[[1, 2], [3, 4], 5], [6, 7, 8]];
+console.log(arrDeep.flat());
+console.log(arrDeep.flat(2));
+
+console.log(accounts);
+const accountMovements = accounts.map(function (acc) {
+  return acc.movements;
+});
+console.log(accountMovements);
+const allMovements = accountMovements.flat();
+console.log(allMovements);
+
+const overallBalance = allMovements.reduce(function (acc, curr) {
+  return acc + curr;
+});
+console.log(overallBalance);
+
+console.log(accounts
+  .map(function (acc) { return acc.movements; })
+  .flat()
+  .reduce(function (acc, curr) { return acc + curr; })
+);
+
+
+// ____________________ FLATMAP Method _________________________________
+console.log(accounts
+  .flatMap(function (acc) { return acc.movements; })
+  .reduce(function (acc, curr) { return acc + curr; })
+);

@@ -512,38 +512,79 @@ btnSort.addEventListener("click", function (event) {
 //   return b - a;
 // }));
 
-// _________________ Dynamic Array Creation and filling Array _________________
-const x = new Array(7);
-console.log(x);
-// x.fill(1);
+// // _________________ Dynamic Array Creation and filling Array _________________
+// const x = new Array(7);
+// console.log(x);
+// // x.fill(1);
+// // console.log(x);
+
+// // x.fill(1, 3);
+// // console.log(x);
+
+// x.fill(1, 3, 5);
 // console.log(x);
 
-// x.fill(1, 3);
-// console.log(x);
-
-x.fill(1, 3, 5);
-console.log(x);
-
-const arr = [1, 2, 3, 4, 5, 6, 7];
-arr.fill(23, 2, 6);
-console.log(arr);
+// const arr = [1, 2, 3, 4, 5, 6, 7];
+// arr.fill(23, 2, 6);
+// console.log(arr);
 
 
-const y = Array.from({ length: 7 }, function () {
-  return 1;
-});
-console.log(y);
-const z = Array.from({ length: 7 }, function (curr, next) {
-  return next + 1;
-});
-console.log(z);
+// const y = Array.from({ length: 7 }, function () {
+//   return 1;
+// });
+// console.log(y);
+// const z = Array.from({ length: 7 }, function (curr, next) {
+//   return next + 1;
+// });
+// console.log(z);
 
-labelBalance.addEventListener("click", function () {
-  const movementsUI = Array.from(
-    document.querySelectorAll(".movements__value"),
-    function (mov) {
-      return Number(mov.textContent.replace("€", ""));
-    }
-  );
-  console.log(movementsUI);
-});
+// labelBalance.addEventListener("click", function () {
+//   const movementsUI = Array.from(
+//     document.querySelectorAll(".movements__value"),
+//     function (mov) {
+//       return Number(mov.textContent.replace("€", ""));
+//     }
+//   );
+//   console.log(movementsUI);
+// });
+
+
+// _________________________ Array Practice __________________________
+// // Exe.1
+// console.log(accounts);
+// // const bankDepositSum = accounts.map(acc => acc.movements);
+// // const bankDepositSum = accounts.map((acc) => (acc.movements)).flat();
+// const bankDepositSum = accounts.flatMap((acc) => (acc.movements)).reduce((acc, curr) => acc + curr);
+// console.log(bankDepositSum);
+
+// //Exe.2
+// // const numDeposits1000 = accounts.flatMap(acc => acc.movements).filter(mov => mov >= 1000).length;
+// const numDeposits1000 = accounts.flatMap(acc => acc.movements).reduce((acc, curr) => (curr >= 1000 ? acc + 1 : acc), 0);
+// console.log(numDeposits1000);
+
+//Exe.3
+// const { deposits, withdrawals } = accounts.flatMap(acc => acc.movements)
+//   .reduce((a, curr) => {
+//     (curr >= 0) ? (a.deposits += curr) : (a.withdrawals += curr);
+//     return a;
+//   }, { deposits: 0, withdrawals: 0 });
+
+// const { deposits, withdrawals } = accounts.flatMap(acc => acc.movements)
+//   .reduce((a, curr) => {
+//     a[(curr >= 0) ? "deposits" : "withdrawals"] += curr;
+//     return a;
+//   }, { deposits: 0, withdrawals: 0 });
+// // console.log(sums);
+// console.log(deposits, withdrawals);
+
+// Exe.4
+
+const convertTitleCase = function (title) {
+  const exceptions = ["a", "with", "or", "an", "the", "but", "in", "on", "and"];
+  const titleCase = title.toLowerCase().split(" ").map((word) => {
+    return exceptions.includes(word) ? word : word[0].toUpperCase() + word.slice(1);
+  });
+  return titleCase;
+};
+console.log(convertTitleCase("this is title a case conversion EXAMPLE"));
+// console.log(convertTitleCase("this is title a case conversion EXAMPLE"))

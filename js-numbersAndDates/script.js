@@ -274,55 +274,77 @@ btnSort.addEventListener('click', function (e) {
 
 
 
-// ______________________ Math Functions __________________________
+// // ______________________ Math Functions __________________________
 
-// Square root function
-console.log("SQRT function\n");
-console.log(Math.sqrt(25));
-console.log(25 ** (1 / 2));
-console.log(8 ** (1 / 3));
+// // Square root function
+// console.log("SQRT function\n");
+// console.log(Math.sqrt(25));
+// console.log(25 ** (1 / 2));
+// console.log(8 ** (1 / 3));
 
-// Power function
-console.log("Power function\n");
-console.log(Math.pow(4, 2));
-console.log(4 ** 2);
+// // Power function
+// console.log("Power function\n");
+// console.log(Math.pow(4, 2));
+// console.log(4 ** 2);
 
-// Max function
-console.log("Max Function \n");
-console.log(Math.max(5, 2, 1, 4, 7, 8));
+// // Max function
+// console.log("Max Function \n");
+// console.log(Math.max(5, 2, 1, 4, 7, 8));
 
-// min function
-console.log("min function");
-console.log(Math.min(5, 2, 1, 4, 7, 8));
+// // min function
+// console.log("min function");
+// console.log(Math.min(5, 2, 1, 4, 7, 8));
 
-// constants
-console.log("\nConstants");
-console.log(Math.PI);
-console.log(Math.E);
+// // constants
+// console.log("\nConstants");
+// console.log(Math.PI);
+// console.log(Math.E);
 
-//random number functions
-const randInt = Math.random();
-console.log("Random Numbers\n");
-console.log(randInt);
-console.log(Math.trunc(randInt * 10 + 1));
-console.log(Math.floor(randInt * 6) + 1);
+// //random number functions
+// const randInt = Math.random();
+// console.log("Random Numbers\n");
+// console.log(randInt);
+// console.log(Math.trunc(randInt * 10 + 1));
+// console.log(Math.floor(randInt * 6) + 1);
 
-// Trunc methods
-console.log("Trunc method\n");
-console.log(Math.trunc(23.8)); //
-console.log(Math.round(23.3)); // rounds to nearest integer
-console.log(Math.round(23.8));  // rounds to nearest integer
+// // Trunc methods
+// console.log("Trunc method\n");
+// console.log(Math.trunc(23.8)); //
+// console.log(Math.round(23.3)); // rounds to nearest integer
+// console.log(Math.round(23.8));  // rounds to nearest integer
 
-// ceil and floor methods
-console.log("Ceil and Floor methods\n");
-console.log(Math.ceil(23.6));
-console.log(Math.floor(23.6));
-console.log(Math.trunc(23.6));
+// // ceil and floor methods
+// console.log("Ceil and Floor methods\n");
+// console.log(Math.ceil(23.6));
+// console.log(Math.floor(23.6));
+// console.log(Math.trunc(23.6));
 
-// rounding to decimal
-console.log("rounding decimal numbers\n");
-console.log((2.7).toFixed(0)); // returns string
-console.log((2.7).toFixed(1)); // returns string
-console.log((2.7).toFixed(3)); // returns string
-console.log(+(2.789423).toFixed(1)); // returns number
+// // rounding to decimal
+// console.log("rounding decimal numbers\n");
+// console.log((2.7).toFixed(0)); // returns string
+// console.log((2.7).toFixed(1)); // returns string
+// console.log((2.7).toFixed(3)); // returns string
+// console.log(+(2.789423).toFixed(1)); // returns number
 
+
+
+// _____________________ Remainder Operator _______________________________
+
+console.log("remainder operator\n");
+let num1 = 10;
+let num2 = 3;
+console.log(`${num1} % ${num2}`);
+let remainder = num1 % num2;
+console.log(remainder);
+
+const isEven = num => num % 2 === 0 ? true : false;
+console.log(isEven(3));
+console.log(isEven(2));
+
+// console.log(document.querySelectorAll(".movements__row"));
+labelBalance.addEventListener("click", function () {
+  [...document.querySelectorAll(".movements__row")].forEach(function (row, i) {
+    if (i % 2 === 0) row.style.backgroundColor = 'white';
+    else row.style.backgroundColor = 'lightgrey';
+  });
+});

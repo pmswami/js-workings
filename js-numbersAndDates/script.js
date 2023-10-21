@@ -328,23 +328,30 @@ btnSort.addEventListener('click', function (e) {
 
 
 
-// _____________________ Remainder Operator _______________________________
+// // _____________________ Remainder Operator _______________________________
 
-console.log("remainder operator\n");
-let num1 = 10;
-let num2 = 3;
-console.log(`${num1} % ${num2}`);
-let remainder = num1 % num2;
-console.log(remainder);
+// console.log("remainder operator\n");
+// let num1 = 10;
+// let num2 = 3;
+// console.log(`${num1} % ${num2}`);
+// let remainder = num1 % num2;
+// console.log(remainder);
 
-const isEven = num => num % 2 === 0 ? true : false;
-console.log(isEven(3));
-console.log(isEven(2));
+// const isEven = num => num % 2 === 0 ? true : false;
+// console.log(isEven(3));
+// console.log(isEven(2));
 
-// console.log(document.querySelectorAll(".movements__row"));
-labelBalance.addEventListener("click", function () {
-  [...document.querySelectorAll(".movements__row")].forEach(function (row, i) {
-    if (i % 2 === 0) row.style.backgroundColor = 'white';
-    else row.style.backgroundColor = 'lightgrey';
-  });
-});
+// // console.log(document.querySelectorAll(".movements__row"));
+// labelBalance.addEventListener("click", function () {
+//   [...document.querySelectorAll(".movements__row")].forEach(function (row, i) {
+//     if (i % 2 === 0) row.style.backgroundColor = 'white';
+//     else row.style.backgroundColor = 'lightgrey';
+//   });
+// });
+
+
+
+// _____________________ Numeric Separator ________________________
+let num = 1_000_000;
+console.log(num);
+// numeric separators are only supported with numbers not with strings

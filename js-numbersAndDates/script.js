@@ -93,7 +93,7 @@ const displayMovements = function (movements, sort = false) {
       <div class="movements__row">
         <div class="movements__type movements__type--${type}">${i + 1
       } ${type}</div>
-        <div class="movements__value">${mov}€</div>
+        <div class="movements__value">${mov.toFixed(2)}€</div>
       </div>
     `;
 
@@ -103,19 +103,19 @@ const displayMovements = function (movements, sort = false) {
 
 const calcDisplayBalance = function (acc) {
   acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${acc.balance}€`;
+  labelBalance.textContent = `${acc.balance.toFixed(2)}€`;
 };
 
 const calcDisplaySummary = function (acc) {
   const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumIn.textContent = `${incomes}€`;
+  labelSumIn.textContent = `${incomes.toFixed(2)}€`;
 
   const out = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumOut.textContent = `${Math.abs(out)}€`;
+  labelSumOut.textContent = `${Math.abs(out).toFixed(2)}€`;
 
   const interest = acc.movements
     .filter(mov => mov > 0)
@@ -125,7 +125,7 @@ const calcDisplaySummary = function (acc) {
       return int >= 1;
     })
     .reduce((acc, int) => acc + int, 0);
-  labelSumInterest.textContent = `${interest}€`;
+  labelSumInterest.textContent = `${interest.toFixed(2)}€`;
 };
 
 const createUsernames = function (accs) {
@@ -204,7 +204,7 @@ btnTransfer.addEventListener('click', function (e) {
 btnLoan.addEventListener('click', function (e) {
   e.preventDefault();
 
-  const amount = +(inputLoanAmount.value);
+  const amount = Math.floor(inputLoanAmount.value);
 
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
     // Add movement
@@ -249,25 +249,80 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
-console.log(23 === 23.0);
+// console.log(23 === 23.0);
 
-// Conversion
-console.log(Number('23'));
-console.log(+'23');
+// // Conversion
+// console.log(Number('23'));
+// console.log(+'23');
 
-// Parsing
-console.log(Number.parseInt("23px", 10));
-console.log(Number.parseInt("rx23", 10));
-console.log(Number.parseInt(8, 10));
+// // Parsing
+// console.log(Number.parseInt("23px", 10));
+// console.log(Number.parseInt("rx23", 10));
+// console.log(Number.parseInt(8, 10));
 
-console.log(Number.parseInt('2.5rem'));
-console.log(Number.parseFloat('2.5rem'));
+// console.log(Number.parseInt('2.5rem'));
+// console.log(Number.parseFloat('2.5rem'));
 
-console.log(Number.isNaN(20));
-console.log(Number.isNaN('20'));
-console.log(Number.isNaN(NaN));
+// console.log(Number.isNaN(20));
+// console.log(Number.isNaN('20'));
+// console.log(Number.isNaN(NaN));
 
-console.log(23 / 0);
-console.log(Number.isFinite(23 / 0));
-console.log(Number.isFinite('12'));
-console.log(Number.isFinite(23));
+// console.log(23 / 0);
+// console.log(Number.isFinite(23 / 0));
+// console.log(Number.isFinite('12'));
+// console.log(Number.isFinite(23));
+
+
+
+// ______________________ Math Functions __________________________
+
+// Square root function
+console.log("SQRT function\n");
+console.log(Math.sqrt(25));
+console.log(25 ** (1 / 2));
+console.log(8 ** (1 / 3));
+
+// Power function
+console.log("Power function\n");
+console.log(Math.pow(4, 2));
+console.log(4 ** 2);
+
+// Max function
+console.log("Max Function \n");
+console.log(Math.max(5, 2, 1, 4, 7, 8));
+
+// min function
+console.log("min function");
+console.log(Math.min(5, 2, 1, 4, 7, 8));
+
+// constants
+console.log("\nConstants");
+console.log(Math.PI);
+console.log(Math.E);
+
+//random number functions
+const randInt = Math.random();
+console.log("Random Numbers\n");
+console.log(randInt);
+console.log(Math.trunc(randInt * 10 + 1));
+console.log(Math.floor(randInt * 6) + 1);
+
+// Trunc methods
+console.log("Trunc method\n");
+console.log(Math.trunc(23.8)); //
+console.log(Math.round(23.3)); // rounds to nearest integer
+console.log(Math.round(23.8));  // rounds to nearest integer
+
+// ceil and floor methods
+console.log("Ceil and Floor methods\n");
+console.log(Math.ceil(23.6));
+console.log(Math.floor(23.6));
+console.log(Math.trunc(23.6));
+
+// rounding to decimal
+console.log("rounding decimal numbers\n");
+console.log((2.7).toFixed(0)); // returns string
+console.log((2.7).toFixed(1)); // returns string
+console.log((2.7).toFixed(3)); // returns string
+console.log(+(2.789423).toFixed(1)); // returns number
+

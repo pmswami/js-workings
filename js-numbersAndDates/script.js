@@ -81,18 +81,24 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // Functions
 
-const displayMovements = function (movements, sort = false) {
+const displayMovements = function (acc, sort = false) {
   containerMovements.innerHTML = '';
+  const movements = acc.movements;
 
   const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
 
   movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
-
+    let displayDate = new Date(acc.movementsDates[i]);
+    const day = `${displayDate.getDate()}`.padStart(2, 0);
+    const month = `${displayDate.getMonth() + 1}`.padStart(2, 0);
+    const year = displayDate.getFullYear();
+    displayDate = `${day}/${month}/${year}`;
     const html = `
       <div class="movements__row">
         <div class="movements__type movements__type--${type}">${i + 1
       } ${type}</div>
+        <div class="movements__date">${displayDate}</div>
         <div class="movements__value">${mov.toFixed(2)}€</div>
       </div>
     `;
@@ -141,7 +147,7 @@ createUsernames(accounts);
 
 const updateUI = function (acc) {
   // Display movements
-  displayMovements(acc.movements);
+  displayMovements(acc);
 
   // Display balance
   calcDisplayBalance(acc);
@@ -153,6 +159,20 @@ const updateUI = function (acc) {
 ///////////////////////////////////////
 // Event handlers
 let currentAccount;
+
+// FAKE LOGIN
+currentAccount = account1;
+updateUI(currentAccount);
+containerApp.style.opacity = 100;
+
+//current date
+const now = new Date();
+const day = `${now.getDate()}`.padStart(2, 0);
+const month = `${now.getMonth() + 1}`.padStart(2, 0);
+const year = now.getFullYear();
+const hour = now.getHours();
+const minute = now.getMinutes();
+labelDate.textContent = `${day}/${month}/${year} ${hour}:${minute}`;
 
 btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
@@ -168,6 +188,14 @@ btnLogin.addEventListener('click', function (e) {
     labelWelcome.textContent = `Welcome back, ${currentAccount.owner.split(' ')[0]
       }`;
     containerApp.style.opacity = 100;
+    let displayDate = new Date();
+    const day = `${displayDate.getDate()}`.padStart(2, 0);
+    const month = `${displayDate.getMonth() + 1}`.padStart(2, 0);
+    const year = `${displayDate.getFullYear()}`.padStart(4, 0);
+    const hour = `${displayDate.getHours()}`.padStart(2, 0);
+    const minute = `${displayDate.getMinutes()}`.padStart(2, 0);
+    displayDate = `${day}/${month}/${year} ${hour}:${minute}`;
+    labelDate.textContent = displayDate;
 
     // Clear input fields
     inputLoginUsername.value = inputLoginPin.value = '';
@@ -196,6 +224,10 @@ btnTransfer.addEventListener('click', function (e) {
     currentAccount.movements.push(-amount);
     receiverAcc.movements.push(amount);
 
+    // Add Transfer dates
+    currentAccount.movementsDates.push(new Date().toISOString());
+    receiverAcc.movementsDates.push(new Date().toISOString());
+
     // Update UI
     updateUI(currentAccount);
   }
@@ -209,6 +241,9 @@ btnLoan.addEventListener('click', function (e) {
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
     // Add movement
     currentAccount.movements.push(amount);
+
+    // Add loan date
+    currentAccount.movementsDates.push(new Date().toDateString());
 
     // Update UI
     updateUI(currentAccount);
@@ -242,7 +277,7 @@ btnClose.addEventListener('click', function (e) {
 let sorted = false;
 btnSort.addEventListener('click', function (e) {
   e.preventDefault();
-  displayMovements(currentAccount.movements, !sorted);
+  displayMovements(currentAccount, !sorted);
   sorted = !sorted;
 });
 
@@ -391,33 +426,34 @@ btnSort.addEventListener('click', function (e) {
 // console.log(10n / 3n); // cuts decimal part
 // console.log(10 / 3);
 
-// _________________________ DATES and TIME _________________________________
-// Date creation
-let now = new Date();
-console.log(now);
-// convert string to date
-console.log(new Date("Oct 31 2023 16:49:03"));
-console.log(new Date("December 24, 2015"));
-console.log(account1.movementsDates[0]);
-console.log("converted into date", new Date(account1.movementsDates[0]));
-console.log(new Date(1995, 10, 27, 15, 15, 15));
-console.log(new Date(2020, 10, 31)); // auto corrected date( there is no 31st nov u JS converts it to next date)
-console.log(new Date(0)); // Considered as per unix start time
-console.log(new Date(3 * 24 * 60 * 60 * 1000)); //uses millisecond value
+// // _________________________ DATES and TIME _________________________________
+// // Date creation
+// let now = new Date();
+// console.log(now);
+// // convert string to date
+// console.log(new Date("Oct 31 2023 16:49:03"));
+// console.log(new Date("December 24, 2015"));
+// console.log(account1.movementsDates[0]);
+// console.log("converted into date", new Date(account1.movementsDates[0]));
+// console.log(new Date(1995, 10, 27, 15, 15, 15));
+// console.log(new Date(2020, 10, 31)); // auto corrected date( there is no 31st nov u JS converts it to next date)
+// console.log(new Date(0)); // Considered as per unix start time
+// console.log(new Date(3 * 24 * 60 * 60 * 1000)); //uses millisecond value
 
-//working with dates
-console.log("Working with dates\n");
-const future = new Date(1995, 10, 27, 15, 15, 1);
-console.log(future);
-console.log(future.getFullYear());
-console.log(future.getDate());
-console.log(future.getDay()); // returns day of the week
-console.log(future.getMonth());
-console.log(future.getHours());
-console.log(future.getMinutes());
-console.log(future.getSeconds());
-console.log(future.toISOString());
-console.log(future.getTime()); //returns time in milliseconds
-console.log(Date.now()); // returns current timestamp in milliseconds
-future.setFullYear(2020);
-console.log(future);
+// //working with dates
+// console.log("Working with dates\n");
+// const future = new Date(1995, 10, 27, 15, 15, 1);
+// console.log(future);
+// console.log(future.getFullYear());
+// console.log(future.getDate());
+// console.log(future.getDay()); // returns day of the week
+// console.log(future.getMonth());
+// console.log(future.getHours());
+// console.log(future.getMinutes());
+// console.log(future.getSeconds());
+// console.log(future.toISOString()); // returns date in iso format 2019-11-18T21:31:17.178Z
+// console.log(future.getTime()); //returns time in milliseconds
+// console.log(Date.now()); // returns current timestamp in milliseconds
+// future.setFullYear(2020);
+// console.log(future);
+

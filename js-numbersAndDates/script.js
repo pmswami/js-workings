@@ -351,7 +351,42 @@ btnSort.addEventListener('click', function (e) {
 
 
 
-// _____________________ Numeric Separator ________________________
-let num = 1_000_000;
-console.log(num);
-// numeric separators are only supported with numbers not with strings
+// // _____________________ Numeric Separator ________________________
+// let num = 1_000_000;
+// console.log(num);
+// // numeric separators are only supported with numbers not with strings
+
+
+// _______________ BigInt _______________________________
+console.log("BigInt\n");
+console.log("MAX_INT", 2 ** 53 - 1);
+console.log(Number.MAX_SAFE_INTEGER);
+console.log(2 ** 53 + 1);
+console.log(2 ** 53 + 2);
+console.log(2 ** 53 + 3);
+console.log(2 ** 53 + 4);
+console.log(2 ** 53 + 5);
+console.log(87846298485291467685843281678n);
+const bigInt = BigInt(8784629878);
+console.log(bigInt);
+
+// BigInt operations
+console.log(10000n + 20000n);
+console.log(545754545414524545154n * 20000n);
+// console.log(8548264783691829367816387n + 23); //error
+console.log(8548264783691829367816387n + BigInt(23));
+
+// Exceptions
+console.log(20n > 15);
+console.log(20 === 20); // true
+console.log(20 === 20n); // false
+console.log(typeof (20n));
+console.log(20n == 20); // true
+
+// Math operaions like sqrt, does not work with bigint
+// console.log(Math.sqrt(16n)); // error
+console.log(207867579578567547589589554747454n + " is really a big integer");
+
+// Divisions
+console.log(10n / 3n); // cuts decimal part
+console.log(10 / 3);

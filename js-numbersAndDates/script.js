@@ -16,14 +16,14 @@ const account1 = {
   pin: 1111,
 
   movementsDates: [
-    '2019-11-18T21:31:17.178Z',
-    '2019-12-23T07:42:02.383Z',
-    '2020-01-28T09:15:04.904Z',
-    '2020-04-01T10:17:24.185Z',
-    '2020-05-08T14:11:59.604Z',
-    '2020-05-27T17:01:17.194Z',
-    '2020-07-11T23:36:17.929Z',
-    '2020-07-12T10:51:36.790Z',
+    '2023-11-06T21:31:17.178Z',
+    '2023-11-07T07:42:02.383Z',
+    '2023-11-06T12:15:04.904Z',
+    '2023-11-05T10:17:24.185Z',
+    '2023-11-02T14:11:59.604Z',
+    '2023-05-27T17:01:17.194Z',
+    '2023-07-11T23:36:17.929Z',
+    '2023-07-12T10:51:36.790Z',
   ],
   currency: 'EUR',
   locale: 'pt-PT', // de-DE
@@ -81,6 +81,22 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // Functions
 
+const formatMovementDate = function (date) {
+  const calcDaysPassed = (day1, day2) => Math.round(Math.abs((day2 - day1) / (1000 * 60 * 60 * 24)));
+  const daysPassed = calcDaysPassed(new Date(), date);
+  console.log(daysPassed);
+
+  if (daysPassed === 0) return 'Today';
+  if (daysPassed === 1) return "Yesterday";
+  if (daysPassed <= 7) return `${daysPassed} Days Ago`;
+  else {
+    const day = `${date.getDate()}`.padStart(2, 0);
+    const month = `${date.getMonth() + 1}`.padStart(2, 0);
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  };
+};
+
 const displayMovements = function (acc, sort = false) {
   containerMovements.innerHTML = '';
   const movements = acc.movements;
@@ -90,10 +106,7 @@ const displayMovements = function (acc, sort = false) {
   movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
     let displayDate = new Date(acc.movementsDates[i]);
-    const day = `${displayDate.getDate()}`.padStart(2, 0);
-    const month = `${displayDate.getMonth() + 1}`.padStart(2, 0);
-    const year = displayDate.getFullYear();
-    displayDate = `${day}/${month}/${year}`;
+    displayDate = formatMovementDate(displayDate);
     const html = `
       <div class="movements__row">
         <div class="movements__type movements__type--${type}">${i + 1
@@ -457,3 +470,11 @@ btnSort.addEventListener('click', function (e) {
 // future.setFullYear(2020);
 // console.log(future);
 
+// ______________________ DATES Operations _______________________________
+
+const future = new Date(1995, 10, 27, 15, 15, 1);
+console.log(future);
+
+console.log("Day difference\n");
+const calcDaysPassed = (day1, day2) => Math.abs((day2 - day1) / (1000 * 60 * 60 * 24));
+console.log(calcDaysPassed(new Date(2037, 3, 14, 10, 10), new Date(2037, 3, 15)));

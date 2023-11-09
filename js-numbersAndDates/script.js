@@ -179,7 +179,7 @@ const updateUI = function (acc) {
 
 ///////////////////////////////////////
 // Event handlers
-let currentAccount;
+let currentAccount, timer;
 
 // FAKE LOGIN
 currentAccount = account1;
@@ -203,7 +203,8 @@ btnLogin.addEventListener('click', function (e) {
     acc => acc.username === inputLoginUsername.value
   );
   console.log(currentAccount);
-
+  if (timer) clearInterval(timer);
+  timer = startLogOutTimer();
   if (currentAccount?.pin === +(inputLoginPin.value)) {
     // Display UI and message
     labelWelcome.textContent = `Welcome back, ${currentAccount.owner.split(' ')[0]
@@ -267,6 +268,8 @@ btnTransfer.addEventListener('click', function (e) {
     // Update UI
     updateUI(currentAccount);
   }
+  if (timer) clearInterval(timer);
+  timer = startLogOutTimer();
 });
 
 btnLoan.addEventListener('click', function (e) {
@@ -287,6 +290,8 @@ btnLoan.addEventListener('click', function (e) {
     }, 3000);
   }
   inputLoanAmount.value = '';
+  if (timer) clearInterval(timer);
+  timer = startLogOutTimer();
 });
 
 btnClose.addEventListener('click', function (e) {
@@ -319,6 +324,24 @@ btnSort.addEventListener('click', function (e) {
   sorted = !sorted;
 });
 
+const startLogOutTimer = function () {
+  const tick = function () {
+    let min = String(Math.trunc(time / 60)).padStart(2, 0);
+    let sec = time % 60;
+    labelTimer.textContent = `${min}:${sec}`;
+
+    if (time === 0) {
+      clearInterval(timer);
+      labelWelcome.textContent = `Log in to get sarted`;
+      containerApp.style.opacity = 0;
+    };
+    time--;
+  };
+  let time = 65;
+  tick();
+  const timer = setInterval(tick, 1000);
+  return timer;
+};
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -523,22 +546,26 @@ btnSort.addEventListener('click', function (e) {
 // console.log(navigator.language, new Intl.NumberFormat(navigator.language).format(num));
 
 
-// ____________________ TIMERS _____________________________________
-console.log("Timers \n");
-//setTimeout
-// setTimeout((inp1, inp2) => {
+// // ____________________ TIMERS _____________________________________
+// console.log("Timers \n");
+// //setTimeout
+// // setTimeout((inp1, inp2) => {
+// //   console.log(`This will run after 5 seconds ${inp1} ${inp2}`);
+// // }, 5000, "olive", "spinach");
+
+// const ingredients = ["olive", "spinach"];
+// const timer = setTimeout((inp1, inp2) => {
 //   console.log(`This will run after 5 seconds ${inp1} ${inp2}`);
-// }, 5000, "olive", "spinach");
+// }, 5000, ...ingredients);
+// if (ingredients.includes("spinach")) clearTimeout(timer);
+// console.log("Waiting");
 
-const ingredients = ["olive", "spinach"];
-const timer = setTimeout((inp1, inp2) => {
-  console.log(`This will run after 5 seconds ${inp1} ${inp2}`);
-}, 5000, ...ingredients);
-if (ingredients.includes("spinach")) clearTimeout(timer);
-console.log("Waiting");
+// //setInterval
+// setInterval(function () {
+//   const now = new Date();
+//   console.log(now);
+// }, 1000);
 
-//setInterval
-setInterval(function () {
-  const now = new Date();
-  console.log(now);
-}, 1000);
+
+// ___________________ IMPLEMENTING COUNTDOWN TIMER ______________________________
+console.log("Countdown Timer \n");

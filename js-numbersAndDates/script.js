@@ -221,7 +221,7 @@ btnLogin.addEventListener('click', function (e) {
       weekday: 'long'
     };
     const locale = navigator.language;
-    console.log(locale);
+    // console.log(locale);
     labelDate.textContent = new Intl.DateTimeFormat(currentAccount.locale, options).format(displayDate);
 
     // let displayDate = new Date();
@@ -275,14 +275,16 @@ btnLoan.addEventListener('click', function (e) {
   const amount = Math.floor(inputLoanAmount.value);
 
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
-    // Add movement
-    currentAccount.movements.push(amount);
+    setTimeout(function () {
+      // Add movement
+      currentAccount.movements.push(amount);
 
-    // Add loan date
-    currentAccount.movementsDates.push(new Date().toDateString());
+      // Add loan date
+      currentAccount.movementsDates.push(new Date().toDateString());
 
-    // Update UI
-    updateUI(currentAccount);
+      // Update UI
+      updateUI(currentAccount);
+    }, 3000);
   }
   inputLoanAmount.value = '';
 });
@@ -503,19 +505,40 @@ btnSort.addEventListener('click', function (e) {
 // console.log(calcDaysPassed(new Date(2037, 3, 14, 10, 10), new Date(2037, 3, 15)));
 
 
-// _______________ Format Regular Numbers ________________________________
+// // _______________ Format Regular Numbers ________________________________
 
-console.log("Regular number formatter \n");
-const num = 123456789.123;
-const options = {
-  style: "unit",
-  unit: "mile-per-hour",
-  // for more properties check out mdn documentation
-};
-console.log("US: ", new Intl.NumberFormat("en-US", options).format(num));
-console.log("UK: ", new Intl.NumberFormat("en-UK", options).format(num));
-console.log("Germany: ", new Intl.NumberFormat("de-DE").format(num));
-console.log("Hindi: ", new Intl.NumberFormat("hi").format(num));
-console.log("Marathi: ", new Intl.NumberFormat("mr").format(num));
-console.log("Kannada: ", new Intl.NumberFormat("kn").format(num));
-console.log(navigator.language, new Intl.NumberFormat(navigator.language).format(num));
+// console.log("Regular number formatter \n");
+// const num = 123456789.123;
+// const options = {
+//   style: "unit",
+//   unit: "mile-per-hour",
+//   // for more properties check out mdn documentation
+// };
+// console.log("US: ", new Intl.NumberFormat("en-US", options).format(num));
+// console.log("UK: ", new Intl.NumberFormat("en-UK", options).format(num));
+// console.log("Germany: ", new Intl.NumberFormat("de-DE").format(num));
+// console.log("Hindi: ", new Intl.NumberFormat("hi").format(num));
+// console.log("Marathi: ", new Intl.NumberFormat("mr").format(num));
+// console.log("Kannada: ", new Intl.NumberFormat("kn").format(num));
+// console.log(navigator.language, new Intl.NumberFormat(navigator.language).format(num));
+
+
+// ____________________ TIMERS _____________________________________
+console.log("Timers \n");
+//setTimeout
+// setTimeout((inp1, inp2) => {
+//   console.log(`This will run after 5 seconds ${inp1} ${inp2}`);
+// }, 5000, "olive", "spinach");
+
+const ingredients = ["olive", "spinach"];
+const timer = setTimeout((inp1, inp2) => {
+  console.log(`This will run after 5 seconds ${inp1} ${inp2}`);
+}, 5000, ...ingredients);
+if (ingredients.includes("spinach")) clearTimeout(timer);
+console.log("Waiting");
+
+//setInterval
+setInterval(function () {
+  const now = new Date();
+  console.log(now);
+}, 1000);

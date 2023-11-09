@@ -84,7 +84,7 @@ const inputClosePin = document.querySelector('.form__input--pin');
 const formatMovementDate = function (date, locale) {
   const calcDaysPassed = (day1, day2) => Math.round(Math.abs((day2 - day1) / (1000 * 60 * 60 * 24)));
   const daysPassed = calcDaysPassed(new Date(), date);
-  console.log(daysPassed);
+  // console.log(daysPassed);
 
   if (daysPassed === 0) return 'Today';
   if (daysPassed === 1) return "Yesterday";
@@ -98,6 +98,12 @@ const formatMovementDate = function (date, locale) {
   };
 };
 
+const formatCur = function (value, locale, currency) {
+  return new Intl.NumberFormat(locale, {
+    style: 'currency', currency: currency, minimumFractionDigits: 2
+  }).format(value);
+};
+
 const displayMovements = function (acc, sort = false) {
   containerMovements.innerHTML = '';
   const movements = acc.movements;
@@ -108,12 +114,13 @@ const displayMovements = function (acc, sort = false) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
     let displayDate = new Date(acc.movementsDates[i]);
     displayDate = formatMovementDate(displayDate, acc.locale);
+    const formattedMov = formatCur(mov, acc.locale, acc.currency);
     const html = `
       <div class="movements__row">
         <div class="movements__type movements__type--${type}">${i + 1
       } ${type}</div>
         <div class="movements__date">${displayDate}</div>
-        <div class="movements__value">${mov.toFixed(2)}€</div>
+        <div class="movements__value">${formattedMov}</div>
       </div>
     `;
 
@@ -123,19 +130,19 @@ const displayMovements = function (acc, sort = false) {
 
 const calcDisplayBalance = function (acc) {
   acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${acc.balance.toFixed(2)}€`;
+  labelBalance.textContent = formatCur(acc.balance, acc.locale, acc.currency);
 };
 
 const calcDisplaySummary = function (acc) {
   const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumIn.textContent = `${incomes.toFixed(2)}€`;
+  labelSumIn.textContent = formatCur(incomes, acc.locale, acc.currency);
 
   const out = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumOut.textContent = `${Math.abs(out).toFixed(2)}€`;
+  labelSumOut.textContent = formatCur(Math.abs(out), acc.locale, acc.currency);
 
   const interest = acc.movements
     .filter(mov => mov > 0)
@@ -145,7 +152,7 @@ const calcDisplaySummary = function (acc) {
       return int >= 1;
     })
     .reduce((acc, int) => acc + int, 0);
-  labelSumInterest.textContent = `${interest.toFixed(2)}€`;
+  labelSumInterest.textContent = formatCur(interest, acc.locale, acc.currency);
 };
 
 const createUsernames = function (accs) {
@@ -496,3 +503,19 @@ btnSort.addEventListener('click', function (e) {
 // console.log(calcDaysPassed(new Date(2037, 3, 14, 10, 10), new Date(2037, 3, 15)));
 
 
+// _______________ Format Regular Numbers ________________________________
+
+console.log("Regular number formatter \n");
+const num = 123456789.123;
+const options = {
+  style: "unit",
+  unit: "mile-per-hour",
+  // for more properties check out mdn documentation
+};
+console.log("US: ", new Intl.NumberFormat("en-US", options).format(num));
+console.log("UK: ", new Intl.NumberFormat("en-UK", options).format(num));
+console.log("Germany: ", new Intl.NumberFormat("de-DE").format(num));
+console.log("Hindi: ", new Intl.NumberFormat("hi").format(num));
+console.log("Marathi: ", new Intl.NumberFormat("mr").format(num));
+console.log("Kannada: ", new Intl.NumberFormat("kn").format(num));
+console.log(navigator.language, new Intl.NumberFormat(navigator.language).format(num));

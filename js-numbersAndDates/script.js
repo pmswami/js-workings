@@ -567,5 +567,7 @@ const startLogOutTimer = function () {
 // }, 1000);
 
 
-// ___________________ IMPLEMENTING COUNTDOWN TIMER ______________________________
-console.log("Countdown Timer \n");
+// // ___________________ IMPLEMENTING COUNTDOWN TIMER ______________________________
+// console.log("Countdown Timer \n");
+
+

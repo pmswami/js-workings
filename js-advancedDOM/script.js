@@ -146,3 +146,35 @@ btnScrollTo.addEventListener("click", function (e) {
   }); // for smooth scrolling
   // section1.scrollIntoView({ behavior: "smooth" }); //supported only in modern browsers
 });
+
+
+// _____________ TYPES OF EVENTS ad EVENT HANDLERS ________________________
+// event handlers are functions that handle events
+// there are two types of event handlers - inline and external
+// inline is when you assign a function to an attribute like onclick="myFunction()"
+// external is when you use addEventListener() method to attach a function as a handler
+
+// const h1 = document.querySelector("h1");
+// h1.addEventListener("mouseenter", function (event) {
+//   alert("addEventListener: Great! You are reading the heading!");
+// });
+
+// h1.onmouseenter = function (event) {
+//   alert("addEventListener: Great! You are reading the heading!");
+// };
+
+// const alertH1 = function (event) {
+//   alert("addEventListener: Great! You are reading the heading!");
+//   h1.removeEventListener("mouseenter", alertH1);
+// };
+
+const alertH1 = function (event) {
+  alert("addEventListener: Great! You are reading the heading!");
+  // h1.removeEventListener("mouseenter", alertH1);
+};
+
+const h1 = document.querySelector("h1");
+h1.addEventListener("mouseenter", alertH1);
+
+setTimeout(() => (h1.removeEventListener("mouseenter", alertH1)), 3000); //timeout for 3 secs
+

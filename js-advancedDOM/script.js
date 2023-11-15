@@ -173,8 +173,44 @@ const alertH1 = function (event) {
   // h1.removeEventListener("mouseenter", alertH1);
 };
 
-const h1 = document.querySelector("h1");
-h1.addEventListener("mouseenter", alertH1);
+// const h1 = document.querySelector("h1");
+// h1.addEventListener("mouseenter", alertH1);
 
-setTimeout(() => (h1.removeEventListener("mouseenter", alertH1)), 3000); //timeout for 3 secs
+// setTimeout(() => (h1.removeEventListener("mouseenter", alertH1)), 3000); //timeout for 3 secs
 
+const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
+// console.log(randomInt(0, 255));
+const randomColor = () => (`rgb(${randomInt(0, 255)}, ${randomInt(0, 255)}, ${randomInt(0, 255)} )`);
+// console.log(randomColor());
+
+// document.querySelector(".nav__link").addEventListener("click", function () {
+//   console.log("Link");
+// });
+
+// document.querySelector(".nav").addEventListener("click", function () {
+//   console.log("LINK");
+// });
+
+document.querySelector(".nav__link").addEventListener("click", function (e) {
+  // console.log(randomColor());
+  this.style.backgroundColor = randomColor();
+  console.log("LINK", e.target, e.currentTarget);
+  e.stopPropagation();
+  // We can stop the propogation of event and eventHandlers to their parent by using e.stopPropogation()
+});
+
+document.querySelector(".nav__links").addEventListener("click", function (e) {
+  // console.log(randomColor());
+  this.style.backgroundColor = randomColor();
+  console.log("Container", e.target, e.currentTarget);
+});
+// wheever the event happens (click, mouseenter, etc) on a area on DOM, then as per bubbling of events theory, event is passed to its parent DOM elements as well.
+
+document.querySelector(".nav").addEventListener("click", function (e) {
+  // console.log(randomColor());
+  this.style.backgroundColor = randomColor();
+  console.log("NAV", e.target, e.currentTarget);
+});
+// here e.target is the element from which event has been triggered. Its same for all child as well as its parent DOM elements.Events are bubbled into its parent elements.
+// Also here element represented by this keyword is same/equal to e.currentTarget
+// We can stop the propogation of event and eventHandlers to their parent by using e.stopPropogation()

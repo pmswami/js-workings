@@ -7,6 +7,8 @@ const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+const btnScrollTo = document.querySelector(".btn--scroll-to");
+const section1 = document.querySelector("#section--1");
 
 const openModal = function (event) {
   event.preventDefault();
@@ -30,6 +32,56 @@ overlay.addEventListener('click', closeModal);
 document.addEventListener('keydown', function (e) {
   if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
     closeModal();
+  }
+});
+
+
+// Button Scrolling
+btnScrollTo.addEventListener("click", function (e) {
+  const s1coords = section1.getBoundingClientRect(); // gives rectangle co ordinates of the element
+  // console.log(s1coords);
+  // console.log(e.target.getBoundingClientRect());
+  // console.log("current scroll (x/y)", window.pageXOffset, pageYOffset);
+  // console.log("height/width viewport", document.documentElement.clientHeight, document.documentElement.clientWidth);
+
+  //scrolling
+  // window.scrollTo(s1coords.left + window.pageXOffset, s1coords.top + window.pageYOffset);
+  window.scrollTo({
+    left: s1coords.left + window.pageXOffset,
+    top: s1coords.top + window.pageYOffset,
+    behavior: "smooth"
+  }); // for smooth scrolling
+  // section1.scrollIntoView({ behavior: "smooth" }); //supported only in modern browsers
+});
+
+
+// _________________________Page Navigation__________________
+//// Adding event handler to each and every element
+// console.log(document.querySelectorAll(".nav__link"));
+// document.querySelectorAll(".nav__link").forEach(function (el) {
+//   el.addEventListener("click", function (e) {
+//     e.preventDefault();
+//     // console.log("LINK");
+//     const id = this.getAttribute("href");
+//     // console.log(id);
+//     document.querySelector(id).scrollIntoView({ behavior: "smooth" });
+//   });
+// });
+
+// 1. Add event listener to common parent
+// 2. Determine which element on which event originated
+
+// Adding event handler only at parent element
+document.querySelector(".nav__links").addEventListener("click", function (e) {
+  e.preventDefault();
+  console.log(e.target);
+
+  //matching strategy
+  if (e.target.classList.contains("nav__link")) {
+    // console.log("Link");
+    const id = e.target.getAttribute("href");
+    console.log(id);
+    document.querySelector(id).scrollIntoView({ behavior: "smooth" });
   }
 });
 
@@ -128,8 +180,6 @@ document.addEventListener('keydown', function (e) {
 
 
 // ____________________ IMPLEMENTING SMOOTH SCROLLING _________________________
-const btnScrollTo = document.querySelector(".btn--scroll-to");
-const section1 = document.querySelector("#section--1");
 btnScrollTo.addEventListener("click", function (e) {
   const s1coords = section1.getBoundingClientRect(); // gives rectangle co ordinates of the element
   // console.log(s1coords);
@@ -191,26 +241,27 @@ const randomColor = () => (`rgb(${randomInt(0, 255)}, ${randomInt(0, 255)}, ${ra
 //   console.log("LINK");
 // });
 
-document.querySelector(".nav__link").addEventListener("click", function (e) {
-  // console.log(randomColor());
-  this.style.backgroundColor = randomColor();
-  console.log("LINK", e.target, e.currentTarget);
-  e.stopPropagation();
-  // We can stop the propogation of event and eventHandlers to their parent by using e.stopPropogation()
-});
+// document.querySelector(".nav__link").addEventListener("click", function (e) {
+//   // console.log(randomColor());
+//   this.style.backgroundColor = randomColor();
+//   console.log("LINK", e.target, e.currentTarget);
+//   e.stopPropagation();
+//   // We can stop the propogation of event and eventHandlers to their parent by using e.stopPropogation()
+// });
 
-document.querySelector(".nav__links").addEventListener("click", function (e) {
-  // console.log(randomColor());
-  this.style.backgroundColor = randomColor();
-  console.log("Container", e.target, e.currentTarget);
-});
-// wheever the event happens (click, mouseenter, etc) on a area on DOM, then as per bubbling of events theory, event is passed to its parent DOM elements as well.
+// document.querySelector(".nav__links").addEventListener("click", function (e) {
+//   // console.log(randomColor());
+//   this.style.backgroundColor = randomColor();
+//   console.log("Container", e.target, e.currentTarget);
+// });
+// // wheever the event happens (click, mouseenter, etc) on a area on DOM, then as per bubbling of events theory, event is passed to its parent DOM elements as well.
 
-document.querySelector(".nav").addEventListener("click", function (e) {
-  // console.log(randomColor());
-  this.style.backgroundColor = randomColor();
-  console.log("NAV", e.target, e.currentTarget);
-});
-// here e.target is the element from which event has been triggered. Its same for all child as well as its parent DOM elements.Events are bubbled into its parent elements.
-// Also here element represented by this keyword is same/equal to e.currentTarget
-// We can stop the propogation of event and eventHandlers to their parent by using e.stopPropogation()
+// document.querySelector(".nav").addEventListener("click", function (e) {
+//   // console.log(randomColor());
+//   this.style.backgroundColor = randomColor();
+//   console.log("NAV", e.target, e.currentTarget);
+// });
+// // here e.target is the element from which event has been triggered. Its same for all child as well as its parent DOM elements.Events are bubbled into its parent elements.
+// // Also here element represented by this keyword is same/equal to e.currentTarget
+// // We can stop the propogation of event and eventHandlers to their parent by using e.stopPropogation()
+

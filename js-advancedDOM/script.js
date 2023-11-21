@@ -265,36 +265,62 @@ const randomColor = () => (`rgb(${randomInt(0, 255)}, ${randomInt(0, 255)}, ${ra
 // // Also here element represented by this keyword is same/equal to e.currentTarget
 // // We can stop the propogation of event and eventHandlers to their parent by using e.stopPropogation()
 
-// __________________ DOM Traversing __________________
+// // __________________ DOM Traversing __________________
 
-const h1 = document.querySelector("h1");
-// console.log(h1);
+// const h1 = document.querySelector("h1");
+// // console.log(h1);
 
-// Selecting child elements
-console.log(h1.querySelectorAll(".highlight")); // children with highlight class
-console.log(h1.childNodes); // any children
-console.log(h1.children); // live HTML collection
-console.log(h1.firstElementChild); // first child element
-h1.firstElementChild.style.color = "red";
-console.log(h1.lastElementChild); //last child element
-h1.lastElementChild.style.color = "red";
+// // Selecting child elements
+// console.log(h1.querySelectorAll(".highlight")); // children with highlight class
+// console.log(h1.childNodes); // any children
+// console.log(h1.children); // live HTML collection
+// console.log(h1.firstElementChild); // first child element
+// h1.firstElementChild.style.color = "red";
+// console.log(h1.lastElementChild); //last child element
+// h1.lastElementChild.style.color = "red";
 
-// Selecting parent elements
-console.log(h1.parentNode);
-console.log(h1.parentElement);
+// // Selecting parent elements
+// console.log(h1.parentNode);
+// console.log(h1.parentElement);
 
-// Selecting closest element
-h1.closest(".header").style.background = "var(--gradient-secondary)";
-h1.closest("h1").style.background = "var(--gradient-primary)";
+// // Selecting closest element
+// h1.closest(".header").style.background = "var(--gradient-secondary)";
+// h1.closest("h1").style.background = "var(--gradient-primary)";
 
-//Selecting siblings
-console.log(h1.previousElementSibling);
-console.log(h1.nextElementSibling);
-console.log(h1.previousSibling);
-console.log(h1.nextSibling);
-console.log(h1.parentElement.children); // selecting all siblings
-[...h1.parentElement.children].forEach(function (el) {
-  if (el !== h1) {
-    el.style.transform = "scale(0.5)";
-  }
+// //Selecting siblings
+// console.log(h1.previousElementSibling);
+// console.log(h1.nextElementSibling);
+// console.log(h1.previousSibling);
+// console.log(h1.nextSibling);
+// console.log(h1.parentElement.children); // selecting all siblings
+// [...h1.parentElement.children].forEach(function (el) {
+//   if (el !== h1) {
+//     el.style.transform = "scale(0.5)";
+//   }
+// });
+
+
+// __________________ Building Tabbed components ________________
+const tabs = document.querySelectorAll(".operations__tab");
+// console.log(tabs);
+const tabContainer = document.querySelector(".operations__tab-container");
+// console.log(tabContainer);
+const tabsContent = document.querySelectorAll(".operations__content");
+// console.log(tabsContent);
+
+// tabs.forEach(t => t.addEventListener("click", () => console.log("TAB"))); // not recommenended
+tabContainer.addEventListener("click", function (e) {
+  // console.log("TAB");
+  const clicked = e.target.closest(".operations__tab");
+  // console.log(clicked);
+  if (!clicked) return;
+  // console.log(clicked);
+  tabs.forEach(function (tab) {
+    tab.classList.remove("operations__tab--active");
+  }); //remove all active tabs
+  clicked.classList.add("operations__tab--active"); //make clicked tab active
+  tabsContent.forEach(function (tab) {
+    tab.classList.remove("operations__content--active");
+  }); //remove all active content tab
+  document.querySelector(`.operations__content--${clicked.dataset.tab}`).classList.add("operations__content--active");// make clicked content active
 });

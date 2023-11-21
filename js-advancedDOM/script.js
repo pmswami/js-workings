@@ -265,3 +265,36 @@ const randomColor = () => (`rgb(${randomInt(0, 255)}, ${randomInt(0, 255)}, ${ra
 // // Also here element represented by this keyword is same/equal to e.currentTarget
 // // We can stop the propogation of event and eventHandlers to their parent by using e.stopPropogation()
 
+// __________________ DOM Traversing __________________
+
+const h1 = document.querySelector("h1");
+// console.log(h1);
+
+// Selecting child elements
+console.log(h1.querySelectorAll(".highlight")); // children with highlight class
+console.log(h1.childNodes); // any children
+console.log(h1.children); // live HTML collection
+console.log(h1.firstElementChild); // first child element
+h1.firstElementChild.style.color = "red";
+console.log(h1.lastElementChild); //last child element
+h1.lastElementChild.style.color = "red";
+
+// Selecting parent elements
+console.log(h1.parentNode);
+console.log(h1.parentElement);
+
+// Selecting closest element
+h1.closest(".header").style.background = "var(--gradient-secondary)";
+h1.closest("h1").style.background = "var(--gradient-primary)";
+
+//Selecting siblings
+console.log(h1.previousElementSibling);
+console.log(h1.nextElementSibling);
+console.log(h1.previousSibling);
+console.log(h1.nextSibling);
+console.log(h1.parentElement.children); // selecting all siblings
+[...h1.parentElement.children].forEach(function (el) {
+  if (el !== h1) {
+    el.style.transform = "scale(0.5)";
+  }
+});

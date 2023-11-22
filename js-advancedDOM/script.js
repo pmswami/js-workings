@@ -9,6 +9,13 @@ const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 const btnScrollTo = document.querySelector(".btn--scroll-to");
 const section1 = document.querySelector("#section--1");
+const nav = document.querySelector(".nav");
+const tabs = document.querySelectorAll(".operations__tab");
+// console.log(tabs);
+const tabContainer = document.querySelector(".operations__tab-container");
+// console.log(tabContainer);
+const tabsContent = document.querySelectorAll(".operations__content");
+// console.log(tabsContent);
 
 const openModal = function (event) {
   event.preventDefault();
@@ -301,12 +308,7 @@ const randomColor = () => (`rgb(${randomInt(0, 255)}, ${randomInt(0, 255)}, ${ra
 
 
 // __________________ Building Tabbed components ________________
-const tabs = document.querySelectorAll(".operations__tab");
-// console.log(tabs);
-const tabContainer = document.querySelector(".operations__tab-container");
-// console.log(tabContainer);
-const tabsContent = document.querySelectorAll(".operations__content");
-// console.log(tabsContent);
+
 
 // tabs.forEach(t => t.addEventListener("click", () => console.log("TAB"))); // not recommenended
 tabContainer.addEventListener("click", function (e) {
@@ -324,3 +326,28 @@ tabContainer.addEventListener("click", function (e) {
   }); //remove all active content tab
   document.querySelector(`.operations__content--${clicked.dataset.tab}`).classList.add("operations__content--active");// make clicked content active
 });
+
+
+// ____________ Passing arguments to event listener _____________
+
+const handleHover = function (e) {
+  // console.log(this, e.target);
+  if (e.target.classList.contains("nav__link")) {
+    // console.log(this, e.target);
+    const link = e.target;
+    const siblings = link.closest(".nav").querySelectorAll(".nav__link");
+    const logo = link.closest(".nav").querySelector("img");
+    siblings.forEach((el) => {
+      if (el !== link) {
+        // console.log(this);
+        el.style.opacity = this;
+      }
+      logo.style.opacity = this;
+    });
+  }
+};
+
+// nav.addEventListener("mouseover", function (e) { handleHover(e, 0.5); });
+nav.addEventListener("mouseover", handleHover.bind(0.5));
+// nav.addEventListener("mouseout", function (e) { handleHover(e, 1); });
+nav.addEventListener("mouseout", handleHover.bind(1));

@@ -433,7 +433,7 @@ allSections.forEach(function (el) {
 
 // _____________ Lazy Loading of Images ________________
 const imgTargets = document.querySelectorAll("img[data-src]");
-console.log(imgTargets);
+// console.log(imgTargets);
 const loadImg = function (entries, observer) {
   const [entry] = entries;
   // console.log(entry);
@@ -453,3 +453,74 @@ const imgObserver = new IntersectionObserver(loadImg, {
 imgTargets.forEach(function (el) {
   imgObserver.observe(el);
 });
+
+
+// ________ Implementing Slider ____________
+const slides = document.querySelectorAll(".slide");
+const slider = document.querySelector(".slider");
+const btnLeft = document.querySelector(".slider__btn--left");
+const btnRight = document.querySelector(".slider__btn--right");
+// slider.style.transform = "scale(1) translateX(-800px)";
+slider.style.overflow = "visible";
+let curSlide = 0;
+const maxSlide = slides.length;
+slides.forEach(function (slide, i) {
+  slide.style.transform = `translateX(${i * 100}%)`;
+});
+
+const goToSlide = function (curSlide) {
+  slides.forEach(function (slide, i) {
+    slide.style.transform = `translateX(${(i - curSlide) * 100}%)`;
+  });
+};
+
+const nextSlide = function () {
+  if (curSlide === maxSlide - 1) curSlide = 0;
+  else curSlide += 1;
+  goToSlide(curSlide);
+  activateDots(curSlide);
+};
+
+const prevSlide = function () {
+  if (curSlide === 0) curSlide = maxSlide - 1;
+  else curSlide -= 1;
+  goToSlide(curSlide);
+  activateDots(curSlide);
+};
+btnLeft.addEventListener("click", prevSlide);
+btnRight.addEventListener("click", nextSlide);
+document.addEventListener("keydown", function (event) {
+  if (event.key === "ArrowLeft") { prevSlide(); }
+  if (event.key === "ArrowRight") { nextSlide(); }
+});
+const createDots = function () {
+  slides.forEach(function (_, i) {
+    dotContainer.insertAdjacentHTML("beforeend",
+      `<button class="dots__dot" data-slide="${i}"></button>`);
+  });
+};
+const dotContainer = document.querySelector(".dots");
+console.log(dotContainer);
+
+
+const activateDots = function (slide) {
+  document.querySelectorAll(".dots__dot").forEach(function (dot) {
+    dot.classList.remove("dots__dot--active");
+  });
+  document.querySelector(`.dots__dot[data-slide="${slide}"]`).classList.add("dots__dot--active");
+};
+
+dotContainer.addEventListener("click", function (e) {
+  if (e.target.classList.contains("dots__dot")) {
+    const { slide } = e.target.dataset;
+    goToSlide(slide);
+    activateDots(slide);
+  }
+});
+
+const init = function () {
+  goToSlide(0);
+  createDots();
+  activateDots(0);
+};
+init();

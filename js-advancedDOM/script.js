@@ -408,3 +408,23 @@ const headerObserver = new IntersectionObserver(
   }
 );
 headerObserver.observe(header);
+
+
+// ________________ Revealing elements on scroll ________________
+const allSections = document.querySelectorAll(".section");
+console.log(allSections);
+const revealSections = function (entries, observer) {
+  const [entry] = entries;
+  console.log(entry);
+  if (!entry.isIntersecting) return;
+  entry.target.classList.remove("section--hidden");
+};
+
+const sectionOberver = new IntersectionObserver(revealSections, {
+  root: null,
+  threshold: 0.15
+});
+allSections.forEach(function (el) {
+  sectionOberver.observe(el);
+  el.classList.add("section--hidden");
+});

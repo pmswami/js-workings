@@ -30,3 +30,32 @@
 
 // For more info, visit official MDN documents https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
 
+const Person = function (firstName, birthYear) {
+    // console.log(firstName, birthYear);
+    // console.log(this);
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+    // By default, constructor returns this object
+
+    // not recommended from performace point of view
+    this.calcAge = function () {
+        console.log(2037 - history.birthYear);
+    };
+};
+const jonas = new Person("jonas", 1991);
+console.log(jonas);
+
+// Process followed as below,
+// 1. New {} is created
+// 2. function is called, this={}
+// 3. {} is linked to a prototype
+// 4. function automatically return {}
+
+const matilda = new Person("Matilda", 2017);
+console.log(matilda);
+
+// Object created from class is technically called instance
+// Class is a blueprint for creating instances
+
+console.log(jonas instanceof Person);
+console.log(matilda instanceof Person);

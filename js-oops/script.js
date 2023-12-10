@@ -22,3 +22,11 @@
 // 2. Encapsulation -> Keeping some properties private inside the class, which cant be accessed from outside of the class
 // 3. Inheritance -> One class can inherit the properties of other class.
 // 4. Polymorphism -> A child can overwrite a method inherited from parent class
+
+// All objects in JS are linked to a prototype object
+// Prototypal Inheritance -> The prototype contains methods (behavior) hat are accessible to all objects linked to that prototype
+// Behavior is delegated to the linked prototype object
+// All objects in JS are linked to a prototype object
+
+// For more info, visit official MDN documents https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
+

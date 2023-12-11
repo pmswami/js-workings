@@ -144,6 +144,8 @@
 
 //class declaration
 class PersonCl {
+
+
     constructor(fullName, birthYear) {
         this.fullName = fullName;
         this.birthYear = birthYear;
@@ -175,7 +177,18 @@ class PersonCl {
     get fullName() {
         return this._fullName;
     }
+
+    static hey() {
+        console.log(`Hey there!`);
+        console.log(this);
+    }
 }
+
+// PersonCl.hey = function () {
+//     console.log(`Hey there!`);
+//     console.log(this);
+// };
+// PersonCl.hey();
 
 const jessica = new PersonCl("Jessica Davis", 1996);
 console.log(jessica);
@@ -212,7 +225,7 @@ jessica.greet();
 console.log(jessica.age);
 
 // const walter = new PersonCl("Walter", 1997)
-
+PersonCl.hey()
 
 
 

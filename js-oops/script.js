@@ -97,15 +97,15 @@ Person.prototype.species = "Homo Sapiens";
 // In prototype chain., whenever JS cant find find a particular property/method on object, then it goes to its prototype to get that property/method. Similarly in scope chain, if JS cant find any variable in that scope then it find it inside scope of its parent.
 
 
-console.log(jonas.__proto__);
-console.log(jonas.__proto__.__proto__);
-console.log(jonas.__proto__.__proto__.__proto__);
-console.log(Person.prototype.constructor); // points back to class itself
-console.log("Array function\n");
-const arr = [3, 6, 5, 7, 8, 23, 34, 8];
-console.log(arr.__proto__);
-console.log(arr.__proto__ == Array.prototype); //true
-console.log(arr.__proto__.__proto__);
+// console.log(jonas.__proto__);
+// console.log(jonas.__proto__.__proto__);
+// console.log(jonas.__proto__.__proto__.__proto__);
+// console.log(Person.prototype.constructor); // points back to class itself
+// console.log("Array function\n");
+// const arr = [3, 6, 5, 7, 8, 23, 34, 8];
+// console.log(arr.__proto__);
+// console.log(arr.__proto__ == Array.prototype); //true
+// console.log(arr.__proto__.__proto__);
 
 // For more info on Arrays in JS, https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
 
@@ -113,8 +113,29 @@ console.log(arr.__proto__.__proto__);
 
 // Function in JS is itself an prototype
 
+// _______________ CHALLENGE #1 ________________________
+const Car = function (make, speed) {
+    this.make = make;
+    this.speed = speed;
+};
+Car.prototype.accelerate = function () {
+    this.speed += 10;
+    console.log(`${this.make} is going at ${this.speed}`);
+    // return this
+};
 
+Car.prototype.brake = function () {
+    this.speed -= 5;
+    console.log(`${this.make} is going at ${this.speed}`);
+};
 
+const bmw = new Car("BMW", 120);
+const mercedez = new Car("Mercedez", 95);
+
+bmw.accelerate();
+bmw.accelerate();
+bmw.brake();
+bmw.accelerate();
 
 
 

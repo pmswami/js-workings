@@ -38,12 +38,12 @@ const Person = function (firstName, birthYear) {
     // By default, constructor returns this object
 
     // not recommended from performace point of view
-    this.calcAge = function () {
-        console.log(2037 - history.birthYear);
-    };
+    // this.calcAge = function () {
+    //     console.log(2037 - this.birthYear);
+    // };
 };
 const jonas = new Person("jonas", 1991);
-console.log(jonas);
+// console.log(jonas);
 
 // Process followed as below,
 // 1. New {} is created
@@ -52,10 +52,39 @@ console.log(jonas);
 // 4. function automatically return {}
 
 const matilda = new Person("Matilda", 2017);
-console.log(matilda);
+// console.log(matilda);
 
 // Object created from class is technically called instance
 // Class is a blueprint for creating instances
 
-console.log(jonas instanceof Person);
-console.log(matilda instanceof Person);
+// console.log(jonas instanceof Person);
+// console.log(matilda instanceof Person);
+
+// Prototypes
+Person.prototype.calAge = function () {
+    console.log(2037 - this.birthYear);
+};
+// console.log(Person.prototype);
+// console.log(Person);
+
+jonas.calAge();
+matilda.calAge();
+
+// console.log(jonas.__proto__);
+// console.log(Person.prototype);
+// console.log(jonas.__proto__ === Person.prototype);
+console.log(Person.prototype.isPrototypeOf(jonas));
+console.log(Person.prototype.isPrototypeOf(Person));
+
+// Adding properties on prototypes
+// These properties are common to all instances created
+// These properties are not directly attached to each instances, instead they will be inherited from its prototype
+Person.prototype.species = "Homo Sapiens";
+
+
+// Check particular property availibility
+console.log("Properties Check");
+console.log(jonas.hasOwnProperty("firstName"));
+console.log(jonas.hasOwnProperty("species"));
+
+

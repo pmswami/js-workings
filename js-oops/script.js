@@ -30,29 +30,29 @@
 
 // For more info, visit official MDN documents https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
 
-const Person = function (firstName, birthYear) {
-    // console.log(firstName, birthYear);
-    // console.log(this);
-    this.firstName = firstName;
-    this.birthYear = birthYear;
-    // By default, constructor returns this object
+// const Person = function (firstName, birthYear) {
+//     // console.log(firstName, birthYear);
+//     // console.log(this);
+//     this.firstName = firstName;
+//     this.birthYear = birthYear;
+//     // By default, constructor returns this object
 
-    // not recommended from performace point of view
-    // this.calcAge = function () {
-    //     console.log(2037 - this.birthYear);
-    // };
-};
-const jonas = new Person("jonas", 1991);
-// console.log(jonas);
+//     // not recommended from performace point of view
+//     // this.calcAge = function () {
+//     //     console.log(2037 - this.birthYear);
+//     // };
+// };
+// const jonas = new Person("jonas", 1991);
+// // console.log(jonas);
 
-// Process followed as below,
-// 1. New {} is created
-// 2. function is called, this={}
-// 3. {} is linked to a prototype
-// 4. function automatically return {}
+// // Process followed as below,
+// // 1. New {} is created
+// // 2. function is called, this={}
+// // 3. {} is linked to a prototype
+// // 4. function automatically return {}
 
-const matilda = new Person("Matilda", 2017);
-// console.log(matilda);
+// const matilda = new Person("Matilda", 2017);
+// // console.log(matilda);
 
 // Object created from class is technically called instance
 // Class is a blueprint for creating instances
@@ -61,9 +61,9 @@ const matilda = new Person("Matilda", 2017);
 // console.log(matilda instanceof Person);
 
 // Prototypes
-Person.prototype.calAge = function () {
-    console.log(2037 - this.birthYear);
-};
+// Person.prototype.calAge = function () {
+//     console.log(2037 - this.birthYear);
+// };
 // console.log(Person.prototype);
 // console.log(Person);
 
@@ -81,7 +81,7 @@ Person.prototype.calAge = function () {
 // Adding properties on prototypes
 // These properties are common to all instances created
 // These properties are not directly attached to each instances, instead they will be inherited from its prototype
-Person.prototype.species = "Homo Sapiens";
+// Person.prototype.species = "Homo Sapiens";
 
 
 // // Check particular property availibility
@@ -113,29 +113,67 @@ Person.prototype.species = "Homo Sapiens";
 
 // Function in JS is itself an prototype
 
-// _______________ CHALLENGE #1 ________________________
-const Car = function (make, speed) {
-    this.make = make;
-    this.speed = speed;
-};
-Car.prototype.accelerate = function () {
-    this.speed += 10;
-    console.log(`${this.make} is going at ${this.speed}`);
-    // return this
-};
+// // _______________ CHALLENGE #1 ________________________
+// const Car = function (make, speed) {
+//     this.make = make;
+//     this.speed = speed;
+// };
+// Car.prototype.accelerate = function () {
+//     this.speed += 10;
+//     console.log(`${this.make} is going at ${this.speed}`);
+//     // return this
+// };
 
-Car.prototype.brake = function () {
-    this.speed -= 5;
-    console.log(`${this.make} is going at ${this.speed}`);
+// Car.prototype.brake = function () {
+//     this.speed -= 5;
+//     console.log(`${this.make} is going at ${this.speed}`);
+// };
+
+// const bmw = new Car("BMW", 120);
+// const mercedez = new Car("Mercedez", 95);
+
+// bmw.accelerate();
+// bmw.accelerate();
+// bmw.brake();
+// bmw.accelerate();
+
+// Classes in JS are not new concept, they are just snactic sugar over prototypal inheritance
+
+// // Class expression
+// const PersonCl = class{}
+
+//class declaration
+class PersonCl {
+    constructor(firstName, birthYear) {
+        this.firstName = firstName;
+        this.birthYear = birthYear;
+    }
+
+    // Methods will e automatically added to prototype
+    calcAge() {
+        console.log(2037 - this.birthYear);
+    }
+
+    greet() {
+        console.log(`Hey ${this.firstName}`);
+    };
+}
+
+const jessica = new PersonCl("Jessica", 1996);
+console.log(jessica);
+jessica.calcAge();
+console.log(jessica.__proto__ === PersonCl);
+
+// Can also add methods manually to the classes outside the class defination
+PersonCl.prototype.greet = function () {
+    console.log(`Hey ${this.firstName}`);
 };
+jessica.greet();
 
-const bmw = new Car("BMW", 120);
-const mercedez = new Car("Mercedez", 95);
+// 1. Classes are not hoisted. Means they cannot be used before heir declaration
+// 2. Classes are first class citizens. Means classes can be returned from another class
+// 3. By default, classes work in strict mode always
 
-bmw.accelerate();
-bmw.accelerate();
-bmw.brake();
-bmw.accelerate();
 
 
 

@@ -67,14 +67,16 @@ Person.prototype.calAge = function () {
 // console.log(Person.prototype);
 // console.log(Person);
 
-jonas.calAge();
-matilda.calAge();
 
-// console.log(jonas.__proto__);
-// console.log(Person.prototype);
-// console.log(jonas.__proto__ === Person.prototype);
-console.log(Person.prototype.isPrototypeOf(jonas));
-console.log(Person.prototype.isPrototypeOf(Person));
+// // Calling methods which are attached to prototypes
+// jonas.calAge();
+// matilda.calAge();
+
+// // console.log(jonas.__proto__);
+// // console.log(Person.prototype);
+// // console.log(jonas.__proto__ === Person.prototype);
+// console.log(Person.prototype.isPrototypeOf(jonas));
+// console.log(Person.prototype.isPrototypeOf(Person));
 
 // Adding properties on prototypes
 // These properties are common to all instances created
@@ -82,9 +84,56 @@ console.log(Person.prototype.isPrototypeOf(Person));
 Person.prototype.species = "Homo Sapiens";
 
 
-// Check particular property availibility
-console.log("Properties Check");
-console.log(jonas.hasOwnProperty("firstName"));
-console.log(jonas.hasOwnProperty("species"));
+// // Check particular property availibility
+// console.log("Properties Check");
+// console.log(jonas.hasOwnProperty("firstName"));
+// console.log(jonas.hasOwnProperty("species"));
+
+
+// Prototype in JS is itself a object of className.prototype
+// whenever a new object is created, JS doesnt create all properties annd methods of the class for the new object. Instead is only creates the new object with properties and mehods which are defined inside the class defination. JS only links all remaining properties and methods to objects from its prototype.
+// Prototype chain is series between objects, linked through prototypes.
+// Scope chain also works similarly as prtotype chain.
+// In prototype chain., whenever JS cant find find a particular property/method on object, then it goes to its prototype to get that property/method. Similarly in scope chain, if JS cant find any variable in that scope then it find it inside scope of its parent.
+
+
+console.log(jonas.__proto__);
+console.log(jonas.__proto__.__proto__);
+console.log(jonas.__proto__.__proto__.__proto__);
+console.log(Person.prototype.constructor); // points back to class itself
+console.log("Array function\n");
+const arr = [3, 6, 5, 7, 8, 23, 34, 8];
+console.log(arr.__proto__);
+console.log(arr.__proto__ == Array.prototype); //true
+console.log(arr.__proto__.__proto__);
+
+// For more info on Arrays in JS, https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
+
+// If we add any new method on prototype then all the objects/instances will automatically have access(by inheritance property) to te new method
+
+// Function in JS is itself an prototype
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

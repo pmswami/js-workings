@@ -166,7 +166,7 @@ class PersonCl {
     }
 
     set fullName(name) {
-        console.log(name);
+        // console.log(name);
         if (name.includes(" ")) {
             this._fullName = name;
         } else {
@@ -191,15 +191,15 @@ class PersonCl {
 // PersonCl.hey();
 
 const jessica = new PersonCl("Jessica Davis", 1996);
-console.log(jessica);
-jessica.calcAge();
-console.log(jessica.__proto__ === PersonCl);
+// console.log(jessica);
+// jessica.calcAge();
+// console.log(jessica.__proto__ === PersonCl);
 
-// // Can also add methods manually to the classes outside the class defination
-// PersonCl.prototype.greet = function () {
-//     console.log(`Hey ${this.firstName}`);
-// };
-jessica.greet();
+// // // Can also add methods manually to the classes outside the class defination
+// // PersonCl.prototype.greet = function () {
+// //     console.log(`Hey ${this.firstName}`);
+// // };
+// jessica.greet();
 
 // 1. Classes are not hoisted. Means they cannot be used before heir declaration
 // 2. Classes are first class citizens. Means classes can be returned from another class
@@ -222,13 +222,38 @@ jessica.greet();
 // console.log(account.latest);
 // account.latest = 800;
 // console.log(account.latest);
-console.log(jessica.age);
+// console.log(jessica.age);
 
 // const walter = new PersonCl("Walter", 1997)
-PersonCl.hey()
+// PersonCl.hey();
 
+// ______________________ Using Object.create Method ____________
+const PersonProto = {
+    calcAge() {
+        console.log(2037 - this.birthYear);
+    },
 
+    init(firstName, birthYear) {
+        this.firstName = firstName;
+        this.birthYear = birthYear;
+    }
+};
 
+const steven = Object.create(PersonProto);
+console.log(steven);
+steven.name = "Steven";
+steven.birthYear = 2002;
+steven.calcAge();
+
+// const car = Object.create(PersonProto);
+// car.make = "BMW";
+// console.log(car);
+// car.calcAge()
+
+console.log(steven.__proto__ == PersonProto);
+const sarah = Object.create(PersonProto);
+sarah.init("Sara", 1990);
+sarah.calcAge()
 
 
 

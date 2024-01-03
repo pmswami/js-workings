@@ -456,68 +456,124 @@
 
 
 
-// ______________________ Encapsulation and Data Privacy _______________________
-// Fields Types
-    //Public fields
-    //Private fields
-    //Public Methods
-    //Pivate Methods
-    //Static Public Fields
-    //Static Private Fields
-    //Static Public Method
-    //Static Private Method
+// // ______________________ Encapsulation and Data Privacy _______________________
+// // Fields Types
+//     //Public fields
+//     //Private fields
+//     //Public Methods
+//     //Pivate Methods
+//     //Static Public Fields
+//     //Static Private Fields
+//     //Static Public Method
+//     //Static Private Method
 
-class Account{
-    //Instance Fields
-    //Public Fields
-    locale = navigator.language
+// class Account{
+//     //Instance Fields
+//     //Public Fields
+//     locale = navigator.language
 
-    //Private Fields
-    #movements = []
-    #pin
+//     //Private Fields
+//     #movements = []
+//     #pin
     
-    constructor(owner, currency, pin){
-        this.owner = owner
-        this.currency = currency
-        this.#pin = pin
-        //Protected property
-        // this._movements = []
-        // this.locale = navigator.language
-        console.log(`Thanks for opening an account ${this.owner}`)
-    }
+//     constructor(owner, currency, pin){
+//         this.owner = owner
+//         this.currency = currency
+//         this.#pin = pin
+//         //Protected property
+//         // this._movements = []
+//         // this.locale = navigator.language
+//         console.log(`Thanks for opening an account ${this.owner}`)
+//     }
 
-    //Public Interface/Methods
-    getMovements(){
-        return this.#movements
-    }
-    deposit(val){
-        this.#movements.push(val)
+//     //Public Interface/Methods
+//     getMovements(){
+//         return this.#movements
+//     }
+//     deposit(val){
+//         this.#movements.push(val)
+//         return this
+//     }
+//     withdraw(val){
+//         this.deposit(-val)
+//         return this
+//     }
+    
+//     requestLoan(val){
+//         if(this.#approveLoan(val)){
+//             this.deposit(val)
+//             console.log("Loan Approved")
+//             return this
+//         }
+//     }
+
+//     //Private Methods/Interface
+//     #approveLoan(val){
+//         return true
+//     }
+// }
+
+// const acc1 = new Account("Jonas", "EUR", 1111)
+// acc1.deposit(1000)
+// acc1.withdraw(100)
+// acc1.requestLoan(50000)
+// // console.log(acc1.getMovements())
+// console.log(acc1)
+// // console.log(acc1.#movements)
+// console.log(acc1.deposit(1000).deposit(500).requestLoan(10000).withdraw(1000))
+
+
+// ___________________ CHALLENGE #4 __________________________________
+class CarCl{
+    constructor(make, speed) {
+        this.make = make;
+        this.speed = speed;
+    };
+    accelerate() {
+        this.speed += 10;
+        console.log(`${this.make} is going at ${this.speed}`);
+    };
+
+    brake() {
+        this.speed -= 5;
+        console.log(`${this.make} is going at ${this.speed}`);
         return this
     }
-    withdraw(val){
-        this.deposit(-val)
-        return this
-    }
-    
-    requestLoan(val){
-        if(this.#approveLoan(val)){
-            this.deposit(val)
-            console.log("Loan Approved")
-            return this
-        }
+
+    get speedUS(){
+        return this.speed/1.6
     }
 
-    //Private Methods/Interface
-    #approveLoan(val){
-        return true
+    set speedUS(speed){
+        this.speed = speed*1.6
     }
 }
-
-const acc1 = new Account("Jonas", "EUR", 1111)
-acc1.deposit(1000)
-acc1.withdraw(100)
-acc1.requestLoan(50000)
-// console.log(acc1.getMovements())
-console.log(acc1)
-// console.log(acc1.#movements)
-console.log(acc1.deposit(1000).deposit(500).requestLoan(10000).withdraw(1000))
+    
+class EV extends CarCl{
+    #charge
+    constructor(make, speed, charge){
+        super(make, speed)
+        this.#charge = charge
+    }
+    chargeBattery(chargeTo){
+        this.#charge = chargeTo
+        return this
+    }
+    accelerate(){
+        this.speed+=20
+        this.#charge-=1
+        console.log(`${this.make} is going at speed of ${this.speed}km/h with charge of ${this.#charge}`)
+        return this
+    }
+}
+const rivian = new EV("Rivian", 120, 23)
+console.log(rivian)
+console.log(rivian
+    .accelerate()
+    .chargeBattery(90)
+    .accelerate()
+    .brake()
+    .brake()
+    .brake()
+)
+console.log(rivian.speedUS)

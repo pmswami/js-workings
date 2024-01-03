@@ -143,46 +143,46 @@
 // const PersonCl = class{}
 
 //class declaration
-class PersonCl {
+// class PersonCl {
 
 
-    constructor(fullName, birthYear) {
-        this.fullName = fullName;
-        this.birthYear = birthYear;
-    }
+//     constructor(fullName, birthYear) {
+//         this.fullName = fullName;
+//         this.birthYear = birthYear;
+//     }
 
-    // Methods will e automatically added to prototype
-    calcAge() {
-        console.log(2037 - this.birthYear);
-    }
+//     // Methods will e automatically added to prototype
+//     calcAge() {
+//         console.log(2037 - this.birthYear);
+//     }
 
-    greet() {
-        console.log(`Hey ${this.firstName}`);
-    };
+//     greet() {
+//         console.log(`Hey ${this.firstName}`);
+//     };
 
-    // Getters and Setters
-    get age() {
-        return 2037 - this.birthYear;
-    }
+//     // Getters and Setters
+//     get age() {
+//         return 2037 - this.birthYear;
+//     }
 
-    set fullName(name) {
-        // console.log(name);
-        if (name.includes(" ")) {
-            this._fullName = name;
-        } else {
-            alert("Given name is not a fullname");
-        }
-    }
+//     set fullName(name) {
+//         // console.log(name);
+//         if (name.includes(" ")) {
+//             this._fullName = name;
+//         } else {
+//             alert("Given name is not a fullname");
+//         }
+//     }
 
-    get fullName() {
-        return this._fullName;
-    }
+//     get fullName() {
+//         return this._fullName;
+//     }
 
-    static hey() {
-        console.log(`Hey there!`);
-        console.log(this);
-    }
-}
+//     static hey() {
+//         console.log(`Hey there!`);
+//         console.log(this);
+//     }
+// }
 
 // PersonCl.hey = function () {
 //     console.log(`Hey there!`);
@@ -190,7 +190,7 @@ class PersonCl {
 // };
 // PersonCl.hey();
 
-const jessica = new PersonCl("Jessica Davis", 1996);
+// const jessica = new PersonCl("Jessica Davis", 1996);
 // console.log(jessica);
 // jessica.calcAge();
 // console.log(jessica.__proto__ === PersonCl);
@@ -337,43 +337,96 @@ const jessica = new PersonCl("Jessica Davis", 1996);
 // Student.prototype.constructor = Student
 // console.dir(Student.prototype.constructor)
 
-// _____________ CHALLENGE #3 ____________________________
-const Car = function (make, speed) {
-    this.make = make;
-    this.speed = speed;
-};
-Car.prototype.accelerate = function () {
-    this.speed += 10;
-    console.log(`${this.make} is going at ${this.speed}`);
-    // return this
-};
-Car.prototype.brake = function () {
-    this.speed -= 5;
-    console.log(`${this.make} is going at ${this.speed}`);
-};
-const EV = function(make, speed, charge){
-    Car.call(this, make, speed)
-    this.charge = charge
-}
-// Link the prototype
-EV.prototype = Object.create(Car.prototype)
-EV.prototype.chargeBattery = function(chargeTo){
-    this.charge = chargeTo
-}
-// override the accelerate method
-EV.prototype.accelerate = function(){
-    this.speed+=20
-    this.charge-=1
-    console.log(`${this.make} is going at speed of ${this.speed}km/h with charge of ${this.charge}`)
-}
-const tesla = new EV("Tesla", 120, 23)
-console.log(tesla)
-tesla.chargeBattery(90)
-tesla.brake()
-tesla.accelerate()
-console.log(tesla)
+// // _____________ CHALLENGE #3 ____________________________
+// const Car = function (make, speed) {
+//     this.make = make;
+//     this.speed = speed;
+// };
+// Car.prototype.accelerate = function () {
+//     this.speed += 10;
+//     console.log(`${this.make} is going at ${this.speed}`);
+//     // return this
+// };
+// Car.prototype.brake = function () {
+//     this.speed -= 5;
+//     console.log(`${this.make} is going at ${this.speed}`);
+// };
+// const EV = function(make, speed, charge){
+//     Car.call(this, make, speed)
+//     this.charge = charge
+// }
+// // Link the prototype
+// EV.prototype = Object.create(Car.prototype)
+// EV.prototype.chargeBattery = function(chargeTo){
+//     this.charge = chargeTo
+// }
+// // override the accelerate method
+// EV.prototype.accelerate = function(){
+//     this.speed+=20
+//     this.charge-=1
+//     console.log(`${this.make} is going at speed of ${this.speed}km/h with charge of ${this.charge}`)
+// }
+// const tesla = new EV("Tesla", 120, 23)
+// console.log(tesla)
+// tesla.chargeBattery(90)
+// tesla.brake()
+// tesla.accelerate()
+// console.log(tesla)
 
 
+// ______________ Class Inheritance _________________________
+class PersonCl {
+    constructor(fullName, birthYear) {
+        this.fullName = fullName;
+        this.birthYear = birthYear;
+    }
+    // Methods will e automatically added to prototype
+    calcAge() {
+        console.log(2037 - this.birthYear);
+    }
+    greet() {
+        console.log(`Hey ${this.firstName}`);
+    };
+    // Getters and Setters
+    get age() {
+        return 2037 - this.birthYear;
+    }
+    set fullName(name) {
+        // console.log(name);
+        if (name.includes(" ")) {
+            this._fullName = name;
+        } else {
+            alert("Given name is not a fullname");
+        }
+    }
+    get fullName() {
+        return this._fullName;
+    }
+    static hey() {
+        console.log(`Hey there!`);
+        console.log(this);
+    }
+}
+
+class StudentCl extends PersonCl{
+    constructor(fullname, birthYear, course){
+        // Always needs to happen first, otherwise all objects will be overwritten to empty object
+        // This will work even if dont call super method. It will automatically be called.
+        super(fullname, birthYear)
+        this.course = course
+    }
+    introduce = function(){
+        console.log(`My name is ${this.fullName}, I study ${this.course}`)
+    }
+    // Method overriding
+    calcAge(){
+        console.log(`I am ${2037-this.birthYear}, but I feel more like ${2037-this.birthYear+10}`)
+    }
+}
+const martha = new StudentCl("Martha Jones", 2012, "Computer Science")
+console.log(martha)
+martha.introduce()
+martha.calcAge()
 
 
 

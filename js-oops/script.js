@@ -227,38 +227,72 @@ const jessica = new PersonCl("Jessica Davis", 1996);
 // const walter = new PersonCl("Walter", 1997)
 // PersonCl.hey();
 
-// ______________________ Using Object.create Method ____________
-const PersonProto = {
-    calcAge() {
-        console.log(2037 - this.birthYear);
-    },
+// // ______________________ Using Object.create Method ____________
+// const PersonProto = {
+//     calcAge() {
+//         console.log(2037 - this.birthYear);
+//     },
 
-    init(firstName, birthYear) {
-        this.firstName = firstName;
-        this.birthYear = birthYear;
+//     init(firstName, birthYear) {
+//         this.firstName = firstName;
+//         this.birthYear = birthYear;
+//     }
+// };
+
+// const steven = Object.create(PersonProto);
+// console.log(steven);
+// steven.name = "Steven";
+// steven.birthYear = 2002;
+// steven.calcAge();
+
+// // const car = Object.create(PersonProto);
+// // car.make = "BMW";
+// // console.log(car);
+// // car.calcAge()
+
+// // console.log(steven.__proto__ == PersonProto);
+// // const sarah = Object.create(PersonProto);
+// // sarah.init("Sara", 1990);
+// // sarah.calcAge()
+
+
+// _________________________ CHALLENGE #2 ____________________________________
+class CarCl{
+    constructor(make, speed) {
+        this.make = make;
+        this.speed = speed;
+    };
+    accelerate() {
+        this.speed += 10;
+        console.log(`${this.make} is going at ${this.speed}`);
+    };
+
+    brake() {
+        this.speed -= 5;
+        console.log(`${this.make} is going at ${this.speed}`);
     }
-};
 
-const steven = Object.create(PersonProto);
-console.log(steven);
-steven.name = "Steven";
-steven.birthYear = 2002;
-steven.calcAge();
+    get speedUS(){
+        return this.speed/1.6
+    }
 
-// const car = Object.create(PersonProto);
-// car.make = "BMW";
-// console.log(car);
-// car.calcAge()
-
-console.log(steven.__proto__ == PersonProto);
-const sarah = Object.create(PersonProto);
-sarah.init("Sara", 1990);
-sarah.calcAge()
+    set speedUS(speed){
+        this.speed = speed*1.6
+    }
 
 
+}
 
-
-
+const ford = new CarCl("ford", 120)
+console.log(ford)
+console.log(ford.speedUS)
+ford.accelerate()
+ford.accelerate()
+ford.brake()
+console.log(ford.speedUS)
+ford.speedUS=50
+console.log(ford.speedUS)
+console.log(ford)
 
 
 

@@ -256,45 +256,85 @@ const jessica = new PersonCl("Jessica Davis", 1996);
 // // sarah.calcAge()
 
 
-// _________________________ CHALLENGE #2 ____________________________________
-class CarCl{
-    constructor(make, speed) {
-        this.make = make;
-        this.speed = speed;
-    };
-    accelerate() {
-        this.speed += 10;
-        console.log(`${this.make} is going at ${this.speed}`);
-    };
+// // _________________________ CHALLENGE #2 ____________________________________
+// class CarCl{
+//     constructor(make, speed) {
+//         this.make = make;
+//         this.speed = speed;
+//     };
+//     accelerate() {
+//         this.speed += 10;
+//         console.log(`${this.make} is going at ${this.speed}`);
+//     };
 
-    brake() {
-        this.speed -= 5;
-        console.log(`${this.make} is going at ${this.speed}`);
-    }
+//     brake() {
+//         this.speed -= 5;
+//         console.log(`${this.make} is going at ${this.speed}`);
+//     }
 
-    get speedUS(){
-        return this.speed/1.6
-    }
+//     get speedUS(){
+//         return this.speed/1.6
+//     }
 
-    set speedUS(speed){
-        this.speed = speed*1.6
-    }
+//     set speedUS(speed){
+//         this.speed = speed*1.6
+//     }
 
 
+// }
+
+// const ford = new CarCl("ford", 120)
+// console.log(ford)
+// console.log(ford.speedUS)
+// ford.accelerate()
+// ford.accelerate()
+// ford.brake()
+// console.log(ford.speedUS)
+// ford.speedUS=50
+// console.log(ford.speedUS)
+// console.log(ford)
+
+// 3 methods of Class declaration
+    // 1. Constructor function
+    // 2. ES6 Class syntax defination
+    // 3. Object.create()
+
+const Person = function (firstName, birthYear) {
+        this.firstName = firstName;
+        this.birthYear = birthYear;
+};
+    
+Person.prototype.calcAge = function () {
+    console.log(2037 - this.birthYear);
+};
+
+const Student = function(firstName, birthYear, course){
+    // this.firstName = firstName
+    // this.birthYear = birthYear
+    Person.call(this, firstName, birthYear)
+    this.course = course
 }
 
-const ford = new CarCl("ford", 120)
-console.log(ford)
-console.log(ford.speedUS)
-ford.accelerate()
-ford.accelerate()
-ford.brake()
-console.log(ford.speedUS)
-ford.speedUS=50
-console.log(ford.speedUS)
-console.log(ford)
+// Whenever we link prototype then a new empty object is created. Hence if any links are joined before this may get nulled.
+//Linking prototypes
+Student.prototype = Object.create(Person.prototype)
 
+Student.prototype.introduce = function(){
+    console.log(`My name is ${this.firstName}, I study ${this.course}`)
+}
 
+const mike=  new Student("Mike", 2020, "Computer Science")
+mike.introduce()
+mike.calcAge()
+console.log(mike.__proto__)
+console.log(mike.__proto__.__proto__)
+
+console.log(mike instanceof Student)
+console.log(mike instanceof Person)
+console.log(mike instanceof Object)
+
+Student.prototype.constructor = Student
+console.dir(Student.prototype.constructor)
 
 
 

@@ -429,28 +429,91 @@
 // martha.calcAge()
 
 
-// ________________ Inheritance using Object.create() ______________________
-const PersonProto = {
-    calcAge() {
-        console.log(2037 - this.birthYear);
-    },
+// // ________________ Inheritance using Object.create() ______________________
+// const PersonProto = {
+//     calcAge() {
+//         console.log(2037 - this.birthYear);
+//     },
+//     init(firstName, birthYear) {
+//         this.firstName = firstName;
+//         this.birthYear = birthYear;
+//     }
+// }
+// const steven = Object.create(PersonProto)
+// const StudentProto = Object.create(PersonProto)
+// StudentProto.init=function(firstName, birthYear, course){
+//     PersonProto.init.call(this, firstName, birthYear)
+//     this.course = course
+// }
+// StudentProto.introduce = function(){
+//     console.log(`My name is ${this.firstName}, I study ${this.course}`)
+// }
+// const jay = Object.create(StudentProto)
+// jay.init("Jay", 2010, "Computer Science")
+// console.log(jay)
+// jay.introduce()
+// jay.calcAge()
 
-    init(firstName, birthYear) {
-        this.firstName = firstName;
-        this.birthYear = birthYear;
+
+
+// ______________________ Encapsulation and Data Privacy _______________________
+// Fields Types
+    //Public fields
+    //Private fields
+    //Public Methods
+    //Pivate Methods
+    //Static Public Fields
+    //Static Private Fields
+    //Static Public Method
+    //Static Private Method
+
+class Account{
+    //Instance Fields
+    //Public Fields
+    locale = navigator.language
+
+    //Private Fields
+    #movements = []
+    #pin
+    
+    constructor(owner, currency, pin){
+        this.owner = owner
+        this.currency = currency
+        this.#pin = pin
+        //Protected property
+        // this._movements = []
+        // this.locale = navigator.language
+        console.log(`Thanks for opening an account ${this.owner}`)
+    }
+
+    //Public Interface/Methods
+    getMovements(){
+        return this.#movements
+    }
+    deposit(val){
+        this.#movements.push(val)
+    }
+    withdraw(val){
+        this.deposit(-val)
+    }
+    
+    requestLoan(val){
+        if(this.#approveLoan(val)){
+            this.deposit(val)
+            console.log("Loan Approved")
+        }
+    }
+
+    //Private Methods/Interface
+    #approveLoan(val){
+        return true
     }
 }
-const steven = Object.create(PersonProto)
-const StudentProto = Object.create(PersonProto)
-StudentProto.init=function(firstName, birthYear, course){
-    PersonProto.init.call(this, firstName, birthYear)
-    this.course = course
-}
-StudentProto.introduce = function(){
-    console.log(`My name is ${this.firstName}, I study ${this.course}`)
-}
-const jay = Object.create(StudentProto)
-jay.init("Jay", 2010, "Computer Science")
-console.log(jay)
-jay.introduce()
-jay.calcAge()
+
+const acc1 = new Account("Jonas", "EUR", 1111)
+acc1.deposit(1000)
+acc1.withdraw(100)
+acc1.requestLoan(50000)
+// console.log(acc1.getMovements())
+console.log(acc1)
+// console.log(acc1.#movements)
